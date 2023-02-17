@@ -50,7 +50,7 @@ export default function Record() {
   };
 
   return (
-    <div className="record-screen-bg">
+    <div className="bg">
       <Navbar />
       <div className="record-screen">
         {audioURL.map((url, index) => (

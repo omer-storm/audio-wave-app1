@@ -4,7 +4,9 @@ body {
   height: 100%;
   overflow-x:hidden;
   /* overflow: hidden; */
-  /* background-color: #121212; */
+  /* background-color: #f1f1f1; */
+  background-image: url("/public/bgs/wave.png");
+  /* background-position: center center; */
 }
 
 :root {
@@ -18,6 +20,9 @@ body {
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
+
+
+
 
 /*Hamburger menu  */
 .hamburger-menu {
@@ -245,7 +250,7 @@ body {
 } */
 
 .record-screen {
-  position: relative;
+  position: absolute;
   top: 20vh;
 }
 
@@ -263,6 +268,7 @@ body {
 /* Mobile menu */
 .dashboard-menu {
   margin-top: 10px;
+  /* top:400px; */
 }
 
 .dashboard-menu-option {
@@ -274,6 +280,7 @@ body {
   padding-top: 10px;
   border: 2px solid #14a44d;
   color: #14a44d;
+  background-color: #f1f1f1
 }
 
 .dashboard-menu-option:hover {
