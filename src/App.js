@@ -6,12 +6,15 @@ import Dashboard from "./Pages/Dashboard";
 import Record from "./Pages/Record";
 import CreateRecording from "./Pages/CreateRecording";
 import ViewRecordings from "./Pages/ViewRecordings";
+import LandingPage from "./Pages/LandingPage";
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Record />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/Record" element={<Record />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
