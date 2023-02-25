@@ -35,6 +35,11 @@ const Navbar = () => {
 
       {/* <aside className="sidebar"> */}
         <div className="sidebar-menu">
+        <Link to="/">
+            <div className="sidebar-menu-option">
+              <p className="sidebar-menu-option-text">Home</p>
+            </div>
+          </Link>
           <Link to="/record">
             <div className="sidebar-menu-option">
               <p className="sidebar-menu-option-text">Record</p>

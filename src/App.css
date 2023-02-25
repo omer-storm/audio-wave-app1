@@ -16,7 +16,7 @@ body {
   --foreground: #333;
   --background: white;
   --hamburger-margin-top: 20px;
-  --hamburger-margin-right: 145px;
+  --hamburger-margin-right: 10px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
@@ -41,7 +41,7 @@ body {
   position: absolute;
   top: 150px;
   left: 4px;
-  width: 280px;
+  width: 260px;
 
 }
 
@@ -49,7 +49,7 @@ body {
   position: absolute;
   top: 420px;
   left: 4px;
-  width: 280px;
+  width: 260px;
 }
 
 .landing-screen-text-position3 {
