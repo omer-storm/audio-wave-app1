@@ -1,4 +1,5 @@
 import Navbar from "../Components/Navbar";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   return (
@@ -19,8 +20,8 @@ function LandingPage() {
       </div>
       <div className="landing-screen-text-position4">
       <h1 className="landing-screen-heading">Explore our site:</h1>
-      <a className="landing-screen-link">Login</a>
-      <a className="landing-screen-link">Practice</a>
+      <Link to="/login" className="landing-screen-link">Login</Link>
+      <Link to="/record" className="landing-screen-link">Practice</Link>
       </div>
 
     </>

@@ -46,28 +46,32 @@ export default function WaveFormPrompt() {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: "rgba(0, 0, 0, 0.9)", width: "600px", height: "250px", border: "2px solid #14a44d" }}>
       {url === "" ? (
-        <h6 style={{ margin: 40, color: "#f1f1f1" }}>
+        <h6
+          style={{ position: "relative", top: 40, margin: 60, marginLeft: 30, color: "green" }}
+        >
           Your WaveForm will be displayed here
         </h6>
       ) : (
         <WaveForm url={url} color={"white"} />
       )}
-      <button
-        className="btn btn-light"
-        onClick={startRecording}
-        disabled={isRecording}
-      >
-        start {url !== "" && "new"} recording
-      </button>
-      <button
-        className="btn btn-light"
-        onClick={stopRecording}
-        disabled={!isRecording}
-      >
-        stop recording
-      </button>
+      <div>
+        <button
+          className="btn btn-sm btn-success"
+          onClick={startRecording}
+          disabled={isRecording}
+        >
+          start {url !== "" && "new"} recording
+        </button>
+        <button
+          className="btn btn-sm btn-success"
+          onClick={stopRecording}
+          disabled={!isRecording}
+        >
+          stop recording
+        </button>
+      </div>
     </div>
   );
 }

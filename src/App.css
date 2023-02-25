@@ -310,6 +310,24 @@ body {
 .btn {
   margin: 10px;
 }
+
+.PracticeOptionLayout {
+  display: flex; 
+  flex-direction: row; 
+  margin: 10px;
+}
+
+.PracticeOption {
+  padding: 10px;
+  background-color: #14a44d;
+  border-left: 2px solid white;
+  color: white
+}
+
+.PracticeOption:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 /*Guest Page */
 /* .record-screen-bg {
   position: absolute;
@@ -320,10 +338,10 @@ body {
   background-size: cover;
 } */
 
-.record-screen {
-  position: absolute;
-  top: 20vh;
-}
+/* .record-screen {
+  position: relative;
+  top: 50px;
+} */
 
 /* dashboard
 .dashboard {

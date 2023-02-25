@@ -21,7 +21,7 @@ const Navbar = () => {
         
       </div>
 
-      <label class="hamburger-menu">
+      <label className="hamburger-menu">
           <input type="checkbox" />
         </label>
       {/* <aside class="sidebar">

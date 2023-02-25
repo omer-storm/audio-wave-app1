@@ -25,7 +25,7 @@ export default function WaveForm({ url }) {
   };
 
   return (
-    <div style={{ backgroundColor: "rgba(0, 0, 0, 0.9)", width: "800px" }} >
+    <div >
       <div ref={waveformRef} ></div>
       <button className="btn btn-success" onClick={onPlayPause}>
         Play/Pause
