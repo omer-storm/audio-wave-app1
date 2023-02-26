@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 (async () => {
-  await mongoose.connect("mongodb+srv://omer:Bsv5qtmbaK7huWEh@cluster0.sollise.mongodb.net/boli");
+  await mongoose.connect("mongodb://localhost:27017/boli");
 })();
 
 module.exports = {

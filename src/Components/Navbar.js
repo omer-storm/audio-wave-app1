@@ -42,7 +42,7 @@ const Navbar = () => {
           </Link>
           <Link to="/record">
             <div className="sidebar-menu-option">
-              <p className="sidebar-menu-option-text">Record</p>
+              <p className="sidebar-menu-option-text">Practice</p>
             </div>
           </Link>
           {user === null ? (

@@ -8,7 +8,7 @@ export default function Record() {
   return (
     <div>
       <Navbar />
-      <div style={{position: "relative",left: 100}}>
+      <div style={{ position: "relative", left: 100 }}>
         <div className="PracticeOptionLayout">
           <h6
             className="PracticeOption"
@@ -47,14 +47,22 @@ export default function Record() {
               Option === "overlap" ? { position: "absolute", left: 0 } : {}
             }
           >
-            <WaveFormPrompt overlap = {(Option === "overlap") ? true : false} color="red" color1={"white"} />
+            <WaveFormPrompt
+              overlap={Option === "overlap" ? true : false}
+              color="red"
+              color1={"white"}
+            />
           </div>
           <div
             style={
               Option === "overlap" ? { position: "absolute", left: 0 } : {}
             }
           >
-            <WaveFormPrompt overlap = {(Option === "overlap") ? true : false} color="green" color1={"blue"} />
+            <WaveFormPrompt
+              overlap={Option === "overlap" ? true : false}
+              color="green"
+              color1={"blue"}
+            />
           </div>
         </div>
       </div>

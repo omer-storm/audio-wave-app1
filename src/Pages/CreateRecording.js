@@ -70,6 +70,8 @@ export default function CreateRecording() {
     formData.append("recording", blob);
     formData.append("userid", user._id);
     formData.append("recordingName", recordingName);
+    setBlob("");
+    setRecordingName("");
     dispatch(uploadrecording(formData));
   };
 
