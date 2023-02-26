@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WaveForm from "./WaveForm";
 
-export default function WaveFormPrompt() {
+export default function WaveFormPrompt({ color, color1, overlap }) {
   const [url, setURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
@@ -46,32 +46,47 @@ export default function WaveFormPrompt() {
   };
 
   return (
-    <div style={{ backgroundColor: "rgba(0, 0, 0, 0.9)", width: "600px", height: "250px", border: "2px solid #14a44d" }}>
+    <div
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.9)",
+        width: "600px",
+        height: "250px",
+        border: "2px solid #14a44d",
+      }}
+    >
       {url === "" ? (
         <h6
-          style={{ position: "relative", top: 40, margin: 60, marginLeft: 30, color: "green" }}
+          style={{
+            position: "relative",
+            top: 40,
+            margin: 60,
+            marginLeft: 30,
+            color: "green",
+          }}
         >
           Your WaveForm will be displayed here
         </h6>
       ) : (
-        <WaveForm url={url} color={"white"} />
+        <WaveForm url={url} color={color} color1={color1} overlap={overlap} />
       )}
-      <div>
-        <button
-          className="btn btn-sm btn-success"
-          onClick={startRecording}
-          disabled={isRecording}
-        >
-          start {url !== "" && "new"} recording
-        </button>
-        <button
-          className="btn btn-sm btn-success"
-          onClick={stopRecording}
-          disabled={!isRecording}
-        >
-          stop recording
-        </button>
-      </div>
+      {!overlap && (
+        <div>
+          <button
+            className="btn btn-sm btn-success"
+            onClick={startRecording}
+            disabled={isRecording}
+          >
+            start {url !== "" && "new"} recording
+          </button>
+          <button
+            className="btn btn-sm btn-success"
+            onClick={stopRecording}
+            disabled={!isRecording}
+          >
+            stop recording
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -255,7 +255,7 @@ body {
   width: 50vw;
   /* border: 5px solid silver; */
   overflow-x: nowrap;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(46, 125, 50,0.9);
 }
 
 .LoginFormHeading {
@@ -290,21 +290,22 @@ body {
 }
 
 .RegisterBtn {
+  position: relative;
+  left: 18px;
   text-decoration: none;
 }
 
-.RegisterBtnPosition {
-  position: relative;
-  left: 30vw;
-  /* margin: 1px; */
+.RegisterBtn:hover {
+  text-decoration: underline;
 }
+
+
 
 .RegisterForm {
   height: 75vh;
   width: 50vw;
-  border: 5px solid silver;
   overflow-x: nowrap;
-  background: rgba(0, 0, 0, 0.3);
+  background-color: rgba(46, 125, 50,0.9);
 }
 
 .btn {

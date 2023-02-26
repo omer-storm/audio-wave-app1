@@ -8,56 +8,54 @@ export default function Record() {
   return (
     <div>
       <Navbar />
-      <div className="PracticeOptionLayout">
-        <h6
-          className="PracticeOption"
-          onClick={() => {
-            setOption("vertical");
-          }}
-        >
-          Vertical View
-        </h6>
-        <h6
-          className="PracticeOption"
-          onClick={() => {
-            setOption("horizontal");
-          }}
-        >
-          Horizontal View
-        </h6>
-        <h6
-          className="PracticeOption"
-          onClick={() => {
-            setOption("overlap");
-          }}
-        >
-          Overlapped View
-        </h6>
-      </div>
-      <div
-        style={
-          Option === "horizontal"
-            ? { display: "flex", flexDirection: "row" }
-            : {}
-        }
-      >
-        <div
-          style={
-            Option === "overlap"
-              ? { position: "absolute", left: 0,  }
-              : {}
-          }
-        >
-          <WaveFormPrompt />
+      <div style={{position: "relative",left: 100}}>
+        <div className="PracticeOptionLayout">
+          <h6
+            className="PracticeOption"
+            onClick={() => {
+              setOption("vertical");
+            }}
+          >
+            Vertical View
+          </h6>
+          <h6
+            className="PracticeOption"
+            onClick={() => {
+              setOption("horizontal");
+            }}
+          >
+            Horizontal View
+          </h6>
+          <h6
+            className="PracticeOption"
+            onClick={() => {
+              setOption("overlap");
+            }}
+          >
+            Overlapped View
+          </h6>
         </div>
         <div
           style={
-            Option === "overlap"
-              ? { position: "absolute", left: 0,  }
+            Option === "horizontal"
+              ? { display: "flex", flexDirection: "row" }
               : {}
           }
         >
-          <WaveFormPrompt />
+          <div
+            style={
+              Option === "overlap" ? { position: "absolute", left: 0 } : {}
+            }
+          >
+            <WaveFormPrompt overlap = {(Option === "overlap") ? true : false} color="red" color1={"white"} />
+          </div>
+          <div
+            style={
+              Option === "overlap" ? { position: "absolute", left: 0 } : {}
+            }
+          >
+            <WaveFormPrompt overlap = {(Option === "overlap") ? true : false} color="green" color1={"blue"} />
+          </div>
         </div>
       </div>
     </div>
