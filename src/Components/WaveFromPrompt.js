@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WaveForm from "./WaveForm";
 
-export default function WaveFormPrompt({ color, color1, overlap }) {
+export default function WaveFormPrompt({ color, color1, overlap, name }) {
   const [url, setURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
@@ -67,7 +67,7 @@ export default function WaveFormPrompt({ color, color1, overlap }) {
           Your WaveForm will be displayed here
         </h6>
       ) : (
-        <WaveForm url={url} color={color} color1={color1} overlap={overlap} />
+        <WaveForm url={url} color={color} color1={color1} overlap={overlap} name={name} />
       )}
       {!overlap && (
         <div>

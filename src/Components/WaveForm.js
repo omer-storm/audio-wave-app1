@@ -1,36 +1,53 @@
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
+import { useDispatch } from "react-redux";
+import { setComparision } from "../features/comparision/comparisionSlice";
 
-// function _base64ToArrayBuffer(base64) {
-//   var binary_string = window.atob(base64);
-//   var len = binary_string.length;
-//   var bytes = new Uint8Array(len);
-//   for (var i = 0; i < len; i++) {
-//     bytes[i] = binary_string.charCodeAt(i);
-//   }
-//   return bytes.buffer;
-// }
-
-export default function WaveForm({ url, color, color1, overlap }) {
+export default function WaveForm({ url, color, color1, overlap, name }) {
   const waveformRef = useRef();
   const [wavesurfer, setwavesurfer] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // const buffer = _base64ToArrayBuffer(url);
-
     if (wavesurfer === null) {
       let wavesurfer = WaveSurfer.create({
         container: waveformRef.current,
         waveColor: color,
         progressColor: color1,
       });
+
       wavesurfer.load(url);
-      setwavesurfer(wavesurfer);
+
+      wavesurfer.on("ready", function () {
+        // get peaks
+        const getPeaks = wavesurfer.backend.getPeaks(200, 0, 200);
+        const peaks = [];
+        getPeaks.forEach((x) => {
+          x = Math.abs(x);
+          if (x > 0.1) {
+            peaks.push(x);
+          }
+        });
+        dispatch(setComparision({ name, peaks }));
+        setwavesurfer(wavesurfer);
+      });
     } else {
       wavesurfer.load(url);
+      wavesurfer.on("ready", function () {
+        // get peaks
+        const getPeaks = wavesurfer.backend.getPeaks(600, 0, 600);
+        const peaks = [];
+        getPeaks.forEach((x) => {
+          x = Math.abs(x);
+          if (x > 0.1) {
+            peaks.push(x);
+          }
+        });
+        dispatch(setComparision({ name, peaks }));
+      });
       setwavesurfer(wavesurfer);
     }
-  }, [url, wavesurfer, color, color1]);
+  }, [url, wavesurfer, color, color1, name, dispatch]);
 
   const onPlayPause = () => {
     wavesurfer.playPause();

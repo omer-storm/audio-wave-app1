@@ -2,10 +2,9 @@ html,
 body {
   margin: 0;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* overflow: hidden; */
   /* background-color: #f1f1f1; */
-  background-image: url("/public/bgs/wave.png");
   /* background-position: center center; */
 }
 
@@ -167,6 +166,7 @@ body {
 /* Mobile menu */
 
 .sidebar-menu {
+  visibility: hidden;
   transition: translate var(--animation-timing);
   translate: +100%;
   position: absolute;
@@ -185,6 +185,7 @@ body {
 
 .hamburger-menu:has(input:checked) + .sidebar-menu {
   translate: 0;
+  visibility: visible;
 }
 
 .sidebar-menu-option {
