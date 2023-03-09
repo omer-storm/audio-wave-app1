@@ -62,7 +62,7 @@ export default function WaveForm({ url, color, color1, overlap, name }) {
         <button
           className="btn btn-sm btn-primary"
           onClick={onPlayPause}
-          style={{ position: "relative", top: -90, left: -97 }}
+          style={{ position: "relative", top: -70, left: -105 }}
         >
           <Play size={30} />/
           <Pause size={30} />
