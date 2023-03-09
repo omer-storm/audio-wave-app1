@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { RecordCircle, StopFill } from "react-bootstrap-icons";
 import WaveForm from "./WaveForm";
 
 export default function WaveFormPrompt({ color, color1, overlap, name }) {
@@ -46,47 +47,56 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "rgba(0, 0, 0, 0.9)",
-        width: "600px",
-        height: "250px",
-        border: "2px solid #14a44d",
-      }}
-    >
-      {url === "" ? (
-        <h6
-          style={{
-            position: "relative",
-            top: 40,
-            margin: 60,
-            marginLeft: 30,
-            color: "green",
-          }}
-        >
-          Your WaveForm will be displayed here
-        </h6>
-      ) : (
-        <WaveForm url={url} color={color} color1={color1} overlap={overlap} name={name} />
-      )}
+    <div style={{ display: "flex" }}>
       {!overlap && (
-        <div>
+        <div style={{padding: "10px"}}>
           <button
-            className="btn btn-sm btn-success"
+            className="btn btn-primary"
             onClick={startRecording}
             disabled={isRecording}
+            style={{marginRight: "-5px"}}
           >
-            start {url !== "" && "new"} recording
+            <RecordCircle size={30} />
           </button>
+          {/* <br /> */}
           <button
-            className="btn btn-sm btn-success"
+            className="btn btn-primary"
             onClick={stopRecording}
             disabled={!isRecording}
+            style={{marginRight: "-5px"}}
           >
-            stop recording
+            <StopFill size={30} />
           </button>
         </div>
       )}
+      <div
+        style={{
+          // backgroundColor: "rgba(0, 0, 0, 0.9)",
+          width: "600px",
+          height: "170px",
+          border: "2px solid #0275d8",
+          // marginBottom: 50
+        }}
+      >
+        {url === "" ? (
+          <h6
+            style={{
+              padding: 50,
+              color: "#0275d8",
+            }}
+          >
+            Your WaveForm will be displayed here
+          </h6>
+        ) : (
+          <WaveForm
+            url={url}
+            color={color}
+            color1={color1}
+            overlap={overlap}
+            name={name}
+          />
+        )}
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import { useDispatch } from "react-redux";
 import { setComparision } from "../features/comparision/comparisionSlice";
+import { Pause, Play } from "react-bootstrap-icons";
 
 export default function WaveForm({ url, color, color1, overlap, name }) {
   const waveformRef = useRef();
@@ -55,10 +56,12 @@ export default function WaveForm({ url, color, color1, overlap, name }) {
 
   return (
     <div>
+      
       <div ref={waveformRef}></div>
+      
       {!overlap && (
-        <button className="btn btn-success" onClick={onPlayPause}>
-          Play/Pause
+        <button className="btn btn-primary" onClick={onPlayPause} style={{position: "relative", top: -20, left: -5}}>
+          <Play size={30} /> / <Pause size={30} />
         </button>
       )}
     </div>

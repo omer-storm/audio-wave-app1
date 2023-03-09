@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function LandingPage() {
   return (
     <>
-      <Navbar />
       <div className="landing-screen-bg"></div>
       <div className="landing-screen-text-position1">
       <h1 className="landing-screen-heading">Who are we?</h1>

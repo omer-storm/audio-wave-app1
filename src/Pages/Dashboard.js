@@ -16,7 +16,6 @@ export default function Dashboard({ children }) {
 
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="dashboard-menu">
           <Link to="/dashboard/view">
@@ -33,6 +32,6 @@ export default function Dashboard({ children }) {
 
         {children}
       </div>
-    </>
+    </> 
   );
 }

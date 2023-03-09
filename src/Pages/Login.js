@@ -54,8 +54,7 @@ function Login() {
   };
 
   return (
-    <div className="login-screen-bg">
-      <Navbar />
+    <div>
       <div className="LoginForm LoginFormPosition">
         <h2 className="LoginFormHeading">Login:</h2>
         <div className="LoginFormComponentsPosition">

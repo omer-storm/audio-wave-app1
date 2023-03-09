@@ -13,7 +13,6 @@ export default function Record() {
 
   return (
     <div>
-      <Navbar />
 
       <button
         onClick={() => {
@@ -23,8 +22,9 @@ export default function Record() {
       >
         Get Percentage
       </button>
-      <p>{pecentage} %</p>
-      <div style={{ position: "relative", left: 100 }}>
+      <div>
+      <h1>{pecentage} %</h1>
+
         <div className="PracticeOptionLayout">
           <h6
             className="PracticeOption"

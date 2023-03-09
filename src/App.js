@@ -7,11 +7,15 @@ import Record from "./Pages/Record";
 import CreateRecording from "./Pages/CreateRecording";
 import ViewRecordings from "./Pages/ViewRecordings";
 import LandingPage from "./Pages/LandingPage";
-
+import Navbar  from "./Components/Navbar";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Provider store={store}>
+      <Navbar />
+      <div className="container">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/Record" element={<Record />} />
@@ -21,7 +25,8 @@ function App() {
         <Route path="/dashboard/create" element={<CreateRecording />} />
         <Route path="/dashboard/view" element={<ViewRecordings />} />
       </Routes>
-    </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 
