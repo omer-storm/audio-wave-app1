@@ -56,12 +56,16 @@ export default function WaveForm({ url, color, color1, overlap, name }) {
 
   return (
     <div>
-      
       <div ref={waveformRef}></div>
-      
+
       {!overlap && (
-        <button className="btn btn-primary" onClick={onPlayPause} style={{position: "relative", top: -20, left: -5}}>
-          <Play size={30} /> / <Pause size={30} />
+        <button
+          className="btn btn-sm btn-primary"
+          onClick={onPlayPause}
+          style={{ position: "relative", top: -90, left: -97 }}
+        >
+          <Play size={30} />/
+          <Pause size={30} />
         </button>
       )}
     </div>

@@ -87,7 +87,7 @@
   /* Mobile menu */
   
   .sidebar-menu {
-    /* visibility: hidden; */
+    visibility: hidden;
     transition: translate var(--animation-timing);
     translate: -100%;
     position: absolute;

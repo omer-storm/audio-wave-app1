@@ -47,23 +47,22 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <>
       {!overlap && (
-        <div style={{padding: "10px"}}>
+        <div style={{ position: "relative", marginBottom: -8, marginTop: -8, left: 80}}>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary btn-sm"
             onClick={startRecording}
             disabled={isRecording}
-            style={{marginRight: "-5px"}}
           >
             <RecordCircle size={30} />
           </button>
           {/* <br /> */}
           <button
-            className="btn btn-primary"
+            className="btn btn-primary btn-sm"
             onClick={stopRecording}
             disabled={!isRecording}
-            style={{marginRight: "-5px"}}
+            style={{ marginLeft: -5 }}
           >
             <StopFill size={30} />
           </button>
@@ -73,9 +72,9 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
         style={{
           // backgroundColor: "rgba(0, 0, 0, 0.9)",
           width: "600px",
-          height: "170px",
+          height: "128px",
           border: "2px solid #0275d8",
-          // marginBottom: 50
+          marginLeft: 90
         }}
       >
         {url === "" ? (
@@ -97,6 +96,6 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
           />
         )}
       </div>
-    </div>
+    </>
   );
 }
