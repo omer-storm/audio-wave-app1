@@ -60,7 +60,7 @@ export default function Record() {
         >
           <div
             style={
-              Option === "overlap" ? { position: "absolute", left: 0 } : {}
+              Option === "overlap" ? { position: "absolute", left: 100, top: 300 } : {}
             }
           >
             <WaveFormPrompt
@@ -72,7 +72,7 @@ export default function Record() {
           </div>
           <div
             style={
-              Option === "overlap" ? { position: "absolute", left: 0 } : {}
+              Option === "overlap" ? { position: "absolute", left: 100, top: 300 } : {}
             }
           >
             <WaveFormPrompt
