@@ -5,10 +5,6 @@ const recordingSchema = mongoose.Schema({
     type: String,
     required: [true, "Please add filename"],
   },
-  // path: {
-  //   type: String,
-  //   required: [true, "Please add path"],
-  // },
   display: {
     type: String,
     required: [true, "Please add display"],

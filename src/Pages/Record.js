@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
 import WaveFormPrompt from "../Components/WaveFromPrompt";
 import { useDispatch, useSelector } from "react-redux";
 import { getPercentage } from "../features/comparision/comparisionSlice";
@@ -12,8 +11,7 @@ export default function Record() {
   console.log(pecentage);
 
   return (
-    <div>
-
+    <div className="container">
       <button
         onClick={() => {
           dispatch(getPercentage());
@@ -23,7 +21,7 @@ export default function Record() {
         Get Percentage
       </button>
       <div>
-      <h1>{pecentage} %</h1>
+        <h1>{pecentage} %</h1>
 
         <div className="PracticeOptionLayout">
           <h6
@@ -60,7 +58,9 @@ export default function Record() {
         >
           <div
             style={
-              Option === "overlap" ? { position: "absolute", left: 100, top: 300 } : {}
+              Option === "overlap"
+                ? { position: "absolute", left: 100, top: 300 }
+                : {}
             }
           >
             <WaveFormPrompt
@@ -72,7 +72,9 @@ export default function Record() {
           </div>
           <div
             style={
-              Option === "overlap" ? { position: "absolute", left: 100, top: 300 } : {}
+              Option === "overlap"
+                ? { position: "absolute", left: 100, top: 300 }
+                : {}
             }
           >
             <WaveFormPrompt

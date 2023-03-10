@@ -96,7 +96,7 @@ export default function CreateRecording() {
         <input
           id="recordingName"
           name="recordingName"
-          type="recordingName"
+          type="text"
           value={recordingName}
           className="form-control "
           placeholder="Enter Recording Name"
