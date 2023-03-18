@@ -55,7 +55,18 @@ export default function WaveForm({ url, color, color1, overlap, name }) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        // backgroundColor: "rgba(0, 0, 0, 0.9)",
+        position: "relative",
+        top: 60,
+        width: "600px",
+        height: "128px",
+        border: "2px solid #0275d8",
+        marginLeft: 100,
+        marginTop: -55,
+      }}
+    >
       <div ref={waveformRef}></div>
 
       {!overlap && (

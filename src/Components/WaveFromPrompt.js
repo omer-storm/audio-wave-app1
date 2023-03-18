@@ -47,9 +47,9 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
   };
 
   return (
-    <>
+    <div style={{ position: "relative", top: 10 }}>
       {!overlap && (
-        <div style={{ position: "relative", left: -5, top: 10}}>
+        <div style={{ position: "relative", left: -5, top: 60 }}>
           <button
             className="btn btn-primary btn-sm"
             onClick={startRecording}
@@ -68,17 +68,18 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
           </button>
         </div>
       )}
-      <div
-        style={{
-          // backgroundColor: "rgba(0, 0, 0, 0.9)",
-          width: "600px",
-          height: "128px",
-          border: "2px solid #0275d8",
-          marginLeft: 100,
-          marginTop: -55
-        }}
-      >
-        {url === "" ? (
+
+      {url === "" ? (
+        <div
+          style={{
+            // backgroundColor: "rgba(0, 0, 0, 0.9)",
+            width: "600px",
+            height: "128px",
+            border: "2px solid #0275d8",
+            marginLeft: 100,
+            // marginTop: -55,
+          }}
+        >
           <h6
             style={{
               padding: 50,
@@ -87,16 +88,16 @@ export default function WaveFormPrompt({ color, color1, overlap, name }) {
           >
             Your WaveForm will be displayed here
           </h6>
-        ) : (
-          <WaveForm
-            url={url}
-            color={color}
-            color1={color1}
-            overlap={overlap}
-            name={name}
-          />
-        )}
-      </div>
-    </>
+        </div>
+      ) : (
+        <WaveForm
+          url={url}
+          color={color}
+          color1={color1}
+          overlap={overlap}
+          name={name}
+        />
+      )}
+    </div>
   );
 }

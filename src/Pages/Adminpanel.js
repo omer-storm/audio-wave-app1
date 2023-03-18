@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function Adminpanel() {
   const [audioURL, setAudioURL] = useState("");
@@ -54,13 +55,12 @@ function Adminpanel() {
   const uploadRecording = async () => {
     console.log(recordingName);
     console.log(blob);
-    // const formData = new FormData();
-    // formData.append("recording", blob);
-    // formData.append("recordingName", recordingName);
-    // c
-    // setBlob("");
-    // setRecordingName("");
-    // dispatch(uploadrecording(formData));
+    const formData = new FormData();
+    formData.append("recording", blob);
+    formData.append("recordingName", recordingName);
+    await axios.post("http://localhost:5000/api/library/", formData);
+    setBlob("");
+    setRecordingName("");
   };
 
   return (

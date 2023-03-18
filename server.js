@@ -10,7 +10,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/users', require('./api/users'));
-app.use('/api/recordings',require('./api/recordings'))
+app.use('/api/recordings',require('./api/recordings'));
+app.use('/api/library',require('./api/library'));
 
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`) );

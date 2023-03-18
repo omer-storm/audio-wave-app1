@@ -15,4 +15,10 @@ router.post("/", upload.single("recording"), async (req, res) => {
   res.status(201).send(library);
 });
 
+router.get("/", async (req, res) => {
+
+  const library = await Library.find();
+  res.status(200).send(library);
+});
+
 module.exports = router;
