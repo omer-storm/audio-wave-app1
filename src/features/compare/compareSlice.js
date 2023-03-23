@@ -1,14 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  overlap: false,
+};
 
 export const compareSlice = createSlice({
   name: "compare",
   initialState,
   reducers: {
-    reset: (state) => {},
+    reset: (state) => {
+      state.overlap = false;
+    },
+    setOverlap: (state) => {
+      state.overlap = true;
+    },
   },
 });
 
-export const { reset } = compareSlice.actions;
+export const { reset, setOverlap } = compareSlice.actions;
 export default compareSlice.reducer;

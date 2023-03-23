@@ -68,30 +68,12 @@ export default function WaveFormPrompt({ color, color1, overlap, setWave }) {
     <>
       {url === "" ? (
         <>
-          <div style={{ position: "relative", left: -5, top: 60 }}>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={startRecording}
-              disabled={isRecording}
-            >
-              <RecordCircle size={25} />
-            </button>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={stopRecording}
-              disabled={!isRecording}
-              style={{ marginLeft: -5 }}
-            >
-              <StopFill size={25} />
-            </button>
-          </div>
           <div
             style={{
               width: "600px",
               height: "128px",
               border: "2px solid #0275d8",
-              marginLeft: 100,
-              marginTop: -55,
+              marginBottom: -50
             }}
           >
             <h6
@@ -102,6 +84,23 @@ export default function WaveFormPrompt({ color, color1, overlap, setWave }) {
             >
               Your WaveForm will be displayed here
             </h6>
+          </div>
+          <div style={{ position: "relative", top: -70, left: -105 }}>
+            <button
+              className="btn btn-sm btn-primary"
+              onClick={startRecording}
+              disabled={isRecording}
+            >
+              <RecordCircle size={25} />
+            </button>
+            <button
+              className="btn btn-sm btn-primary"
+              onClick={stopRecording}
+              disabled={!isRecording}
+              style={{ marginLeft: -7 }}
+            >
+              <StopFill size={25} />
+            </button>
           </div>
         </>
       ) : (

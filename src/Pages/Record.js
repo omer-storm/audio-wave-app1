@@ -13,6 +13,7 @@ export default function Record() {
 
   const onCompareClick = (url) => {
     setAudioURL("data:audio/ogg;base64," + url);
+    console.log(url);
   };
 
   useEffect(() => {

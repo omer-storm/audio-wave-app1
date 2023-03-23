@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import WaveFormCompare from "./WaveFormCompare";
 import { Plus } from "react-bootstrap-icons";
-import WaveFormDisplayOptions from "./WaveFormDisplayOptions";
 
 function WaveFormCompareList({ audioURL }) {
   const [iterator, setIterator] = useState([1]);
 
   return (
     <>
-      <WaveFormDisplayOptions />
       {audioURL !== "" &&
         iterator.map((value) => (
           <div key={value}>
-            <h5 style={{ marginLeft: 100 }}>Iteration no. {value}</h5>
+            <h5>Iteration no. {value}</h5>
             <WaveFormCompare audioURL={audioURL} />
           </div>
         ))}
       <button
         className="btn btn-primary"
-        style={{ marginLeft: 650 }}
+        style={{ marginLeft: 550}}
         onClick={() => {
           setIterator([...iterator, iterator.length + 1]);
         }}

@@ -5,6 +5,7 @@ import WaveFormPrompt from "./WaveFromPrompt";
 function WaveFormCompare({ audioURL }) {
   const [wave1, setWave1] = useState([]);
   const [wave2, setWave2] = useState([]);
+  const [overlap, setOverlap] = useState(false);
 
   const getPercentage = () => {
     const percentage = [];
@@ -19,24 +20,41 @@ function WaveFormCompare({ audioURL }) {
     });
     let average = sum / percentage.length;
 
-    return isNaN(average) ? null : average.toFixed(2).toString()+'%';
+    return isNaN(average) ? null : average.toFixed(2).toString() + "%";
   };
 
   return (
-    <div>
-      <WaveForm
-        url={audioURL}
-        color={"red"}
-        color1={"white"}
-        setWave={setWave1}
-      />
-      <WaveFormPrompt
-        color="green"
-        color1={"blue"}
-        setWave={setWave2}
-      />
-      <h6 style={{position: 'relative', left: 650}}>{getPercentage()}</h6>
-    </div>
+    <>
+      <div style={overlap ? { position: "relative" } : null}>
+        <div style={overlap ? { position: "absolute", left: 0, top: 0 } : null}>
+          <WaveForm
+            url={audioURL}
+            color={"red"}
+            color1={"white"}
+            setWave={setWave1}
+          />
+        </div>
+
+        <div style={overlap ? { position: "absolute", left: 0, top: 0 } : null}>
+          <WaveFormPrompt color="green" color1={"blue"} setWave={setWave2} />
+        </div>
+      </div>
+      <h4 className="text-primary" style={overlap ? { marginTop: 150 } : null}>
+        {getPercentage()}
+      </h4>
+
+      {wave2.length !== 0 ? (
+        <button
+          style={{ position: "relative", marginTop: -5, marginLeft: -1 }}
+          onClick={() => {
+            setOverlap(!overlap);
+          }}
+          className="btn btn-primary"
+        >
+          Overlap
+        </button>
+      ) : null}
+    </>
   );
 }
 
