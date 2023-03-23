@@ -13,7 +13,6 @@ export default function Record() {
 
   const onCompareClick = (url) => {
     setAudioURL("data:audio/ogg;base64," + url);
-    console.log(url);
   };
 
   useEffect(() => {
@@ -36,7 +35,7 @@ export default function Record() {
           ))}
         </div>
       )}
-      <div style={{ position: "relative", left: "15%" }}>
+      <div style={{ position: "relative", left: "25%" }}>
         {audioURL !== "" && <WaveFormCompareList audioURL={audioURL} />}
       </div>
     </div>

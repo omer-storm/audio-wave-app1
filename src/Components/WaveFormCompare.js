@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import WaveForm from "../Components/WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
 
-function WaveFormCompare({ audioURL }) {
+function WaveFormCompare({audioURL}) {
   const [wave1, setWave1] = useState([]);
   const [wave2, setWave2] = useState([]);
   const [overlap, setOverlap] = useState(false);

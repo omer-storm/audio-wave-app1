@@ -2,7 +2,7 @@ html,
 body {
   margin: 0;
   height: 100%;
-  /* overflow: hidden; */
+  overflow-x: hidden;
   /* overflow: hidden; */
   /* background-color: #f1f1f1; */
   /* background-position: center center; */
@@ -258,10 +258,10 @@ body {
 }
 
 .recording-list-box {
-  width: 73vw;
-  height: 20vh;
-  display: flex;
-  flex-wrap: wrap;
+   display: flex;
+   flex-wrap: wrap;
+  /* overflow-x: auto; */
+
 }
 
 .recording-list-element {

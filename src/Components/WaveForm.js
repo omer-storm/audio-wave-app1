@@ -14,7 +14,6 @@ export default function WaveForm({ url, color, color1, setWave }) {
         waveColor: color,
         progressColor: color1,
       });
-
       wavesurfer.load(url);
 
       wavesurfer.on("ready", function () {
@@ -27,9 +26,25 @@ export default function WaveForm({ url, color, color1, setWave }) {
             peaks.push(x);
           }
         });
-        setwavesurfer(wavesurfer);
         setWave(peaks);
       });
+      setwavesurfer(wavesurfer);
+    } else {
+      wavesurfer.load(url);
+
+      wavesurfer.on("ready", function () {
+        // get peaks
+        const getPeaks = wavesurfer.backend.getPeaks(600, 0, 600);
+        const peaks = [];
+        getPeaks.forEach((x) => {
+          x = Math.abs(x);
+          if (x > 0.1) {
+            peaks.push(x);
+          }
+        });
+        setWave(peaks);
+      });
+      setwavesurfer(wavesurfer);
     }
   }, [url, wavesurfer, color, color1, setWave]);
 
