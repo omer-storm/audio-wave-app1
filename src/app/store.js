@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
-import comparisionReducer from "../features/comparision/comparisionSlice";
+import compareReducer from "../features/compare/compareSlice";
 
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    comparision: comparisionReducer
+    compare: compareReducer
   },
 });

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import { useDispatch } from "react-redux";
-import { setComparision } from "../features/comparision/comparisionSlice";
 import { Pause, Play } from "react-bootstrap-icons";
+// import { setCompare } from "../features/compare/compareSlice";
 
-export default function WaveForm({ url, color, color1, overlap, name }) {
+export default function WaveForm({ url, color, color1, overlap, setWave }) {
   const waveformRef = useRef();
+
   const [wavesurfer, setwavesurfer] = useState(null);
   const dispatch = useDispatch();
 
@@ -21,21 +22,6 @@ export default function WaveForm({ url, color, color1, overlap, name }) {
 
       wavesurfer.on("ready", function () {
         // get peaks
-        const getPeaks = wavesurfer.backend.getPeaks(200, 0, 200);
-        const peaks = [];
-        getPeaks.forEach((x) => {
-          x = Math.abs(x);
-          if (x > 0.1) {
-            peaks.push(x);
-          }
-        });
-        dispatch(setComparision({ name, peaks }));
-        setwavesurfer(wavesurfer);
-      });
-    } else {
-      wavesurfer.load(url);
-      wavesurfer.on("ready", function () {
-        // get peaks
         const getPeaks = wavesurfer.backend.getPeaks(600, 0, 600);
         const peaks = [];
         getPeaks.forEach((x) => {
@@ -44,41 +30,55 @@ export default function WaveForm({ url, color, color1, overlap, name }) {
             peaks.push(x);
           }
         });
-        dispatch(setComparision({ name, peaks }));
+        // dispatch(setCompare({ name, peaks }));
+        setwavesurfer(wavesurfer);
+        setWave(peaks);
       });
-      setwavesurfer(wavesurfer);
     }
-  }, [url, wavesurfer, color, color1, name, dispatch]);
+    // else {
+    //   wavesurfer.load(url);
+    //   wavesurfer.on("ready", function () {
+    //     // get peaks
+    //     const getPeaks = wavesurfer.backend.getPeaks(600, 0, 600);
+    //     const peaks = [];
+    //     getPeaks.forEach((x) => {
+    //       x = Math.abs(x);
+    //       if (x > 0.1) {
+    //         peaks.push(x);
+    //       }
+    //     });
+    //     dispatch(setCompare({ name, peaks }));
+    //   });
+    //   setwavesurfer(wavesurfer);
+    // }
+  }, [url, wavesurfer, color, color1, dispatch, setWave]);
 
   const onPlayPause = () => {
     wavesurfer.playPause();
   };
 
   return (
-    <div
-      style={{
-        // backgroundColor: "rgba(0, 0, 0, 0.9)",
-        position: "relative",
-        top: 60,
-        width: "600px",
-        height: "128px",
-        border: "2px solid #0275d8",
-        marginLeft: 100,
-        marginTop: -55,
-      }}
-    >
-      <div ref={waveformRef}></div>
-
-      {!overlap && (
-        <button
-          className="btn btn-sm btn-primary"
-          onClick={onPlayPause}
-          style={{ position: "relative", top: -70, left: -105 }}
-        >
-          <Play size={30} />/
-          <Pause size={30} />
-        </button>
-      )}
-    </div>
+    <>
+      <div
+        style={{
+          width: "600px",
+          height: "128px",
+          border: "2px solid #0275d8",
+          marginLeft: 100,
+        }}
+      >
+        <div ref={waveformRef}></div>
+        {!overlap && (
+          <button
+            className="btn btn-sm btn-primary"
+            onClick={onPlayPause}
+            style={{ position: "relative", top: -70, left: -105 }}
+          >
+            <Play size={30} />/
+            <Pause size={30} />
+          </button>
+        )}
+      </div>
+    </>
   );
 }
