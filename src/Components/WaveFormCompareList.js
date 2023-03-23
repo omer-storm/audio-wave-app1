@@ -1,39 +1,14 @@
 import React, { useState } from "react";
 import WaveFormCompare from "./WaveFormCompare";
 import { Plus } from "react-bootstrap-icons";
+import WaveFormDisplayOptions from "./WaveFormDisplayOptions";
 
 function WaveFormCompareList({ audioURL }) {
   const [iterator, setIterator] = useState([1]);
-  const [Option, setOption] = useState("");
 
   return (
     <>
-      <div className="PracticeOptionLayout">
-        <h6
-          className="PracticeOption"
-          onClick={() => {
-            setOption("vertical");
-          }}
-        >
-          Vertical View
-        </h6>
-        <h6
-          className="PracticeOption"
-          onClick={() => {
-            setOption("horizontal");
-          }}
-        >
-          Horizontal View
-        </h6>
-        <h6
-          className="PracticeOption"
-          onClick={() => {
-            setOption("overlap");
-          }}
-        >
-          Overlapped View
-        </h6>
-      </div>
+      <WaveFormDisplayOptions />
       {audioURL !== "" &&
         iterator.map((value) => (
           <div key={value}>
