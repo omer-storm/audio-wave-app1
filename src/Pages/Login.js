@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Components/Navbar";
 import { Link } from "react-router-dom";
 import { login, reset } from "../features/auth/authSlice";
 

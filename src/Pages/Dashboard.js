@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../Components/Navbar";
 
 export default function Dashboard({ children }) {
   const navigate = useNavigate();
