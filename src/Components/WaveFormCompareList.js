@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import WaveFormCompare from "./WaveFormCompare";
 import { Plus } from "react-bootstrap-icons";
 
-function WaveFormCompareList({ audioURL }) {
+function WaveFormCompareList({ audioURL, wave1 }) {
   const [iterator, setIterator] = useState([1]);
 
   return (
     <>
+     <h2>Iterations:</h2>
       {audioURL !== "" &&
         iterator.map((value) => (
           <div key={value}>
-            <h5>Iteration no. {value}</h5>
-            <WaveFormCompare audioURL={audioURL} />
+            <WaveFormCompare wave1 ={wave1}/>
           </div>
         ))}
       <button

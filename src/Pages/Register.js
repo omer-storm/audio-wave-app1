@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { register, reset } from "../features/auth/authSlice";
 
 function Login() {
@@ -110,9 +110,10 @@ function Login() {
                 onChange={onChange}
               />
             </div>
-            <div className="BtnPosition">
-              <button className="btn btn-light text-success">Register</button>
-            </div>
+            <button className="btn btn-light text-success">Register</button>
+            <Link to="/login" className="text-light Link RegisterBtn" style={{position: "relative", fontSize: 18, left: "45%", fontWeight: "bold"}}>
+              Go Back
+            </Link>
           </form>
         </div>
       </div>

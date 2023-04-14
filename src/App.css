@@ -103,7 +103,7 @@ body {
   width: 50vw;
   /* border: 5px solid silver; */
   overflow-x: nowrap;
-  background: rgba(46, 125, 50, 0.9);
+  background: #0275d8;
 }
 
 .LoginFormHeading {
@@ -151,7 +151,7 @@ body {
   height: 75vh;
   width: 50vw;
   overflow-x: nowrap;
-  background-color: rgba(46, 125, 50, 0.9);
+  background-color: #0275d8;
 }
 
 .btn {

@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import WaveForm from "../Components/WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
 
-function WaveFormCompare({audioURL}) {
-  const [wave1, setWave1] = useState([]);
+function WaveFormCompare({ wave1 }) {
   const [wave2, setWave2] = useState([]);
-  const [overlap, setOverlap] = useState(false);
+  // const [overlap, setOverlap] = useState(false);
 
   const getPercentage = () => {
     const percentage = [];
     let sum = 0;
     let calc = null;
     wave1.forEach((x, i) => {
-      calc = (x / wave2[i]) * 100;
+      calc = (wave2[i] / x) * 100;
       if (!isNaN(calc)) percentage.push(calc);
     });
     percentage.forEach((x) => {
@@ -25,25 +23,23 @@ function WaveFormCompare({audioURL}) {
 
   return (
     <>
-      <div style={overlap ? { position: "relative" } : null}>
-        <div style={overlap ? { position: "absolute", left: 0, top: 0 } : null}>
+      <div>
+        {/* <div style={overlap ? { position: "absolute", left: 0, top: 0 } : null}>
           <WaveForm
             url={audioURL}
             color={"red"}
             color1={"white"}
             setWave={setWave1}
           />
-        </div>
+        </div> */}
 
-        <div style={overlap ? { position: "absolute", left: 0, top: 0 } : null}>
+        <div>
           <WaveFormPrompt color="green" color1={"blue"} setWave={setWave2} />
         </div>
       </div>
-      <h4 className="text-primary" style={overlap ? { marginTop: 150 } : null}>
-        {getPercentage()}
-      </h4>
+      <h4>{getPercentage()}</h4>
 
-      {wave2.length !== 0 ? (
+      {/* {wave2.length !== 0 ? (
         <button
           style={{ position: "relative", marginTop: -5, marginLeft: -1 }}
           onClick={() => {
@@ -53,7 +49,7 @@ function WaveFormCompare({audioURL}) {
         >
           Overlap
         </button>
-      ) : null}
+      ) : null} */}
     </>
   );
 }
