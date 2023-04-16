@@ -70,6 +70,7 @@ function Login() {
                 className="form-control InputTextArea "
                 placeholder="Enter Email"
                 onChange={onChange}
+                required
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -84,6 +85,7 @@ function Login() {
                 className="form-control InputTextArea "
                 placeholder="Enter Password"
                 onChange={onChange}
+                required
               />
             </div>
             <div>

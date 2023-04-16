@@ -12,6 +12,8 @@ function Login() {
     password2: "",
   });
 
+  const [error, setError] = useState("");
+
   const { name, email, password, password2 } = formData;
 
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      console.log(message);
+      setError(message);
     }
 
     if (isSuccess || user) {
@@ -44,7 +46,7 @@ function Login() {
     e.preventDefault();
 
     if (password !== password2) {
-      console.log("Passwords do not match");
+      setError("password do not match");
     } else {
       const userData = {
         name,
@@ -57,7 +59,7 @@ function Login() {
   };
 
   return (
-    <div className="login-screen-bg">
+    <div>
       <div className="RegisterForm LoginFormPosition">
         <h2 className="LoginFormHeading">Register:</h2>
         <div className="LoginFormComponentsPosition">
@@ -72,6 +74,7 @@ function Login() {
                 value={name}
                 placeholder="Enter Name"
                 onChange={onChange}
+                required
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -84,6 +87,7 @@ function Login() {
                 value={email}
                 placeholder="Enter Email"
                 onChange={onChange}
+                required
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -96,6 +100,7 @@ function Login() {
                 value={password}
                 placeholder="Enter Password"
                 onChange={onChange}
+                required
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -108,12 +113,23 @@ function Login() {
                 value={password2}
                 placeholder="Confirm Password"
                 onChange={onChange}
+                required
               />
             </div>
             <button className="btn btn-light text-success">Register</button>
-            <Link to="/login" className="text-light Link RegisterBtn" style={{position: "relative", fontSize: 18, left: "45%", fontWeight: "bold"}}>
+            <Link
+              to="/login"
+              className="text-light Link RegisterBtn"
+              style={{
+                position: "relative",
+                fontSize: 18,
+                left: "45%",
+                fontWeight: "bold",
+              }}
+            >
               Go Back
             </Link>
+            <p>{error}</p>
           </form>
         </div>
       </div>
