@@ -6,7 +6,7 @@ function WaveFormCompareList({ audioURL, wave1 }) {
   const [iterator, setIterator] = useState([1]);
 
   return (
-    <>
+    <div>
      <h2>Iterations:</h2>
       {audioURL !== "" &&
         iterator.map((value) => (
@@ -23,7 +23,7 @@ function WaveFormCompareList({ audioURL, wave1 }) {
       >
         <Plus size={30} />
       </button>
-    </>
+    </div>
   );
 }
 

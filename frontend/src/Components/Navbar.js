@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +8,8 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // const [hamburger, sethamburger] = useState(false);
 
   const onLogout = () => {
     dispatch(logout());
@@ -20,9 +22,9 @@ const Navbar = () => {
       <div className="Navbar">
         <h1 className="NavHeadingText">Bolo</h1>
       </div>
-        <label className="hamburger-menu">
-          <input type="checkbox" />
-        </label>
+      <label className="hamburger-menu">
+        <input type="checkbox" />
+      </label>
       <div className="sidebar-menu">
         <Link to="/">
           <div className="sidebar-menu-option">
@@ -57,7 +59,6 @@ const Navbar = () => {
           </Link>
         )}
       </div>
-      {/* </aside> */}
     </>
   );
 };
