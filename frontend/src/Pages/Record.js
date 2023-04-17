@@ -37,7 +37,7 @@ export default function Record() {
           ))}
         </div>
       )}
-      <div style={{ position: "relative", left: "25%", top: 20 }}>
+      <div style={{ position: "relative", left: "25vw", top: 10 }}>
         {audioURL !== "" && (
           <WaveForm
             url={audioURL}

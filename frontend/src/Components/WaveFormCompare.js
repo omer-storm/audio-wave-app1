@@ -3,7 +3,6 @@ import WaveFormPrompt from "./WaveFromPrompt";
 
 function WaveFormCompare({ wave1 }) {
   const [wave2, setWave2] = useState([]);
-  // const [overlap, setOverlap] = useState(false);
 
   const getPercentage = () => {
     const percentage = [];
@@ -23,33 +22,8 @@ function WaveFormCompare({ wave1 }) {
 
   return (
     <>
-      <div>
-        {/* <div style={overlap ? { position: "absolute", left: 0, top: 0 } : null}>
-          <WaveForm
-            url={audioURL}
-            color={"red"}
-            color1={"white"}
-            setWave={setWave1}
-          />
-        </div> */}
-
-        <div>
-          <WaveFormPrompt color="green" color1={"blue"} setWave={setWave2} />
-        </div>
-      </div>
+      <WaveFormPrompt color="green" color1={"blue"} setWave={setWave2} />
       <h4>{getPercentage()}</h4>
-
-      {/* {wave2.length !== 0 ? (
-        <button
-          style={{ position: "relative", marginTop: -5, marginLeft: -1 }}
-          onClick={() => {
-            setOverlap(!overlap);
-          }}
-          className="btn btn-primary"
-        >
-          Overlap
-        </button>
-      ) : null} */}
     </>
   );
 }
