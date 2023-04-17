@@ -13,7 +13,6 @@
 /*Hamburger menu  */
 .hamburger-menu {
   --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
   display: flex;
   flex-direction: column;
   gap: var(--hamburger-gap);
@@ -21,7 +20,6 @@
   position: absolute;
   top: var(--hamburger-margin-top);
   left: var(--hamburger-margin-left);
-  /* margin: 8px; */
   /* z-index: 2; */
   cursor: pointer;
 }
@@ -93,6 +91,7 @@
   top: 117.5 / px;
   left: 0;
   width: 350px;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
