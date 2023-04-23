@@ -22,9 +22,9 @@ const Navbar = () => {
       <div className="Navbar">
         <h1 className="NavHeadingText">Bolo</h1>
       </div>
-      <label className="hamburger-menu">
+      {/* <label className="hamburger-menu">
         <input type="checkbox" />
-      </label>
+      </label> */}
       <div className="sidebar-menu">
         <Link to="/">
           <div className="sidebar-menu-option">

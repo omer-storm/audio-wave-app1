@@ -15,7 +15,7 @@ export default function ViewRecordings() {
 
   return (
     <Dashboard>
-      <div className="dashboard-activity">
+      <div className="dashboard-activity" style={{left: 0}}>
         <div className="recording-list-box">
           {user.recordings.map((recording) => (
             <div
@@ -31,7 +31,7 @@ export default function ViewRecordings() {
       </div>
 
       {audioURL !== "" && (
-        <div style={{ position: "relative", top: -50, left: "25%" }}>
+        <div style={{ position: "relative", left: "25%" }}>
           <div className="PracticeOptionLayout">
             <h6
               className="PracticeOption"
