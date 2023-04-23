@@ -1,11 +1,14 @@
 const router = require("express").Router();
 const multer = require("multer");
 const mongoose = require("mongoose");
+
+const { protect } = require("../middleware/authMiddleware");
+
 const { Recording } = require("../models/");
 
 const upload = multer({});
 
-router.post("/", upload.single("recording"), async (req, res) => {
+router.post("/", protect, upload.single("recording"), async (req, res) => {
   const encoded = req.file.buffer.toString("base64");
 
   const recording = await Recording.create({

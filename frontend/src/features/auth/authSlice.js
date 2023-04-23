@@ -52,7 +52,8 @@ export const uploadrecording = createAsyncThunk(
   "auth/uploadrecording",
   async (recording, thunkAPI) => {
     try {
-      return await authService.uploadrecording(recording);
+      const token = thunkAPI.getState().auth.user.token;
+      return await authService.uploadrecording(recording, token);
     } catch (error) {
       const message =
         (error.response &&

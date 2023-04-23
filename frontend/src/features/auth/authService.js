@@ -30,10 +30,15 @@ const logout = () => {
 };
 
 // Login user
-const uploadrecording = async (userData) => {
+const uploadrecording = async (userRecording, token) => {
   const response = await axios.post(
     "http://localhost:5000/api/recordings/",
-    userData
+    userRecording,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   return response.data;
