@@ -69,6 +69,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
         >
           <Play size={30} />/
           <Pause size={30} />
+          
         </button>
       </div>
     </>

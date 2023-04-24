@@ -15,7 +15,7 @@ export default function ViewRecordings() {
 
   return (
     <Dashboard>
-      <div className="dashboard-activity" style={{left: 0}}>
+      <div style={{ position: "relative", left: 20 }}>
         <div className="recording-list-box">
           {user.recordings.map((recording) => (
             <div
@@ -52,47 +52,41 @@ export default function ViewRecordings() {
               </h6>
             )}
           </div>
+          <div style={{display: "flex", height: 400, flexDirection: "column"}}>
           <div
             style={
-              Option === "horizontal"
-                ? { display: "flex", flexDirection: "row" }
+              Option === "overlap"
+                ? {
+                    position: "absolute",
+                    left: 0,
+                  }
                 : {}
             }
           >
-            <div
-              style={
-                Option === "overlap"
-                  ? {
-                      position: "absolute",
-                      left: 0,
-                    }
-                  : {}
-              }
-            >
-              <WaveForm
-                url={audioURL}
-                overlap={Option === "overlap" ? true : false}
-                color={"red"}
-                color1={"white"}
-              />
-            </div>
-            <div
-              style={
-                Option === "overlap"
-                  ? {
-                      position: "absolute",
-                      left: 0,
-                    }
-                  : {}
-              }
-            >
-              <WaveFormPrompt
-                url={audioURL}
-                overlap={Option === "overlap" ? true : false}
-                color={"green"}
-                color1={"blue"}
-              />
-            </div>
+            <WaveForm
+              url={audioURL}
+              overlap={Option === "overlap" ? true : false}
+              color={"red"}
+              color1={"white"}
+            />
+          </div>
+          <div
+            style={
+              Option === "overlap"
+                ? {
+                    position: "absolute",
+                    left: 0,
+                  }
+                : {}
+            }
+          >
+            <WaveFormPrompt
+              url={audioURL}
+              overlap={Option === "overlap" ? true : false}
+              color={"green"}
+              color1={"blue"}
+            />
+          </div>
           </div>
         </div>
       )}

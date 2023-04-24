@@ -10,7 +10,7 @@ function WaveFormCompare({ wave1 }) {
     let calc = null;
     wave1.forEach((x, i) => {
       calc = (wave2[i] / x) * 100;
-      if (!isNaN(calc)) percentage.push(calc);
+      if (!isNaN(calc) && calc < 120) percentage.push(calc);
     });
     percentage.forEach((x) => {
       sum = sum + x;

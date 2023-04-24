@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import WaveFormCompareList from "../Components/WaveFormCompareList";
 import WaveForm from "../Components/WaveForm";
+import { setWaveform } from "../features/waveform/waveformSlice";
+import { Check } from "react-bootstrap-icons";
 
 export default function Record() {
   const [library, setLibrary] = useState("");
   const [audioURL, setAudioURL] = useState("");
   const [wave1, setWave1] = useState([]);
 
+  const dispatch = useDispatch();
+
   const getLibrary = async () => {
     const response = await axios.get("http://localhost:5000/api/library/");
     setLibrary(response.data);
   };
 
-  const onCompareClick = (url) => {
+  const onCompareClick = (recording, url) => {
     setAudioURL("data:audio/ogg;base64," + url);
+    dispatch(setWaveform(recording));
   };
 
   useEffect(() => {
@@ -29,10 +35,11 @@ export default function Record() {
             <div
               key={recording._id}
               className="recording-list-element"
-              onClick={() => onCompareClick(recording.file)}
+              onClick={() => onCompareClick(recording, recording.file)}
             >
               <span className="recording-list-icon"></span>
               <span className="recording-list-text">{recording.display}</span>
+              <Check color="white" size={30} />
             </div>
           ))}
         </div>
@@ -46,7 +53,9 @@ export default function Record() {
             setWave={setWave1}
           />
         )}
-        {audioURL !== "" && <WaveFormCompareList audioURL={audioURL} wave1={wave1} />}
+        {audioURL !== "" && (
+          <WaveFormCompareList audioURL={audioURL} wave1={wave1} />
+        )}
       </div>
     </div>
   );

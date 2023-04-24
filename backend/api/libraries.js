@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const multer = require("multer");
-const mongoose = require("mongoose");
-const { Library } = require("../models/");
+const { Library } = require("../models");
 
 const upload = multer({});
 

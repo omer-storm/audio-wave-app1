@@ -78,38 +78,38 @@ export default function CreateRecording() {
   return (
     <Dashboard>
       <div className="dashboard-activity">
-        <audio src={audioURL} controls />
-        <button
-          className="btn btn-success"
-          onClick={startRecording}
-          disabled={isRecording}
-        >
-          start recording
-        </button>
-        <button
-          className="btn btn-success"
-          onClick={stopRecording}
-          disabled={!isRecording}
-        >
-          stop recording
-        </button>
-        <input
-          id="recordingName"
-          name="recordingName"
-          type="text"
-          value={recordingName}
-          className="form-control "
-          placeholder="Enter Recording Name"
-          onChange={(e) => setRecordingName(e.target.value)}
-        />
-        <button
-          className="btn btn-success"
-          disabled={!blob || !recordingName}
-          onClick={uploadRecording}
-        >
-          upload recording
-        </button>
-      </div>
+          <audio src={audioURL} controls />
+          <button
+            className="btn btn-success"
+            onClick={startRecording}
+            disabled={isRecording}
+          >
+            start recording
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={stopRecording}
+            disabled={!isRecording}
+          >
+            stop recording
+          </button>
+          <input
+            id="recordingName"
+            name="recordingName"
+            type="text"
+            value={recordingName}
+            className="form-control "
+            placeholder="Enter Recording Name"
+            onChange={(e) => setRecordingName(e.target.value)}
+          />
+          <button
+            className="btn btn-success"
+            disabled={!blob || !recordingName}
+            onClick={uploadRecording}
+          >
+            upload recording
+          </button>
+        </div>
     </Dashboard>
   );
 }

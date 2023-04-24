@@ -8,4 +8,5 @@ module.exports = {
   User: require("./User"),
   Recording: require("./Recording"),
   Library: require("./Library"),
+  Activity: require("./Activity"),
 };

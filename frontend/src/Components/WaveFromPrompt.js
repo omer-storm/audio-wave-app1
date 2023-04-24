@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
 import { RecordCircle, StopFill } from "react-bootstrap-icons";
 import WaveForm from "./WaveForm";
+import { useDispatch, useSelector } from "react-redux";
+import { create } from "../features/activities/activitySlice";
 
-export default function WaveFormPrompt({ color, color1, overlap, setWave }) {
+export default function WaveFormPrompt({
+  color,
+  color1,
+  overlap,
+  setWave,
+}) {
   const [url, setURL] = useState("");
-  // const { wave1, wave2 } = useSelector((state) => state.compare);
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
 
-  // const getPercentage = () => {
-  //   const percentage = [];
-  //   let sum = 0;
-  //   let calc = null;
-  //   wave1.forEach((x, i) => {
-  //     calc = (x / wave2[i]) * 100;
-  //     if (!isNaN(calc)) percentage.push(calc);
-  //   });
-  //   percentage.forEach((x) => {
-  //     sum = sum + x;
-  //   });
-  //   let average = sum / percentage.length;
+  const { user } = useSelector((state) => state.auth);
+  const { waveform } = useSelector((state) => state.waveform);
 
-  //   return average;
-  // };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -51,6 +45,10 @@ export default function WaveFormPrompt({ color, color1, overlap, setWave }) {
     return () => recorder.removeEventListener("dataavailable", handleData);
   }, [recorder, isRecording]);
 
+  useEffect(() => {
+    if (user !== null && url !== "") dispatch(create({ user: user._id, record: waveform._id }));
+  }, [url, user, dispatch, waveform]);
+
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     return new MediaRecorder(stream);
@@ -73,7 +71,7 @@ export default function WaveFormPrompt({ color, color1, overlap, setWave }) {
               width: "600px",
               height: "128px",
               border: "2px solid #0275d8",
-              marginBottom: -50
+              marginBottom: -50,
             }}
           >
             <h6
