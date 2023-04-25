@@ -19,8 +19,8 @@ export const waveformSlice = createSlice({
       state.isError = false;
       state.message = "";
     },
-    setWaveform: (state, payload) => {
-      state.waveform = payload.payload
+    setWaveform: (state, action) => {
+      state.waveform = action.payload
     },
   },
 });

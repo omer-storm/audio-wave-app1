@@ -28,13 +28,20 @@ router.get("/activities", protect, async (req, res) => {
         localField: "_id",
         foreignField: "libraryUrl",
         as: "activity",
+        pipeline: [
+          {
+            $match: {
+              "user": req.user._id,
+            },
+          },
+        ],
       },
     },
-    {
-      $match: {
-        "activity.user": req.user._id,
-      },
-    },
+    // {
+    //   $match: {
+    //     "activity.user": req.user._id,
+    //   },
+    // },
   ]);
   // console.log(library);
   // res.end();

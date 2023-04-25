@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import activityService from "./activityService";
 
 const initialState = {
-  actvity: { user: {}, recording: {} },
+  activity: { user: {}, recording: {} },
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -10,12 +10,12 @@ const initialState = {
 };
 
 //Create Actvity
-export const create = createAsyncThunk(
+export const createActivity = createAsyncThunk(
   "activity/create",
   async (activity, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await activityService.create(activity, token);
+      return await activityService.createActivity(activity, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -37,19 +37,20 @@ export const activitySlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
+      state.activity = { user: {}, recording: {} };
     },
   },
   _extraReducers: (builder) => {
     builder
-      .addCase(create.pending, (state) => {
+      .addCase(createActivity.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(create.fulfilled, (state, action) => {
+      .addCase(createActivity.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.activity = action.payload;
       })
-      .addCase(create.rejected, (state, action) => {
+      .addCase(createActivity.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

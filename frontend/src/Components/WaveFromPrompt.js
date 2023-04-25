@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RecordCircle, StopFill } from "react-bootstrap-icons";
 import WaveForm from "./WaveForm";
 import { useDispatch, useSelector } from "react-redux";
-import { create } from "../features/activities/activitySlice";
+import { createActivity } from "../features/activities/activitySlice";
 
 export default function WaveFormPrompt({
   color,
@@ -46,7 +46,7 @@ export default function WaveFormPrompt({
   }, [recorder, isRecording]);
 
   useEffect(() => {
-    if (user !== null && url !== "") dispatch(create({ user: user._id, record: waveform._id }));
+    if (user !== null && url !== "") dispatch(createActivity({ user: user._id, record: waveform._id }));
   }, [url, user, dispatch, waveform]);
 
   async function requestRecorder() {
