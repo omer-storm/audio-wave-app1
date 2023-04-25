@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
-const { Library } = require("../models");
+const { Library, Activity } = require("../models");
+const { protect } = require("../middleware/authMiddleware");
 
 const upload = multer({});
 
@@ -15,8 +16,28 @@ router.post("/", upload.single("recording"), async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-
   const library = await Library.find();
+  res.status(200).send(library);
+});
+
+router.get("/activities", protect, async (req, res) => {
+  const library = await Library.aggregate([
+    {
+      $lookup: {
+        from: "activities",
+        localField: "_id",
+        foreignField: "libraryUrl",
+        as: "activity",
+      },
+    },
+    {
+      $match: {
+        "activity.user": req.user._id,
+      },
+    },
+  ]);
+  // console.log(library);
+  // res.end();
   res.status(200).send(library);
 });
 

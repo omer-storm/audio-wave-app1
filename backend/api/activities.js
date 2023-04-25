@@ -3,6 +3,15 @@ const { Activity } = require("../models");
 
 const { protect } = require("../middleware/authMiddleware");
 
+// @desc    get actvity
+// @route   GET /api/activities
+// @access  Private
+router.get("/", protect, async (req, res) => {
+  const activity = await Activity.find();
+  console.log(activity);
+  // res.status(200).send(activity);
+});
+
 // @desc    Set actvity
 // @route   POST /api/activities
 // @access  Private
