@@ -10,7 +10,11 @@ const activitySchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Library",
     required: [true, "Please add a library"],
-  }
+  },
+  percentage: {
+    type: [String],
+    required: [true, "Please add percentage"],
+  },
 });
 
 module.exports = mongoose.model("Activity", activitySchema);

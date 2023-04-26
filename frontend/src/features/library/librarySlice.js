@@ -46,6 +46,25 @@ export const getPublicLibrary = createAsyncThunk(
   }
 );
 
+//Create Actvity
+export const createActivity = createAsyncThunk(
+  "activity/create",
+  async (activity, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await libraryService.createActivity(activity, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const librarySlice = createSlice({
   name: "library",
   initialState,
@@ -87,6 +106,28 @@ export const librarySlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.user = null;
+      })
+      .addCase(createActivity.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createActivity.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+
+        const update = state.library.map((u) => {
+          if (u.iid === action.payload.iid) {
+            u.activity[0] = action.payload;
+            return u;
+          } else {
+            return u;
+          }
+        });
+        state.library = [...update];
+      })
+      .addCase(createActivity.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
   get extraReducers() {

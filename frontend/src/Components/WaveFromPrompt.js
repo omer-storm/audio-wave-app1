@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { RecordCircle, StopFill } from "react-bootstrap-icons";
 import WaveForm from "./WaveForm";
 import { useDispatch, useSelector } from "react-redux";
-import { createActivity } from "../features/activities/activitySlice";
+import { createActivity } from "../features/library/librarySlice";
 
 export default function WaveFormPrompt({
   color,
   color1,
   overlap,
   setWave,
+  percentage,
 }) {
   const [url, setURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
@@ -46,8 +47,15 @@ export default function WaveFormPrompt({
   }, [recorder, isRecording]);
 
   useEffect(() => {
-    if (user !== null && url !== "") dispatch(createActivity({ user: user._id, record: waveform._id }));
-  }, [url, user, dispatch, waveform]);
+    if (user !== null && url !== "" && percentage !== null)
+      dispatch(
+        createActivity({
+          user: user._id,
+          record: waveform._id,
+          percentage: [percentage],
+        })
+      );
+  }, [url, user, dispatch, waveform, percentage]);
 
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

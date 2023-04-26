@@ -20,7 +20,7 @@ export const waveformSlice = createSlice({
       state.message = "";
     },
     setWaveform: (state, action) => {
-      state.waveform = action.payload
+      state.waveform = action.payload;
     },
   },
 });

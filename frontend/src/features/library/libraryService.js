@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/library/";
+const API_URL_ACTIVITY = "http://localhost:5000/api/activity/"
 
 //get private libraries
 const getPrivateLibrary = async (token) => {
@@ -9,7 +10,6 @@ const getPrivateLibrary = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response.data);
   return response.data;
 };
 
@@ -19,9 +19,21 @@ const getPublicLibrary = async () => {
   return response.data;
 };
 
+//create activities
+const createActivity = async (activity, token) => {
+  const response = await axios.post(API_URL_ACTIVITY, activity, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
 const libraryService = {
   getPrivateLibrary,
   getPublicLibrary,
+  createActivity
 };
 
 export default libraryService;

@@ -4,7 +4,7 @@ import WaveFormPrompt from "./WaveFromPrompt";
 function WaveFormCompare({ wave1 }) {
   const [wave2, setWave2] = useState([]);
 
-  const getPercentage = () => {
+  const percentage = (function getPercentage() {
     const percentage = [];
     let sum = 0;
     let calc = null;
@@ -18,12 +18,17 @@ function WaveFormCompare({ wave1 }) {
     let average = sum / percentage.length;
 
     return isNaN(average) ? null : average.toFixed(2).toString() + "%";
-  };
+  })();
 
   return (
     <>
-      <WaveFormPrompt color="green" color1={"blue"} setWave={setWave2} />
-      <h4>{getPercentage()}</h4>
+      <WaveFormPrompt
+        color="green"
+        color1={"blue"}
+        setWave={setWave2}
+        percentage={percentage}
+      />
+      <h4>{percentage}</h4>
     </>
   );
 }
