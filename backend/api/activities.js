@@ -22,7 +22,6 @@ router.post("/", protect, async (req, res) => {
   });
 
   if (activityExists) {
-    console.log(activityExists);
     res.status(400);
     throw new Error("Activity already exists");
   }
