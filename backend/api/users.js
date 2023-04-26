@@ -4,49 +4,49 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const { User } = require("../models/");
 
-// @desc    Authenticate a user
-// @access  Public
+// // // @desc    Authenticate a user
+// // // @access  Public
 
-router.post(
-  "/",
-  asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+// router.post(
+//   "/",
+//   asyncHandler(async (req, res) => {
+//     const { email, password } = req.body;
 
-    // Check for user email
+//     // Check for user email
 
-    const user = await User.aggregate([
-      {
-        $lookup: {
-          from: "recordings",
-          localField: "_id",
-          foreignField: "user",
-          as: "recordings",
-        },
-      },
-      {
-        $match: {
-          email,
-        },
-      },
-    ]);
+//     const user = await User.aggregate([
+//       {
+//         $lookup: {
+//           from: "recordings",
+//           localField: "_id",
+//           foreignField: "user",
+//           as: "recordings",
+//         },
+//       },
+//       {
+//         $match: {
+//           email,
+//         },
+//       },
+//     ]);
 
-    if (user && (await bcrypt.compare(password, user[0].password))) {
-      res.json({
-        _id: user[0]._id,
-        name: user[0].name,
-        email: user[0].email,
-        recordings: user[0].recordings,
-        token: generateToken(user[0]._id),
-      });
-    } else {
-      res.status(400);
-      throw new Error("Invalid credentials");
-    }
-  })
-);
+//     if (user && (await bcrypt.compare(password, user[0].password))) {
+//       res.json({
+//         _id: user[0]._id,
+//         name: user[0].name,
+//         email: user[0].email,
+//         recordings: user[0].recordings,
+//         token: generateToken(user[0]._id),
+//       });
+//     } else {
+//       res.status(400);
+//       throw new Error("Invalid credentials");
+//     }
+//   })
+// );
 
-// @desc    get Activity
-// @access  Public
+// // @desc    get Activity
+// // @access  Public
 router.post(
   "/",
   asyncHandler(async (req, res) => {
