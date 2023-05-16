@@ -67,11 +67,10 @@ export default function Record() {
         </div>
         <div>
           {waveform.activity !== undefined && (
+            <>
+             <h4>Last Iteration:</h4>
             <table style={{ border: "1px solid black" }}>
               <tr style={{ border: "1px solid black" }}>
-                <th style={{ border: "1px solid black", padding: 10 }}>
-                  Iteration No.
-                </th>
                 <th style={{ border: "1px solid black", padding: 10 }}>
                   Peaks
                 </th>
@@ -82,9 +81,6 @@ export default function Record() {
               {waveform.activity.percentage.map((act, i) => (
                 <tr style={{ border: "1px solid black" }}>
                   <td style={{ border: "1px solid black", padding: 10 }}>
-                    {i + 1}
-                  </td>
-                  <td style={{ border: "1px solid black", padding: 10 }}>
                     {act.peaks}
                   </td>
                   <td style={{ border: "1px solid black", padding: 10 }}>
@@ -93,6 +89,7 @@ export default function Record() {
                 </tr>
               ))}
             </table>
+            </>
           )}
         </div>
       </div>
