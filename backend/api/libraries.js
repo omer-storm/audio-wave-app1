@@ -31,20 +31,25 @@ router.get("/activities", protect, async (req, res) => {
         pipeline: [
           {
             $match: {
-              "user": req.user._id,
+              user: req.user._id,
+            },
+          },
+          {
+            $project: {
+              percentage: 1,
             },
           },
         ],
       },
     },
-    // {
-    //   $match: {
-    //     "activity.user": req.user._id,
-    //   },
-    // },
+    {
+      $unwind: {
+        path: "$activity",
+        includeArrayIndex: "0",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
   ]);
-  // console.log(library);
-  // res.end();
   res.status(200).send(library);
 });
 

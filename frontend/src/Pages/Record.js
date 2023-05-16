@@ -17,14 +17,9 @@ export default function Record() {
 
   const { user } = useSelector((state) => state.auth);
   const { library } = useSelector((state) => state.library);
+  const { waveform } = useSelector((state) => state.waveform);
 
   const dispatch = useDispatch();
-
-  // const getLibrary = async () => {
-  //   // const response = await axios.get("http://localhost:5000/api/library/");
-  //   // setLibrary(response.data);
-  //   dispatch(getPublicLibrary());
-  // };
 
   const onCompareClick = (recording, url) => {
     setAudioURL("data:audio/ogg;base64," + url);
@@ -32,10 +27,11 @@ export default function Record() {
   };
 
   useEffect(() => {
-    // getLibrary();
     if (user === null) dispatch(getPublicLibrary());
     else dispatch(getPrivateLibrary());
-  }, [dispatch, user]);
+
+    console.log(waveform);
+  }, [dispatch, user, waveform]);
 
   return (
     <div className="container">
@@ -56,18 +52,29 @@ export default function Record() {
         ))}
       </div>
 
-      <div style={{ position: "relative", left: "25vw" }}>
-        {audioURL !== "" && (
-          <WaveForm
-            url={audioURL}
-            color={"red"}
-            color1={"white"}
-            setWave={setWave1}
-          />
-        )}
-        {audioURL !== "" && (
-          <WaveFormCompareList audioURL={audioURL} wave1={wave1} />
-        )}
+      <div style={{ display: "flex", position: "relative", left: "25vw" }}>
+        <div>
+          {audioURL !== "" && (
+            <WaveForm
+              url={audioURL}
+              color={"red"}
+              color1={"white"}
+              setWave={setWave1}
+            />
+          )}
+          {audioURL !== "" && (
+            <WaveFormCompareList audioURL={audioURL} wave1={wave1} />
+          )}
+        </div>
+        <div>
+          <h1>Previous Activity: </h1>
+          {waveform.activity !== undefined &&
+            waveform.activity.percentage.map((act, i) => (
+              <h4 style={{paddingLeft: 20}}>
+                Iteration no. {i + 1}: {act}
+              </h4>
+            ))}
+        </div>
       </div>
     </div>
   );
