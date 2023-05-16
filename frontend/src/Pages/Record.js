@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import axios from "axios";
 import WaveFormCompareList from "../Components/WaveFormCompareList";
 import WaveForm from "../Components/WaveForm";
 import {
@@ -67,13 +66,34 @@ export default function Record() {
           )}
         </div>
         <div>
-          <h1>Previous Activity: </h1>
-          {waveform.activity !== undefined &&
-            waveform.activity.percentage.map((act, i) => (
-              <h4 style={{paddingLeft: 20}}>
-                Iteration no. {i + 1}: {act}
-              </h4>
-            ))}
+          {waveform.activity !== undefined && (
+            <table style={{ border: "1px solid black" }}>
+              <tr style={{ border: "1px solid black" }}>
+                <th style={{ border: "1px solid black", padding: 10 }}>
+                  Iteration No.
+                </th>
+                <th style={{ border: "1px solid black", padding: 10 }}>
+                  Peaks
+                </th>
+                <th style={{ border: "1px solid black", padding: 10 }}>
+                  Length
+                </th>
+              </tr>
+              {waveform.activity.percentage.map((act, i) => (
+                <tr style={{ border: "1px solid black" }}>
+                  <td style={{ border: "1px solid black", padding: 10 }}>
+                    {i + 1}
+                  </td>
+                  <td style={{ border: "1px solid black", padding: 10 }}>
+                    {act.peaks}
+                  </td>
+                  <td style={{ border: "1px solid black", padding: 10 }}>
+                    {act.length}
+                  </td>
+                </tr>
+              ))}
+            </table>
+          )}
         </div>
       </div>
     </div>

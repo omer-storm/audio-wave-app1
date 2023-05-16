@@ -12,7 +12,7 @@ const activitySchema = mongoose.Schema({
     required: [true, "Please add a library"],
   },
   percentage: {
-    type: [String],
+    type: [{ peaks: String, length: String }],
     required: [true, "Please add percentage"],
   },
 });

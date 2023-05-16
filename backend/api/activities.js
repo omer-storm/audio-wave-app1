@@ -21,8 +21,12 @@ router.post("/", protect, async (req, res) => {
   });
 
   if (activityExists) {
-    res.status(400);
-    throw new Error("Activity already exists");
+    await Activity.deleteOne({
+      user: req.body.user,
+      libraryUrl: req.body.record,
+    });
+    // res.status(400);
+    // throw new Error("Activity already exists");
   }
   // console.log(req.body.percentage)
   // console.log(typeof req.body.percentage);

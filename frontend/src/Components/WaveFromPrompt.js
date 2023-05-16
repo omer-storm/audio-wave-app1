@@ -10,6 +10,7 @@ export default function WaveFormPrompt({
   overlap,
   setWave,
   percentage,
+  length,
 }) {
   const [url, setURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
@@ -52,10 +53,10 @@ export default function WaveFormPrompt({
         createActivity({
           user: user._id,
           record: waveform._id,
-          percentage: [percentage],
+          percentage: [{ peaks: percentage, length: length }],
         })
       );
-  }, [url, user, dispatch, waveform, percentage]);
+  }, [url, user, dispatch, waveform, percentage, length]);
 
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
