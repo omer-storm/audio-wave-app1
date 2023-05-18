@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import WaveFormPrompt from "./WaveFromPrompt";
+import { useSelector } from "react-redux";
 
-function WaveFormCompare({ wave1 }) {
+function WaveFormCompare() {
   const [wave2, setWave2] = useState([]);
+
+  const { waveformPeak } = useSelector((state) => state.waveform);
+
 
   const percentage = (function getPercentage() {
     const percentage = [];
     let sum = 0;
     let calc = null;
-    wave1.forEach((x, i) => {
+    waveformPeak.forEach((x, i) => {
       calc = (wave2[i] / x) * 100;
       if (!isNaN(calc)) percentage.push(calc);
     });
@@ -21,7 +25,7 @@ function WaveFormCompare({ wave1 }) {
   })();
 
   const length = (function getLength() {
-    const length = (wave2.length / wave1.length) * 100;
+    const length = (wave2.length / waveformPeak.length) * 100;
 
     return length.toFixed(2).toString() + "%";
   })();

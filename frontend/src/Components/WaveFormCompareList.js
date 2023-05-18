@@ -3,7 +3,7 @@ import WaveFormCompare from "./WaveFormCompare";
 import { Plus } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 
-function WaveFormCompareList({ wave1 }) {
+function WaveFormCompareList() {
   const [iterator, setIterator] = useState([1]);
 
   const { waveform } = useSelector((state) => state.waveform);
@@ -17,7 +17,7 @@ function WaveFormCompareList({ wave1 }) {
       <h2>Iterations:</h2>
       {iterator.map((value) => (
         <div key={value}>
-          <WaveFormCompare wave1={wave1} />
+          <WaveFormCompare />
         </div>
       ))}
       <button

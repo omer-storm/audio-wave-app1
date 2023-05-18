@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   waveform: {},
+  waveformPeak: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -22,8 +23,11 @@ export const waveformSlice = createSlice({
     setWaveform: (state, action) => {
       state.waveform = action.payload;
     },
+    setWaveformPeak: (state, action) => {
+      state.waveformPeak = [...action.payload];
+    },
   },
 });
 
-export const { reset, setWaveform } = waveformSlice.actions;
+export const { reset, setWaveform, setWaveformPeak } = waveformSlice.actions;
 export default waveformSlice.reducer;

@@ -6,13 +6,10 @@ import {
   getPublicLibrary,
   getPrivateLibrary,
 } from "../features/library/librarySlice";
-import { setWaveform } from "../features/waveform/waveformSlice";
+import { setWaveform, setWaveformPeak } from "../features/waveform/waveformSlice";
 import { Check } from "react-bootstrap-icons";
 
 export default function Record() {
-  // const [library, setLibrary] = useState("");
-  const [audioURL, setAudioURL] = useState("");
-  const [wave1, setWave1] = useState([]);
 
   const { user } = useSelector((state) => state.auth);
   const { library } = useSelector((state) => state.library);
@@ -21,7 +18,6 @@ export default function Record() {
   const dispatch = useDispatch();
 
   const onCompareClick = (recording, url) => {
-    setAudioURL("data:audio/ogg;base64," + url);
     dispatch(setWaveform(recording));
   };
 
@@ -29,6 +25,12 @@ export default function Record() {
     if (user === null) dispatch(getPublicLibrary());
     else dispatch(getPrivateLibrary());
   }, [dispatch, user, waveform]);
+
+
+  const setWave1Peak = (peak) => {
+     dispatch(setWaveformPeak([...peak]))
+  }
+
 
   return (
     <div className="container">
@@ -51,16 +53,16 @@ export default function Record() {
 
       <div style={{ display: "flex", position: "relative", left: "25vw" }}>
         <div>
-          {audioURL !== "" && (
+          {Object.keys(waveform).length !== 0 && (
             <WaveForm
-              url={audioURL}
+              url={"data:audio/ogg;base64," + waveform.file}
               color={"red"}
               color1={"white"}
-              setWave={setWave1}
+              setWave={setWave1Peak}
             />
           )}
-          {audioURL !== "" && (
-            <WaveFormCompareList audioURL={audioURL} wave1={wave1} />
+          {Object.keys(waveform).length !== 0 && (
+            <WaveFormCompareList />
           )}
         </div>
         <div>

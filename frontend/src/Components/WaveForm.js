@@ -42,7 +42,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
             peaks.push(x);
           }
         });
-        setWave(peaks);
+        setWave([...peaks]);
       });
       setwavesurfer(wavesurfer);
     }
@@ -65,7 +65,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
         <button
           className="btn btn-sm btn-primary"
           onClick={onPlayPause}
-          style={{ position: "relative", top: -70, left: -105 }}
+          style={{ position: "relative", top: -200, left: -105 }}
         >
           <Play size={30} />/
           <Pause size={30} />
