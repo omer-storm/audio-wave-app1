@@ -8,6 +8,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
   const [wavesurfer, setwavesurfer] = useState(null);
 
   useEffect(() => {
+    console.log("going");
     if (wavesurfer === null) {
       let wavesurfer = WaveSurfer.create({
         container: waveformRef.current,
@@ -46,7 +47,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
       });
       setwavesurfer(wavesurfer);
     }
-  }, [url, wavesurfer, color, color1, setWave]);
+  }, [url, wavesurfer, color, color1]);
 
   const onPlayPause = () => {
     wavesurfer.playPause();
@@ -65,11 +66,10 @@ export default function WaveForm({ url, color, color1, setWave }) {
         <button
           className="btn btn-sm btn-primary"
           onClick={onPlayPause}
-          style={{ position: "relative", top: -200, left: -105 }}
+          style={{ position: "relative", top: -110, left: -105 }}
         >
           <Play size={30} />/
           <Pause size={30} />
-          
         </button>
       </div>
     </>

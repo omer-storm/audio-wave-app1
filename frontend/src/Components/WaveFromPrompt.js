@@ -23,7 +23,8 @@ export default function WaveFormPrompt({
 
   useEffect(() => {
     setURL("");
-  }, [waveform]);
+    setWave([]);
+  }, [waveform, setWave]);
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -60,7 +61,7 @@ export default function WaveFormPrompt({
           percentage: [{ peaks: percentage, length: length }],
         })
       );
-  }, [url, user, dispatch, waveform, percentage, length]);
+  }, [url, user, dispatch, percentage, length]);
 
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
