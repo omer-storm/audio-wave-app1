@@ -8,6 +8,7 @@ body {
   /* background-position: center center; */
 }
 
+
 /*Login Form  */
 
 .LoginFormPosition {
@@ -122,8 +123,6 @@ body {
   text-decoration: none;
 }
 
-
-
 .dashboard-menu-option-text::after {
   content: "";
   position: absolute;
@@ -152,14 +151,13 @@ body {
 }
 
 .recording-list-box {
-   /* display: flex; */
-   position: relative;
-   left: 150px;
-   margin-bottom: 40px;
-   overflow: auto;
-   width: 90%;
-   white-space: nowrap;
-
+  /* display: flex; */
+  position: relative;
+  left: 150px;
+  margin-bottom: 40px;
+  overflow: auto;
+  width: 90%;
+  white-space: nowrap;
 }
 
 .recording-list-element {

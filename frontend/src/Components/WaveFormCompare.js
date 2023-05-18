@@ -21,7 +21,7 @@ function WaveFormCompare({ wave1 }) {
   })();
 
   const length = (function getLength() {
-    const length = (wave2.length / wave1.length)*100;
+    const length = (wave2.length / wave1.length) * 100;
 
     return length.toFixed(2).toString() + "%";
   })();

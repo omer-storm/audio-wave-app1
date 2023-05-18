@@ -102,6 +102,8 @@ export const librarySlice = createSlice({
         state.library = action.payload;
       })
       .addCase(getPrivateLibrary.rejected, (state, action) => {
+        console.log("PrivateLibrary");
+
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -114,9 +116,11 @@ export const librarySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
 
+        console.log("createActivity");
+
         const update = state.library.map((u) => {
           if (u.iid === action.payload.iid) {
-            u.activity[0] = action.payload;
+            u.activity = action.payload;
             return u;
           } else {
             return u;

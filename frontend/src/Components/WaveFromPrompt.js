@@ -22,6 +22,10 @@ export default function WaveFormPrompt({
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setURL("");
+  }, [waveform]);
+
+  useEffect(() => {
     // Lazily obtain recorder first time we're recording.
     if (recorder === null) {
       if (isRecording) {

@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WaveFormCompare from "./WaveFormCompare";
 import { Plus } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 
-function WaveFormCompareList({ audioURL, wave1 }) {
+function WaveFormCompareList({ wave1 }) {
   const [iterator, setIterator] = useState([1]);
+
+  const { waveform } = useSelector((state) => state.waveform);
+
+  useEffect(() => {
+    setIterator([1]);
+  }, [waveform]);
 
   return (
     <div>
-     <h2>Iterations:</h2>
-      {audioURL !== "" &&
-        iterator.map((value) => (
-          <div key={value}>
-            <WaveFormCompare wave1 ={wave1}/>
-          </div>
-        ))}
+      <h2>Iterations:</h2>
+      {iterator.map((value) => (
+        <div key={value}>
+          <WaveFormCompare wave1={wave1} />
+        </div>
+      ))}
       <button
         className="btn btn-primary"
-        style={{ marginLeft: 550}}
+        style={{ marginLeft: 550 }}
         onClick={() => {
           setIterator([...iterator, iterator.length + 1]);
         }}

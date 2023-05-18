@@ -18,7 +18,7 @@ function LandingPage() {
         </p>
       </div>
       <div className="landing-screen-text-position2">
-        <h1 className="landing-screen-heading">What is our purpose?</h1>
+        <h1 className="landing-screen-heading">What is our price?</h1>
         <p className="landing-screen-description">We are absolutely free.</p>
       </div>
       <div className="landing-screen-text-position3">

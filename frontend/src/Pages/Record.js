@@ -28,8 +28,6 @@ export default function Record() {
   useEffect(() => {
     if (user === null) dispatch(getPublicLibrary());
     else dispatch(getPrivateLibrary());
-
-    console.log(waveform);
   }, [dispatch, user, waveform]);
 
   return (
@@ -68,27 +66,31 @@ export default function Record() {
         <div>
           {waveform.activity !== undefined && (
             <>
-             <h4>Last Iteration:</h4>
-            <table style={{ border: "1px solid black" }}>
-              <tr style={{ border: "1px solid black" }}>
-                <th style={{ border: "1px solid black", padding: 10 }}>
-                  Peaks
-                </th>
-                <th style={{ border: "1px solid black", padding: 10 }}>
-                  Length
-                </th>
-              </tr>
-              {waveform.activity.percentage.map((act, i) => (
-                <tr style={{ border: "1px solid black" }}>
-                  <td style={{ border: "1px solid black", padding: 10 }}>
-                    {act.peaks}
-                  </td>
-                  <td style={{ border: "1px solid black", padding: 10 }}>
-                    {act.length}
-                  </td>
-                </tr>
-              ))}
-            </table>
+              <h4>Last Iteration:</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th style={{ border: "1px solid black", padding: 10 }}>
+                      Peaks
+                    </th>
+                    <th style={{ border: "1px solid black", padding: 10 }}>
+                      Length
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {waveform.activity.percentage.map((act, i) => (
+                    <tr key={i}>
+                      <td style={{ border: "1px solid black", padding: 10 }}>
+                        {act.peaks}
+                      </td>
+                      <td style={{ border: "1px solid black", padding: 10 }}>
+                        {act.length}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </>
           )}
         </div>
