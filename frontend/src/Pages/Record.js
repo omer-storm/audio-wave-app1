@@ -11,12 +11,14 @@ import {
   setWaveform,
   setWaveformPeak,
 } from "../features/waveform/waveformSlice";
+import { getCategory } from "../features/category/categorySlice";
 import { Check } from "react-bootstrap-icons";
 
 export default function Record() {
   const { user } = useSelector((state) => state.auth);
   const { library, activity } = useSelector((state) => state.library);
   const { waveform } = useSelector((state) => state.waveform);
+  const { categories } = useSelector((state) => state.category);
 
   const dispatch = useDispatch();
 
@@ -28,6 +30,7 @@ export default function Record() {
   useEffect(() => {
     if (user === null) dispatch(getPublicLibrary());
     else dispatch(getPrivateLibrary());
+    dispatch(getCategory());
   }, [dispatch, user, waveform]);
 
   const setWave1Peak = (peak) => {
@@ -36,6 +39,14 @@ export default function Record() {
 
   return (
     <div className="container">
+      <div
+        className="PracticeOptionLayout"
+        style={{ position: "relative", left: "12vw" }}
+      >
+        {categories.map((c) => (
+            <h4 className="PracticeOption" key={c._id}>{c.name}</h4>
+        ))}
+      </div>
       <div className="recording-list-box">
         {library.map((recording) => (
           <div

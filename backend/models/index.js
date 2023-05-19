@@ -9,4 +9,5 @@ module.exports = {
   Recording: require("./Recording"),
   Library: require("./Library"),
   Activity: require("./Activity"),
+  Category: require("./Category")
 };
