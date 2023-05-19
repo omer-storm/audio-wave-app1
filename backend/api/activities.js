@@ -39,18 +39,18 @@ router.post("/", protect, async (req, res) => {
   res.status(200).send(activity.percentage);
 });
 
-// router.put("/", protect, async (req, res) => {
-//   const activity = await Activity.findOneAndUpdate(
-//     {
-//       user: req.body.user,
-//       libraryUrl: req.body.record,
-//     },
-//     {
-//       percentage: req.body.percentage,
-//     },
-//     { new: true }
-//   );
-//   res.status(200).send(activity);
-// });
+router.put("/", protect, async (req, res) => {
+  const activity = await Activity.findOneAndUpdate(
+    {
+      user: req.body.user,
+      libraryUrl: req.body.record,
+    },
+    {
+      percentage: req.body.percentage,
+    },
+    { new: true }
+  );
+  res.status(200).send(activity.percentage);
+});
 
 module.exports = router;

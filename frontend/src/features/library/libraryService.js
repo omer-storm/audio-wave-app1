@@ -30,10 +30,23 @@ const createActivity = async (activity, token) => {
   return response.data;
 };
 
+//Update Activity
+const updateActivity = async (activity, token) => {
+  const response = await axios.put(API_URL_ACTIVITY, activity, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+
 const libraryService = {
   getPrivateLibrary,
   getPublicLibrary,
-  createActivity
+  createActivity,
+  updateActivity
 };
 
 export default libraryService;

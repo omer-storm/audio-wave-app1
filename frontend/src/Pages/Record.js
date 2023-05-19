@@ -5,6 +5,7 @@ import WaveForm from "../Components/WaveForm";
 import {
   getPublicLibrary,
   getPrivateLibrary,
+  resetActivity,
 } from "../features/library/librarySlice";
 import {
   setWaveform,
@@ -19,7 +20,8 @@ export default function Record() {
 
   const dispatch = useDispatch();
 
-  const onCompareClick = (recording, url) => {
+  const onCompareClick = (recording) => {
+    dispatch(resetActivity());
     dispatch(setWaveform(recording));
   };
 
@@ -67,7 +69,7 @@ export default function Record() {
           {waveform.activity !== undefined && (
             <div>
               <h5>Previous Iteration</h5>
-              <table>
+              <table style={{ marginLeft: 4 }}>
                 <thead>
                   <tr>
                     <th style={{ border: "1px solid black", padding: 10 }}>
@@ -94,9 +96,9 @@ export default function Record() {
             </div>
           )}
           {activity.length !== 0 && (
-            <div style={{marginLeft: 20}}>
+            <div style={{ marginLeft: 30 }}>
               <h5>Current Iteration</h5>
-              <table style={{marginLeft: 2}}>
+              <table style={{ marginLeft: 6 }}>
                 <thead>
                   <tr>
                     <th style={{ border: "1px solid black", padding: 10 }}>

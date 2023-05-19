@@ -66,6 +66,25 @@ export const createActivity = createAsyncThunk(
   }
 );
 
+//update Actvity
+export const updateActivity = createAsyncThunk(
+  "activity/update",
+  async (activity, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await libraryService.updateActivity(activity, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const librarySlice = createSlice({
   name: "library",
   initialState,
@@ -76,6 +95,9 @@ export const librarySlice = createSlice({
       state.isError = false;
       state.message = "";
       state.library = [];
+    },
+    resetActivity: (state) => {
+      state.activity = [];
     },
   },
   _extraReducers: (builder) => {
@@ -115,19 +137,23 @@ export const librarySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
 
-        // console.log(action.payload);
-        state.activity = [...state.activity, ...action.payload];
-        // const update = state.library.map((u) => {
-        //   if (u.iid === action.payload.iid) {
-        //     u.activity = action.payload;
-        //     return u;
-        //   } else {
-        //     return u;
-        //   }
-        // });
-        // state.library = [...update];
+        state.activity = [...action.payload];
       })
       .addCase(createActivity.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateActivity.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateActivity.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+
+        state.activity = [...action.payload];
+      })
+      .addCase(updateActivity.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -141,5 +167,5 @@ export const librarySlice = createSlice({
   },
 });
 
-export const { reset } = librarySlice.actions;
+export const { reset, resetActivity } = librarySlice.actions;
 export default librarySlice.reducer;
