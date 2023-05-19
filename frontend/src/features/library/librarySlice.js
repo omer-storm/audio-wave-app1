@@ -3,6 +3,7 @@ import libraryService from "./libraryService";
 
 const initialState = {
   library: [],
+  activity: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -102,8 +103,6 @@ export const librarySlice = createSlice({
         state.library = action.payload;
       })
       .addCase(getPrivateLibrary.rejected, (state, action) => {
-        console.log("PrivateLibrary");
-
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -116,17 +115,17 @@ export const librarySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
 
-        console.log("createActivity");
-
-        const update = state.library.map((u) => {
-          if (u.iid === action.payload.iid) {
-            u.activity = action.payload;
-            return u;
-          } else {
-            return u;
-          }
-        });
-        state.library = [...update];
+        // console.log(action.payload);
+        state.activity = [...state.activity, ...action.payload];
+        // const update = state.library.map((u) => {
+        //   if (u.iid === action.payload.iid) {
+        //     u.activity = action.payload;
+        //     return u;
+        //   } else {
+        //     return u;
+        //   }
+        // });
+        // state.library = [...update];
       })
       .addCase(createActivity.rejected, (state, action) => {
         state.isLoading = false;

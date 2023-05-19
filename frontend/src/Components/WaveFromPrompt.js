@@ -61,7 +61,7 @@ export default function WaveFormPrompt({
           percentage: [{ peaks: percentage, length: length }],
         })
       );
-  }, [url, user, dispatch, percentage, length]);
+  }, [url, dispatch, length, percentage, user]);
 
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

@@ -6,13 +6,15 @@ import {
   getPublicLibrary,
   getPrivateLibrary,
 } from "../features/library/librarySlice";
-import { setWaveform, setWaveformPeak } from "../features/waveform/waveformSlice";
+import {
+  setWaveform,
+  setWaveformPeak,
+} from "../features/waveform/waveformSlice";
 import { Check } from "react-bootstrap-icons";
 
 export default function Record() {
-
   const { user } = useSelector((state) => state.auth);
-  const { library } = useSelector((state) => state.library);
+  const { library, activity } = useSelector((state) => state.library);
   const { waveform } = useSelector((state) => state.waveform);
 
   const dispatch = useDispatch();
@@ -26,11 +28,9 @@ export default function Record() {
     else dispatch(getPrivateLibrary());
   }, [dispatch, user, waveform]);
 
-
   const setWave1Peak = (peak) => {
-     dispatch(setWaveformPeak([...peak]))
-  }
-
+    dispatch(setWaveformPeak([...peak]));
+  };
 
   return (
     <div className="container">
@@ -61,14 +61,12 @@ export default function Record() {
               setWave={setWave1Peak}
             />
           )}
-          {Object.keys(waveform).length !== 0 && (
-            <WaveFormCompareList />
-          )}
+          {Object.keys(waveform).length !== 0 && <WaveFormCompareList />}
         </div>
-        <div>
+        <div style={{ display: "flex" }}>
           {waveform.activity !== undefined && (
-            <>
-              <h4>Last Iteration:</h4>
+            <div>
+              <h5>Previous Iteration</h5>
               <table>
                 <thead>
                   <tr>
@@ -93,7 +91,36 @@ export default function Record() {
                   ))}
                 </tbody>
               </table>
-            </>
+            </div>
+          )}
+          {activity.length !== 0 && (
+            <div style={{marginLeft: 20}}>
+              <h5>Current Iteration</h5>
+              <table style={{marginLeft: 2}}>
+                <thead>
+                  <tr>
+                    <th style={{ border: "1px solid black", padding: 10 }}>
+                      Peaks
+                    </th>
+                    <th style={{ border: "1px solid black", padding: 10 }}>
+                      Length
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {activity.map((act, i) => (
+                    <tr key={i}>
+                      <td style={{ border: "1px solid black", padding: 10 }}>
+                        {act.peaks}
+                      </td>
+                      <td style={{ border: "1px solid black", padding: 10 }}>
+                        {act.length}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>

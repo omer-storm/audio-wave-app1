@@ -36,7 +36,7 @@ router.post("/", protect, async (req, res) => {
     percentage: req.body.percentage,
   });
 
-  res.status(200).send(activity);
+  res.status(200).send(activity.percentage);
 });
 
 // router.put("/", protect, async (req, res) => {
