@@ -8,6 +8,11 @@ const librarySchema = mongoose.Schema({
   display: {
     type: String,
     required: [true, "Please add display"],
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: [true, "Please add a category"],
   }
 });
 

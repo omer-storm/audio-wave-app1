@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const multer = require("multer");
-const { Library, Activity } = require("../models");
+const { Library } = require("../models");
 const { protect } = require("../middleware/authMiddleware");
 
 const upload = multer({});
@@ -11,6 +11,7 @@ router.post("/", upload.single("recording"), async (req, res) => {
   const library = await Library.create({
     file: encoded,
     display: req.body.recordingName,
+    category: req.body.category, 
   });
   res.status(201).send(library);
 });

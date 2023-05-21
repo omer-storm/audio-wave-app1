@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategory } from "../features/category/categorySlice";
 
 function Adminpanel() {
   const [audioURL, setAudioURL] = useState("");
@@ -7,6 +9,14 @@ function Adminpanel() {
   const [recorder, setRecorder] = useState(null);
   const [blob, setBlob] = useState(null);
   const [recordingName, setRecordingName] = useState("");
+  const [category, setCategory] = useState("");
+  const { categories } = useSelector((state) => state.category);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategory());
+  }, [dispatch]);
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -53,18 +63,19 @@ function Adminpanel() {
   };
 
   const uploadRecording = async () => {
-    console.log(recordingName);
-    console.log(blob);
     const formData = new FormData();
     formData.append("recording", blob);
     formData.append("recordingName", recordingName);
+    formData.append("category",category._id);
     await axios.post("http://localhost:5000/api/library/", formData);
-    setBlob("");
+    setBlob(null);
     setRecordingName("");
+    setCategory("")
+
   };
 
   return (
-    <div className="container">
+    <div style={{ position: "relative", left: "20vw" }}>
       <audio src={audioURL} controls />
       <button
         className="btn btn-primary"
@@ -89,9 +100,15 @@ function Adminpanel() {
         placeholder="Enter Recording Name"
         onChange={(e) => setRecordingName(e.target.value)}
       />
+      {categories.map((c) => (
+        <button key={c._id} className="btn btn-success" onClick={() => setCategory(c)}>
+          {c.name}
+        </button>
+      ))}
+      <h6> selected: {category.name}</h6>
       <button
         className="btn btn-primary"
-        disabled={!blob || !recordingName}
+        disabled={!blob || !recordingName || !category}
         onClick={uploadRecording}
       >
         upload recording

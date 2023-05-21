@@ -8,7 +8,6 @@ export default function WaveForm({ url, color, color1, setWave }) {
   const [wavesurfer, setwavesurfer] = useState(null);
 
   useEffect(() => {
-    console.log("going");
     if (wavesurfer === null) {
       let wavesurfer = WaveSurfer.create({
         container: waveformRef.current,
