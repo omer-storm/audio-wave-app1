@@ -13,7 +13,7 @@ export const waveformSlice = createSlice({
   name: "waveform",
   initialState,
   reducers: {
-    reset: (state) => {
+    resetWaveform: (state) => {
       state.waveform = {};
       state.isLoading = false;
       state.isSuccess = false;
@@ -29,5 +29,5 @@ export const waveformSlice = createSlice({
   },
 });
 
-export const { reset, setWaveform, setWaveformPeak } = waveformSlice.actions;
+export const { resetWaveform, setWaveform, setWaveformPeak } = waveformSlice.actions;
 export default waveformSlice.reducer;

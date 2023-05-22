@@ -10,6 +10,7 @@ import {
 import {
   setWaveform,
   setWaveformPeak,
+  resetWaveform,
 } from "../features/waveform/waveformSlice";
 import { getCategory } from "../features/category/categorySlice";
 import { Check } from "react-bootstrap-icons";
@@ -43,6 +44,8 @@ export default function Record() {
   };
 
   const changeCategory = (c) => {
+    dispatch(resetWaveform());
+    dispatch(resetActivity());
     if (user === null) dispatch(getPublicLibrary(c));
     else dispatch(getPrivateLibrary(c));
   };
