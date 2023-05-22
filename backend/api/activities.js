@@ -48,6 +48,6 @@ router.put("/", protect, async (req, res) => {
     { new: true }
   );
   res.status(200).send(activity.percentage);
-});
+}); 
 
 module.exports = router;

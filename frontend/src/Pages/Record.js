@@ -28,13 +28,23 @@ export default function Record() {
   };
 
   useEffect(() => {
-    if (user === null) dispatch(getPublicLibrary());
-    else dispatch(getPrivateLibrary());
     dispatch(getCategory());
-  }, [dispatch, user, waveform]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (categories.length !== 0) {
+      if (user === null) dispatch(getPublicLibrary(categories[0]._id));
+      else dispatch(getPrivateLibrary(categories[0]._id));
+    }
+  }, [dispatch, user, categories]);
 
   const setWave1Peak = (peak) => {
     dispatch(setWaveformPeak([...peak]));
+  };
+
+  const changeCategory = (c) => {
+    if (user === null) dispatch(getPublicLibrary(c));
+    else dispatch(getPrivateLibrary(c));
   };
 
   return (
@@ -44,7 +54,13 @@ export default function Record() {
         style={{ position: "relative", left: "12vw" }}
       >
         {categories.map((c) => (
-            <h4 className="PracticeOption" key={c._id}>{c.name}</h4>
+          <h4
+            className="PracticeOption"
+            key={c._id}
+            onClick={() => changeCategory(c._id)}
+          >
+            {c.name}
+          </h4>
         ))}
       </div>
       <div className="recording-list-box">

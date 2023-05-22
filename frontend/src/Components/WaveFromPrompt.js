@@ -13,7 +13,7 @@ export default function WaveFormPrompt({
   overlap,
   setWave,
   percentage,
-  length,
+  length
 }) {
   const [url, setURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);

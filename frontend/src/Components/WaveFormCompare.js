@@ -43,6 +43,7 @@ function WaveFormCompare() {
         <div style={{ display: "flex", justifyContent: "flex-start" }}>
           <h4 style={{ margin: 10 }}>Peaks: {percentage}</h4>
           <h4 style={{ margin: 10 }}> Length: {length}</h4>
+          <button className="btn btn-primary btn-sm">Overlap</button>
         </div>
       )}
     </>

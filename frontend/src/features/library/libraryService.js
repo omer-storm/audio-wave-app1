@@ -1,21 +1,21 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/library/";
-const API_URL_ACTIVITY = "http://localhost:5000/api/activity/"
+const API_URL_ACTIVITY = "http://localhost:5000/api/activity/";
 
 //get private libraries
-const getPrivateLibrary = async (token) => {
-  const response = await axios.get(API_URL + "activities/", {
+const getPrivateLibrary = async (data) => {
+  const response = await axios.get(API_URL + `activities/${data.category}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${data.token}`,
     },
   });
   return response.data;
 };
 
 //get public libraries
-const getPublicLibrary = async () => {
-  const response = await axios.get(API_URL);
+const getPublicLibrary = async (category) => {
+  const response = await axios.get(API_URL + `${category}`);
   return response.data;
 };
 
@@ -41,12 +41,11 @@ const updateActivity = async (activity, token) => {
   return response.data;
 };
 
-
 const libraryService = {
   getPrivateLibrary,
   getPublicLibrary,
   createActivity,
-  updateActivity
+  updateActivity,
 };
 
 export default libraryService;

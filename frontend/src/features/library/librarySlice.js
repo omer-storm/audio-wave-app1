@@ -13,10 +13,10 @@ const initialState = {
 //Get Private Library
 export const getPrivateLibrary = createAsyncThunk(
   "privateLibrary/get",
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await libraryService.getPrivateLibrary(token);
+      return await libraryService.getPrivateLibrary({ token, category });
     } catch (error) {
       const message =
         (error.response &&
@@ -32,9 +32,9 @@ export const getPrivateLibrary = createAsyncThunk(
 //Get Public Library
 export const getPublicLibrary = createAsyncThunk(
   "publicLibrary/get",
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
     try {
-      return await libraryService.getPublicLibrary();
+      return await libraryService.getPublicLibrary(category);
     } catch (error) {
       const message =
         (error.response &&
