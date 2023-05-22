@@ -44,6 +44,7 @@ function WaveFormCompare() {
         url={url}
       />
       {percentage !== null && (
+        <>
         <div style={{ display: "flex", justifyContent: "flex-start" }}>
           <h4 style={{ margin: 10 }}>Peaks: {percentage}</h4>
           <h4 style={{ margin: 10 }}> Length: {length}</h4>
@@ -53,9 +54,12 @@ function WaveFormCompare() {
           >
             Overlap
           </button>
-          {overlap === false && <WaveFormOverlap />}
           
         </div>
+        <div>
+        {overlap === true && <WaveFormOverlap url={url} />}
+        </div>
+        </>
       )}
     </>
   );

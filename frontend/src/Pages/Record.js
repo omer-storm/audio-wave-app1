@@ -89,7 +89,7 @@ export default function Record() {
             <WaveForm
               url={"data:audio/ogg;base64," + waveform.file}
               color={"red"}
-              color1={"white"}
+              color1={"black"}
               setWave={setWave1Peak}
             />
           )}
