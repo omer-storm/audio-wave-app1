@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import WaveFormPrompt from "./WaveFromPrompt";
 import { useSelector } from "react-redux";
+import WaveFormOverlap from "./WaveFormOverlap";
 
 function WaveFormCompare() {
   const [wave2, setWave2] = useState([]);
+  const [url, setURL] = useState("");
+  const [overlap, setOverlap] = useState(false);
 
   const { waveformPeak } = useSelector((state) => state.waveform);
-
 
   const percentage = (function getPercentage() {
     const percentage = [];
@@ -28,7 +30,7 @@ function WaveFormCompare() {
     const length = (wave2.length / waveformPeak.length) * 100;
 
     return length.toFixed(2).toString() + "%";
-  })(); 
+  })();
 
   return (
     <>
@@ -38,12 +40,21 @@ function WaveFormCompare() {
         setWave={setWave2}
         percentage={percentage}
         length={length}
+        setURL={setURL}
+        url={url}
       />
       {percentage !== null && (
         <div style={{ display: "flex", justifyContent: "flex-start" }}>
           <h4 style={{ margin: 10 }}>Peaks: {percentage}</h4>
           <h4 style={{ margin: 10 }}> Length: {length}</h4>
-          <button className="btn btn-primary btn-sm">Overlap</button>
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={() => setOverlap(!overlap)}
+          >
+            Overlap
+          </button>
+          {overlap === false && <WaveFormOverlap />}
+          
         </div>
       )}
     </>
