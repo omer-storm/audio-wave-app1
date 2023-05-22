@@ -7,14 +7,14 @@ function WaveFormOverlap({ url }) {
 
   return (
     <div>
-      <div style={{ position: "absolute", left: 0 }}>
+      <div>
         <WaveForm
           url={"data:audio/ogg;base64," + waveform.file}
           color={"red"}
           color1={"black"}
         />
       </div>
-      <div style={{ position: "absolute", left: 0 }}>
+      <div style={{ position: "relative", left: 0, top:-128, marginBottom: -128 }}>
         <WaveForm url={url} color={"green"} color1={"blue"} />
       </div>
     </div>

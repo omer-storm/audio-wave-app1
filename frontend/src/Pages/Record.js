@@ -97,11 +97,14 @@ export default function Record() {
         </div>
         <div style={{ display: "flex" }}>
           {waveform.activity !== undefined && (
-            <div>
-              <h5>Previous Iteration</h5>
-              <table style={{ marginLeft: 4 }}>
+            <div style={{ marginLeft: -4 }}>
+              <h5 style={{ marginLeft:  15 }}>Previous Iteration</h5>
+              <table>
                 <thead>
                   <tr>
+                    <th style={{ border: "1px solid black", padding: 10 }}>
+                      No.
+                    </th>
                     <th style={{ border: "1px solid black", padding: 10 }}>
                       Peaks
                     </th>
@@ -112,7 +115,10 @@ export default function Record() {
                 </thead>
                 <tbody>
                   {waveform.activity.percentage.map((act, i) => (
-                    <tr key={i}>
+                    <tr key={act._id}>
+                      <td style={{ border: "1px solid black", padding: 10 }}>
+                        {i+1}
+                      </td>
                       <td style={{ border: "1px solid black", padding: 10 }}>
                         {act.peaks}
                       </td>
@@ -126,11 +132,14 @@ export default function Record() {
             </div>
           )}
           {activity.length !== 0 && (
-            <div style={{ marginLeft: 30 }}>
-              <h5>Current Iteration</h5>
-              <table style={{ marginLeft: 6 }}>
+            <div style={{ marginLeft: 4 }}>
+              <h5 style={{ marginLeft: 24 }}>Current Iteration</h5>
+              <table>
                 <thead>
                   <tr>
+                    <th style={{ border: "1px solid black", padding: 10 }}>
+                      No.
+                    </th>
                     <th style={{ border: "1px solid black", padding: 10 }}>
                       Peaks
                     </th>
@@ -141,7 +150,10 @@ export default function Record() {
                 </thead>
                 <tbody>
                   {activity.map((act, i) => (
-                    <tr key={i}>
+                    <tr key={act._id}>
+                      <td style={{ border: "1px solid black", padding: 10 }}>
+                        {i+1}
+                      </td>
                       <td style={{ border: "1px solid black", padding: 10 }}>
                         {act.peaks}
                       </td>

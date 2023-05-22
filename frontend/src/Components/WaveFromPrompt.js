@@ -1,36 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { RecordCircle, StopFill } from "react-bootstrap-icons";
 import WaveForm from "./WaveForm";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  createActivity,
-  updateActivity,
-} from "../features/library/librarySlice";
 
 export default function WaveFormPrompt({
   color,
   color1,
   overlap,
   setWave,
-  percentage,
-  length,
-  url, 
-  setURL
+  url,
+  setURL,
 }) {
-  // const [url, setURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
-
-  const { user } = useSelector((state) => state.auth);
-  const { waveform } = useSelector((state) => state.waveform);
-  const { activity } = useSelector((state) => state.library);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    setURL("");
-    setWave([]);
-  }, [waveform, setWave]);
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -56,28 +37,9 @@ export default function WaveFormPrompt({
 
     recorder.addEventListener("dataavailable", handleData);
     return () => recorder.removeEventListener("dataavailable", handleData);
-  }, [recorder, isRecording]);
+  }, [recorder, isRecording, setURL]);
 
-  useEffect(() => {
-    if (user !== null && url !== "" && percentage !== null)
-      if (activity.length === 0) {
-        dispatch(
-          createActivity({
-            user: user._id,
-            record: waveform._id,
-            percentage: [{ peaks: percentage, length: length }],
-          })
-        );
-      } else {
-        dispatch(
-          updateActivity({
-            user: user._id,
-            record: waveform._id,
-            percentage: [...activity, { peaks: percentage, length: length }],
-          })
-        );
-      }
-  }, [url, dispatch, length, percentage, user]);
+
 
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
