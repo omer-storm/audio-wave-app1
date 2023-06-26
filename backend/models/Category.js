@@ -5,6 +5,10 @@ const categorySchema = mongoose.Schema({
     type: String,
     required: [true, "Please add a name"],
   },
+  difficulty: {
+    type: String,
+    required: [true, "Please add difficulty"],
+  }
 });
 
 module.exports = mongoose.model("Category", categorySchema);

@@ -1,13 +1,16 @@
 import "../css/game.css";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function Game() {
+  const { categories } = useSelector((state) => state.category);
+
   return (
     <div className="gameOptionPosition">
       <h2 className="gameOptionHeading">Select Difficulty: </h2>
-      <button className="gameOption">Easy</button>
-      <button className="gameOption">Medium</button>
-      <button className="gameOption">Hard</button>
+      {categories.map((c) => (
+          <button className="gameOption">{c.difficulty}</button>
+      ))}
     </div>
   );
 }
