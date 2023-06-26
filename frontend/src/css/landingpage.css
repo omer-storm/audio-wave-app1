@@ -4,67 +4,72 @@
 
 .landing-screen-bg {
   position: relative;
-  top: -40px;
-  background-color: #0275d8;
-  height: 90vh;
+  /* top: -40px; */
+  height: 90.5vh;
   width: 100vw;
+  background-color: #f1eef5;
 }
 
 .landing-screen-img {
   position: absolute;
-  top: 22%;
-  left: 35%;
-  background-image: url("/public/bgs/My\ project\ \(1\).jpg");
-  /* background-position: center center; */
-
-  height: 30vw;
-  width: 40vw;
+  top: 14%;
+  left: 15.5%;
+  background-image: url("../../public/bgs/landingpage1.png");
+  height: 37vw;
+  width: 65vw;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .landing-screen-text-position1 {
   position: absolute;
-  top: 100px;
-  right: 40px;
+  top: 110px;
+  right: 35px;
   width: 320px;
+  background-color: #9570b8;
+  padding: 10px;
 }
 
 .landing-screen-text-position2 {
   position: absolute;
-  top: 300px;
-  right: 40px;
+  top: 320px;
+  right: 35px;
   width: 320px;
+  background-color: #9570b8;
+  padding: 10px;
 }
 
 .landing-screen-text-position3 {
   position: absolute;
-  top: 480px;
-  right: 40px;
+  top: 510px;
+  right: 35px;
   width: 320px;
+  background-color: #9570b8;
+  padding: 10px;
 }
 
 .landing-screen-text-position4 {
   position: absolute;
-  top: 300px;
+  top: 110px;
   left: 280px;
   width: 240px;
-  background-color: #0275d8;
   padding: 16px;
+  background-color: #9570b8;
 }
 
 .landing-screen-heading {
   font-size: 40px;
-  color: white;
+  color: #f3eff7;
 }
 
 .landing-screen-description {
   padding: 4px;
-  color: white;
+  color: #f3eff7;
+  padding: 4px;
 }
 
 .landing-screen-link {
-  color: white;
+  color: #f3eff7;
   text-decoration: none;
   font-size: 20px;
   margin: 12px;
@@ -73,7 +78,8 @@
 }
 
 .landing-screen-link:hover {
-  color: white;
+  color: #f3eff7;
+
   cursor: pointer;
   text-decoration: underline;
 }

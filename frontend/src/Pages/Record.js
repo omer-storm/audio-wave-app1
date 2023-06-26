@@ -24,11 +24,14 @@ export default function Record() {
   const dispatch = useDispatch();
 
   const onCompareClick = (recording) => {
-    dispatch(resetActivity());
+    if (waveform.activity !== undefined) dispatch(resetActivity());
+
     dispatch(setWaveform(recording));
   };
 
   useEffect(() => {
+    dispatch(resetWaveform());
+    dispatch(resetActivity());
     dispatch(getCategory());
   }, [dispatch]);
 
@@ -98,17 +101,42 @@ export default function Record() {
         <div style={{ display: "flex" }}>
           {waveform.activity !== undefined && (
             <div style={{ marginLeft: -4 }}>
-              <h5 style={{ marginLeft:  15 }}>Previous Iteration</h5>
+              <h5
+                style={{ marginLeft: 15, color: "#9570b8", fontWeight: "bold" }}
+              >
+                Previous Iteration
+              </h5>
               <table>
                 <thead>
                   <tr>
-                    <th style={{ border: "1px solid black", padding: 10 }}>
+                    <th
+                      style={{
+                        border: "1px solid white",
+                        padding: 10,
+                        backgroundColor: "#9570b8",
+                        color: "white",
+                      }}
+                    >
                       No.
                     </th>
-                    <th style={{ border: "1px solid black", padding: 10 }}>
+                    <th
+                      style={{
+                        border: "1px solid white",
+                        padding: 10,
+                        backgroundColor: "#9570b8",
+                        color: "white",
+                      }}
+                    >
                       Peaks
                     </th>
-                    <th style={{ border: "1px solid black", padding: 10 }}>
+                    <th
+                      style={{
+                        border: "1px solid white",
+                        padding: 10,
+                        backgroundColor: "#9570b8",
+                        color: "white",
+                      }}
+                    >
                       Length
                     </th>
                   </tr>
@@ -116,13 +144,34 @@ export default function Record() {
                 <tbody>
                   {waveform.activity.percentage.map((act, i) => (
                     <tr key={act._id}>
-                      <td style={{ border: "1px solid black", padding: 10 }}>
-                        {i+1}
+                      <td
+                        style={{
+                          border: "1px solid white",
+                          padding: 10,
+                          backgroundColor: "#9570b8",
+                          color: "white",
+                        }}
+                      >
+                        {i + 1}
                       </td>
-                      <td style={{ border: "1px solid black", padding: 10 }}>
+                      <td
+                        style={{
+                          border: "1px solid white",
+                          padding: 10,
+                          backgroundColor: "#9570b8",
+                          color: "white",
+                        }}
+                      >
                         {act.peaks}
                       </td>
-                      <td style={{ border: "1px solid black", padding: 10 }}>
+                      <td
+                        style={{
+                          border: "1px solid white",
+                          padding: 10,
+                          backgroundColor: "#9570b8",
+                          color: "white",
+                        }}
+                      >
                         {act.length}
                       </td>
                     </tr>
@@ -152,7 +201,7 @@ export default function Record() {
                   {activity.map((act, i) => (
                     <tr key={act._id}>
                       <td style={{ border: "1px solid black", padding: 10 }}>
-                        {i+1}
+                        {i + 1}
                       </td>
                       <td style={{ border: "1px solid black", padding: 10 }}>
                         {act.peaks}

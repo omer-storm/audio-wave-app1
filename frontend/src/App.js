@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import Adminpanel from "./Pages/Adminpanel";
+import Game from "./Pages/Game";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/dashboard/create" element={<CreateRecording />} />
         <Route path="/dashboard/view" element={<ViewRecordings />} />
         <Route path="/adminpanel" element={<Adminpanel />} />
+        <Route path="/play" element={<Game />} />
       </Routes>
     </Provider>
   );

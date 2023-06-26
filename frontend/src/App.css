@@ -13,15 +13,15 @@ body {
 
 .LoginFormPosition {
   position: absolute;
-  left: 25vw;
-  top: 20vh;
+  left: 30vw;
+  top: 18vh;
 }
 
 .LoginForm {
   height: 55vh;
   width: 50vw;
   overflow-x: nowrap;
-  background: #0275d8;
+  background: #9570b8;
 }
 
 .LoginFormHeading {
@@ -69,7 +69,7 @@ body {
   height: 75vh;
   width: 50vw;
   overflow-x: nowrap;
-  background-color: #0275d8;
+  background-color: #9570b8;
 }
 
 .btn {

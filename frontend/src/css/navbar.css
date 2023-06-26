@@ -2,8 +2,6 @@
   --bar-width: 40px;
   --bar-height: 6px;
   --hamburger-gap: 6px;
-  --foreground: #333;
-  --background: #0275d8;
   --hamburger-margin-top: 20px;
   --hamburger-margin-left: 10px;
   --animation-timing: 200ms ease-in-out;
@@ -66,9 +64,8 @@
 .Navbar {
   display: flex;
   /* width: 100vw; */
-  padding: 20px;
-  /* border-bottom: 2px solid #f1f1f1; */
-  background-color: #fafafa;
+  padding: 18px;
+  background-color: #9570b8;
   text-transform: uppercase;
 }
 
@@ -78,7 +75,7 @@
   font-weight: bolder;
   font-size: 20px;
   transform: scale(3.2, 2.5);
-  color: #0275d8;
+  color: #f3eff7;
 }
 
 /* Mobile menu */
@@ -91,13 +88,14 @@
   top: 70px;
   left: 0;
   width: 270px;
-  height: 90%;
+  height: 90.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5px;
   z-index: 2;
-  background: #fafafa;
+  background: #9570b8;
+  border-bottom: 2px solid purple;
   text-transform: uppercase;
 }
 
@@ -113,9 +111,9 @@
   width: 270px;
   height: 70px;
   padding-top: 10px;
-    border-top: 2px solid #f1f1f1;
-  border-bottom: 2px solid #f1f1f1;
-  color: black;
+  /* border-top: 2px solid #000000; */
+  border-bottom: 2px solid #f3eff7;
+  /* color: #f3eff7; */
 }
 
 .sidebar-menu-option:hover {
@@ -128,8 +126,7 @@
   text-decoration: none;
   font-weight: bolder;
   font-size: 20px;
-  color: #0275d8
-  ;
+  color: #f3eff7;
 }
 
 .sidebar-menu-option-text::after {
@@ -139,7 +136,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: #0275d8;
+  background: #f1f1f1;
   transform: scaleX(0);
   transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   transform-origin: center;
