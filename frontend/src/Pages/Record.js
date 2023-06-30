@@ -89,14 +89,16 @@ export default function Record() {
       <div style={{ display: "flex", position: "relative", left: "25vw" }}>
         <div>
           {Object.keys(waveform).length !== 0 && (
-            <WaveForm
-              url={"data:audio/ogg;base64," + waveform.file}
-              color={"red"}
-              color1={"black"}
-              setWave={setWave1Peak}
-            />
+            <>
+              <WaveForm
+                url={"data:audio/ogg;base64," + waveform.file}
+                color={"red"}
+                color1={"black"}
+                setWave={setWave1Peak}
+              />
+              <WaveFormCompareList />
+            </>
           )}
-          {Object.keys(waveform).length !== 0 && <WaveFormCompareList />}
         </div>
         <div style={{ display: "flex" }}>
           {waveform.activity !== undefined && (

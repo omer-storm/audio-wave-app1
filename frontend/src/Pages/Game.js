@@ -1,16 +1,22 @@
 import "../css/game.css";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { resetGame } from "../features/game/gameSlice";
+import GameOption from "../Components/GameOption";
+import GameQuiz from "../Components/GameQuiz";
 
 function Game() {
-  const { categories } = useSelector((state) => state.category);
+  const { library } = useSelector((state) => state.game);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetGame());
+  }, [dispatch]);
 
   return (
-    <div className="gameOptionPosition">
-      <h2 className="gameOptionHeading">Select Difficulty: </h2>
-      {categories.map((c) => (
-          <button className="gameOption">{c.difficulty}</button>
-      ))}
+    <div className="gamePosition">
+      {library.length === 0 ? <GameOption /> : <GameQuiz />}
     </div>
   );
 }
