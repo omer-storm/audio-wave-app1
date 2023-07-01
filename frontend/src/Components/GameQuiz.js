@@ -1,14 +1,29 @@
 import "../css/game.css";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setWaveformPeak } from "../features/game/gameSlice";
+import {
+  setWaveformPeak,
+  setWaveformComparePeak,
+  setWaveformCompareUrl,
+} from "../features/game/gameSlice";
 import WaveForm from "./WaveForm";
+import WaveFormPrompt from "./WaveFromPrompt";
 
 export default function GameQuiz() {
-  const { waveform, index } = useSelector((state) => state.game);
+  const { waveform, waveformCompareUrl, index } = useSelector(
+    (state) => state.game
+  );
 
   const setWavePeak = (peak) => {
     dispatch(setWaveformPeak([...peak]));
+  };
+
+  const setWaveComparePeak = (peak) => {
+    dispatch(setWaveformComparePeak([...peak]));
+  };
+
+  const setWaveCompareUrl = (url) => {
+    dispatch(setWaveformCompareUrl(url));
   };
 
   const dispatch = useDispatch();
@@ -23,6 +38,15 @@ export default function GameQuiz() {
         color1={"black"}
         setWave={setWavePeak}
       />
+      <div style={{ marginTop: 8 }}>
+        <WaveFormPrompt
+          url={waveformCompareUrl}
+          color={"red"}
+          color1={"black"}
+          setWave={setWaveComparePeak}
+          setURL={setWaveCompareUrl}
+        />
+      </div>
     </>
   );
 }

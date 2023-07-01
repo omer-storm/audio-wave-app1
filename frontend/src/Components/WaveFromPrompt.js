@@ -5,7 +5,7 @@ import WaveForm from "./WaveForm";
 export default function WaveFormPrompt({
   color,
   color1,
-  overlap,
+  // overlap,
   setWave,
   url,
   setURL,
@@ -99,7 +99,7 @@ export default function WaveFormPrompt({
             url={url}
             color={color}
             color1={color1}
-            overlap={overlap}
+            // overlap={overlap}
             setWave={setWave}
           />
         </>

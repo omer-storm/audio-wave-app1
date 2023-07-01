@@ -87,8 +87,8 @@ function WaveFormCompare() {
               position: "relative",
             }}
           >
-            <h4 style={{ margin: 10 }}>Peaks: {percentage}</h4>
-            <h4 style={{ margin: 10 }}> Length: {length}</h4>
+            <h4 style={{ margin: 10 }}>Phonetics: {percentage}</h4>
+            <h4 style={{ margin: 10 }}> Completeness: {length}</h4>
             <button
               className="btn btn-primary btn-sm"
               onClick={() => setOverlap(!overlap)}

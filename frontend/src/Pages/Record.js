@@ -86,7 +86,7 @@ export default function Record() {
         ))}
       </div>
 
-      <div style={{ display: "flex", position: "relative", left: "25vw" }}>
+      <div style={{ display: "flex", position: "relative", left: "17vw" }}>
         <div>
           {Object.keys(waveform).length !== 0 && (
             <>
@@ -129,7 +129,7 @@ export default function Record() {
                         color: "white",
                       }}
                     >
-                      Peaks
+                      Phonetics
                     </th>
                     <th
                       style={{
@@ -139,7 +139,7 @@ export default function Record() {
                         color: "white",
                       }}
                     >
-                      Length
+                      Completeness
                     </th>
                   </tr>
                 </thead>
@@ -192,10 +192,10 @@ export default function Record() {
                       No.
                     </th>
                     <th style={{ border: "1px solid black", padding: 10 }}>
-                      Peaks
+                      Phonetics
                     </th>
                     <th style={{ border: "1px solid black", padding: 10 }}>
-                      Length
+                      Completeness
                     </th>
                   </tr>
                 </thead>
