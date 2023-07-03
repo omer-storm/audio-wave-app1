@@ -62,14 +62,14 @@ export default function WaveFormPrompt({
             style={{
               width: "600px",
               height: "128px",
-              border: "2px solid #0275d8",
+              border: "2px solid #189AB4",
               marginBottom: -50,
             }}
           >
             <h6
               style={{
                 padding: 50,
-                color: "#0275d8",
+                color: "#189AB4",
               }}
             >
               Your WaveForm will be displayed here
@@ -80,6 +80,7 @@ export default function WaveFormPrompt({
               className="btn btn-sm btn-primary"
               onClick={startRecording}
               disabled={isRecording}
+              style={{backgroundColor: "#189AB4"}}
             >
               <RecordCircle size={25} />
             </button>
@@ -87,7 +88,7 @@ export default function WaveFormPrompt({
               className="btn btn-sm btn-primary"
               onClick={stopRecording}
               disabled={!isRecording}
-              style={{ marginLeft: -7 }}
+              style={{ marginLeft: -7, backgroundColor: "#189AB4" }}
             >
               <StopFill size={25} />
             </button>

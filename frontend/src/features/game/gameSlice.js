@@ -10,6 +10,7 @@ const initialState = {
   waveformComparePeak: [],
   waveformCompareUrl: "",
   percentage: { peaks: "", length: "" },
+  total: 1,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -39,8 +40,15 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     resetGame: (state) => {
-      state.difficulty = "";
       state.progress = [];
+      state.index = 0;
+      state.library = [];
+      state.waveform = {};
+      state.waveformPeak = {};
+      state.waveformComparePeak = [];
+      state.waveformCompareUrl = "";
+      state.percentage = { peaks: "", length: "" };
+      state.total = 1;
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
@@ -58,7 +66,6 @@ export const gameSlice = createSlice({
       let calc = null;
       state.waveformPeak.forEach((x, i) => {
         calc = (state.waveformComparePeak[i] / x) * 100;
-        console.log(state.waveformComparePeak[i]);
         if (!isNaN(calc)) percentage.push(calc);
       });
       percentage.forEach((x) => {
@@ -78,6 +85,15 @@ export const gameSlice = createSlice({
     setWaveformCompareUrl: (state, action) => {
       state.waveformCompareUrl = action.payload;
     },
+    nextChallenge: (state) => {
+      state.index++;
+      state.waveform = state.library[state.index];
+      state.waveformPeak = [];
+      state.waveformCompareUrl = "";
+      state.waveformComparePeak = [];
+      state.percentage = { peaks: "", length: "" };
+    },
+    lastChallenge: (state) => {},
   },
   _extraReducers: (builder) => {
     builder
@@ -88,6 +104,7 @@ export const gameSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.library = action.payload;
+        state.total = state.library.length;
         state.waveform = state.library[0];
       })
       .addCase(getPublicLibrary.rejected, (state, action) => {
@@ -110,5 +127,6 @@ export const {
   setWaveformPeak,
   setWaveformComparePeak,
   setWaveformCompareUrl,
+  nextChallenge,
 } = gameSlice.actions;
 export default gameSlice.reducer;

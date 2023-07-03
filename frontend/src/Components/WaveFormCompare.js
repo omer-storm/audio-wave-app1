@@ -90,8 +90,9 @@ function WaveFormCompare() {
             <h4 style={{ margin: 10 }}>Phonetics: {percentage}</h4>
             <h4 style={{ margin: 10 }}> Completeness: {length}</h4>
             <button
-              className="btn btn-primary btn-sm"
+              className="btn btn-sm"
               onClick={() => setOverlap(!overlap)}
+              style={{backgroundColor: "#189AB4", color: "white"}}
             >
               Overlap
             </button>

@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dashboard from "./Dashboard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import WaveForm from "../Components/WaveForm";
-import WaveFormPrompt from "../Components/WaveFromPrompt";
+// import WaveFormPrompt from "../Components/WaveFromPrompt";
+import {
+  resetWaveform,
+  setWaveform,
+  setWaveformPeak,
+} from "../features/waveform/waveformSlice";
+import WaveFormCompareList from "../Components/WaveFormCompareList";
 
 export default function ViewRecordings() {
   const { user } = useSelector((state) => state.auth);
-  const [audioURL, setAudioURL] = useState("");
-  const [Option, setOption] = useState("vertical");
+  // const [audioURL, setAudioURL] = useState("");
+  const { waveform } = useSelector((state) => state.waveform);
 
-  const onClick = (url) => {
-    setAudioURL("data:audio/ogg;base64," + url);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetWaveform());
+  }, [dispatch]);
+
+  const onClick = (recording) => {
+    // setAudioURL("data:audio/ogg;base64," + url);
+    dispatch(setWaveform(recording));
+  };
+
+  const setWave1Peak = (peak) => {
+    dispatch(setWaveformPeak([...peak]));
   };
 
   return (
@@ -21,7 +38,7 @@ export default function ViewRecordings() {
             <div
               key={recording._id}
               className="recording-list-element"
-              onClick={() => onClick(recording.file)}
+              onClick={() => onClick(recording)}
             >
               <span className="recording-list-icon"></span>
               <span className="recording-list-text">{recording.display}</span>
@@ -29,65 +46,16 @@ export default function ViewRecordings() {
           ))}
         </div>
       </div>
-
-      {audioURL !== "" && (
-        <div style={{ position: "relative", left: "25%" }}>
-          <div className="PracticeOptionLayout">
-            <h6
-              className="PracticeOption"
-              onClick={() => {
-                setOption("vertical");
-              }}
-            >
-              Vertical View
-            </h6>
-            {audioURL !== "" && (
-              <h6
-                className="PracticeOption"
-                onClick={() => {
-                  setOption("overlap");
-                }}
-              >
-                Overlapped View
-              </h6>
-            )}
-          </div>
-          <div style={{display: "flex", height: 400, flexDirection: "column"}}>
-          <div
-            style={
-              Option === "overlap"
-                ? {
-                    position: "absolute",
-                    left: 0,
-                  }
-                : {}
-            }
-          >
-            <WaveForm
-              url={audioURL}
-              overlap={Option === "overlap" ? true : false}
-              color={"red"}
-              color1={"white"}
-            />
-          </div>
-          <div
-            style={
-              Option === "overlap"
-                ? {
-                    position: "absolute",
-                    left: 0,
-                  }
-                : {}
-            }
-          >
-            <WaveFormPrompt
-              url={audioURL}
-              overlap={Option === "overlap" ? true : false}
-              color={"green"}
-              color1={"blue"}
-            />
-          </div>
-          </div>
+        
+      {Object.keys(waveform).length !== 0 && (
+        <div style={{ position: "relative", left: "30vw" }}>
+          <WaveForm
+            url={"data:audio/ogg;base64," + waveform.file}
+            color={"red"}
+            color1={"black"}
+            setWave={setWave1Peak}
+          />
+          <WaveFormCompareList />
         </div>
       )}
     </Dashboard>

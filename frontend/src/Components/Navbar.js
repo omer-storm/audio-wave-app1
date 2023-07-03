@@ -36,13 +36,11 @@ const Navbar = () => {
             <p className="sidebar-menu-option-text">Practice</p>
           </div>
         </Link>
-        {user !== null && (
-          <Link to="/play">
-            <div className="sidebar-menu-option">
-              <p className="sidebar-menu-option-text">Play</p>
-            </div>
-          </Link>
-        )}
+        <Link to="/play">
+          <div className="sidebar-menu-option">
+            <p className="sidebar-menu-option-text">Play</p>
+          </div>
+        </Link>
         {user === null ? (
           <Link to="/login">
             <div className="sidebar-menu-option">

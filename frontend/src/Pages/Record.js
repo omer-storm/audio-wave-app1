@@ -86,10 +86,10 @@ export default function Record() {
         ))}
       </div>
 
-      <div style={{ display: "flex", position: "relative", left: "17vw" }}>
+      <div style={{ display: "flex", position: "relative", left: "17.5vw" }}>
         <div>
           {Object.keys(waveform).length !== 0 && (
-            <>
+            <div style={user === null && { marginLeft: "13vw" }}>
               <WaveForm
                 url={"data:audio/ogg;base64," + waveform.file}
                 color={"red"}
@@ -97,14 +97,18 @@ export default function Record() {
                 setWave={setWave1Peak}
               />
               <WaveFormCompareList />
-            </>
+            </div>
           )}
         </div>
         <div style={{ display: "flex" }}>
           {waveform.activity !== undefined && (
-            <div style={{ marginLeft: -4 }}>
+            <div
+              style={
+                activity.length === 0 ? { marginLeft: 40 } : { marginLeft: -10 }
+              }
+            >
               <h5
-                style={{ marginLeft: 15, color: "#9570b8", fontWeight: "bold" }}
+                style={{ marginLeft: 15, color: "#189AB4", fontWeight: "bold" }}
               >
                 Previous Iteration
               </h5>
@@ -115,7 +119,7 @@ export default function Record() {
                       style={{
                         border: "1px solid white",
                         padding: 10,
-                        backgroundColor: "#9570b8",
+                        backgroundColor: "#189AB4",
                         color: "white",
                       }}
                     >
@@ -125,7 +129,7 @@ export default function Record() {
                       style={{
                         border: "1px solid white",
                         padding: 10,
-                        backgroundColor: "#9570b8",
+                        backgroundColor: "#189AB4",
                         color: "white",
                       }}
                     >
@@ -135,7 +139,7 @@ export default function Record() {
                       style={{
                         border: "1px solid white",
                         padding: 10,
-                        backgroundColor: "#9570b8",
+                        backgroundColor: "#189AB4",
                         color: "white",
                       }}
                     >
@@ -150,7 +154,7 @@ export default function Record() {
                         style={{
                           border: "1px solid white",
                           padding: 10,
-                          backgroundColor: "#9570b8",
+                          backgroundColor: "#189AB4",
                           color: "white",
                         }}
                       >
@@ -160,7 +164,7 @@ export default function Record() {
                         style={{
                           border: "1px solid white",
                           padding: 10,
-                          backgroundColor: "#9570b8",
+                          backgroundColor: "#189AB4",
                           color: "white",
                         }}
                       >
@@ -170,7 +174,7 @@ export default function Record() {
                         style={{
                           border: "1px solid white",
                           padding: 10,
-                          backgroundColor: "#9570b8",
+                          backgroundColor: "#189AB4",
                           color: "white",
                         }}
                       >
@@ -184,17 +188,40 @@ export default function Record() {
           )}
           {activity.length !== 0 && (
             <div style={{ marginLeft: 4 }}>
-              <h5 style={{ marginLeft: 24 }}>Current Iteration</h5>
+              <h5 style={{ marginLeft: 24, color: "#189AB4" }}>
+                Current Iteration
+              </h5>
               <table>
                 <thead>
                   <tr>
-                    <th style={{ border: "1px solid black", padding: 10 }}>
+                    <th
+                      style={{
+                        border: "1px solid white",
+                        padding: 10,
+                        backgroundColor: "#189AB4",
+                        color: "white",
+                      }}
+                    >
                       No.
                     </th>
-                    <th style={{ border: "1px solid black", padding: 10 }}>
+                    <th
+                      style={{
+                        border: "1px solid white",
+                        padding: 10,
+                        backgroundColor: "#189AB4",
+                        color: "white",
+                      }}
+                    >
                       Phonetics
                     </th>
-                    <th style={{ border: "1px solid black", padding: 10 }}>
+                    <th
+                      style={{
+                        border: "1px solid white",
+                        padding: 10,
+                        backgroundColor: "#189AB4",
+                        color: "white",
+                      }}
+                    >
                       Completeness
                     </th>
                   </tr>
@@ -202,13 +229,34 @@ export default function Record() {
                 <tbody>
                   {activity.map((act, i) => (
                     <tr key={act._id}>
-                      <td style={{ border: "1px solid black", padding: 10 }}>
+                      <td
+                        style={{
+                          border: "1px solid white",
+                          padding: 10,
+                          backgroundColor: "#189AB4",
+                          color: "white",
+                        }}
+                      >
                         {i + 1}
                       </td>
-                      <td style={{ border: "1px solid black", padding: 10 }}>
+                      <td
+                        style={{
+                          border: "1px solid white",
+                          padding: 10,
+                          backgroundColor: "#189AB4",
+                          color: "white",
+                        }}
+                      >
                         {act.peaks}
                       </td>
-                      <td style={{ border: "1px solid black", padding: 10 }}>
+                      <td
+                        style={{
+                          border: "1px solid white",
+                          padding: 10,
+                          backgroundColor: "#189AB4",
+                          color: "white",
+                        }}
+                      >
                         {act.length}
                       </td>
                     </tr>

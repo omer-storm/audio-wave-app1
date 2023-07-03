@@ -58,16 +58,22 @@ export default function WaveForm({ url, color, color1, setWave }) {
         style={{
           width: "600px",
           height: "128px",
-          border: "2px solid #0275d8",
+          border: "2px solid #189AB4",
         }}
       >
         <div ref={waveformRef}></div>
         <button
-          className="btn btn-sm btn-primary"
+          className="btn btn-sm"
           onClick={onPlayPause}
-          style={{ position: "relative", top: -110, left: -105 }}
+          style={{
+            position: "relative",
+            top: -110,
+            left: -105,
+            backgroundColor: "#189AB4",
+            color: "white"
+          }}
         >
-          <Play size={30} />/
+          <Play style={{ backgroundColor: "#189AB4" }} size={30} />/
           <Pause size={30} />
         </button>
       </div>

@@ -21,8 +21,12 @@ function WaveFormCompareList() {
         </div>
       ))}
       <button
-        className="btn btn-primary"
-        style={{ marginLeft: 550}}
+        className="btn"
+        style={{
+          marginLeft: 550,
+          backgroundColor: "#189AB4",
+          color: "white"
+        }}
         onClick={() => {
           setIterator([...iterator, iterator.length + 1]);
         }}

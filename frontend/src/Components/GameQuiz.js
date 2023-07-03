@@ -5,14 +5,14 @@ import {
   setWaveformPeak,
   setWaveformComparePeak,
   setWaveformCompareUrl,
+  nextChallenge,
 } from "../features/game/gameSlice";
 import WaveForm from "./WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
 
 export default function GameQuiz() {
-  const { waveform, waveformCompareUrl, index } = useSelector(
-    (state) => state.game
-  );
+  const { waveform, waveformCompareUrl, index, total, percentage } =
+    useSelector((state) => state.game);
 
   const setWavePeak = (peak) => {
     dispatch(setWaveformPeak([...peak]));
@@ -47,6 +47,20 @@ export default function GameQuiz() {
           setURL={setWaveCompareUrl}
         />
       </div>
+      <p>Phonetics:{percentage.peaks}</p>
+      <p>Completeness:{percentage.length}</p>
+
+      {index + 1 !== total ? (
+        <button
+          disabled={waveformCompareUrl === "" ? true : false}
+          onClick={() => dispatch(nextChallenge())}
+          className="btn btn-primary"
+        >
+          Next
+        </button>
+      ) : (
+        <button className="btn btn-primary">Finish</button>
+      )}
     </>
   );
 }
