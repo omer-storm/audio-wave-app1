@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Dashboard from "./Dashboard";
 import { useSelector, useDispatch } from "react-redux";
 import WaveForm from "../Components/WaveForm";

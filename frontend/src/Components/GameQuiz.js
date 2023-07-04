@@ -6,12 +6,14 @@ import {
   setWaveformComparePeak,
   setWaveformCompareUrl,
   nextChallenge,
+  lastChallenge,
+  resetGame,
 } from "../features/game/gameSlice";
 import WaveForm from "./WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
 
 export default function GameQuiz() {
-  const { waveform, waveformCompareUrl, index, total, percentage } =
+  const { waveform, waveformCompareUrl, index, total, percentage, result } =
     useSelector((state) => state.game);
 
   const setWavePeak = (peak) => {
@@ -30,36 +32,63 @@ export default function GameQuiz() {
 
   return (
     <>
-      <h2 className="gameHeading">Challenge no.{index + 1}</h2>
+      {result === "" ? (
+        <>
+          <h2 className="gameHeading">Say {waveform.display}</h2>
 
-      <WaveForm
-        url={"data:audio/ogg;base64," + waveform.file}
-        color={"red"}
-        color1={"black"}
-        setWave={setWavePeak}
-      />
-      <div style={{ marginTop: 8 }}>
-        <WaveFormPrompt
-          url={waveformCompareUrl}
-          color={"red"}
-          color1={"black"}
-          setWave={setWaveComparePeak}
-          setURL={setWaveCompareUrl}
-        />
-      </div>
-      <p>Phonetics:{percentage.peaks}</p>
-      <p>Completeness:{percentage.length}</p>
+          <WaveForm
+            url={"data:audio/ogg;base64," + waveform.file}
+            color={"red"}
+            color1={"black"}
+            setWave={setWavePeak}
+          />
+          <div style={{ marginTop: 8 }}>
+            <WaveFormPrompt
+              url={waveformCompareUrl}
+              color={"red"}
+              color1={"black"}
+              setWave={setWaveComparePeak}
+              setURL={setWaveCompareUrl}
+            />
+          </div>
 
-      {index + 1 !== total ? (
-        <button
-          disabled={waveformCompareUrl === "" ? true : false}
-          onClick={() => dispatch(nextChallenge())}
-          className="btn btn-primary"
-        >
-          Next
-        </button>
+          {percentage.peaks !== null && (
+            <>
+              <p>Phonetics:{percentage.peaks.toFixed(2).toString() + "%"}</p>
+              <p>
+                Completeness:{percentage.length.toFixed(2).toString() + "%"}
+              </p>
+            </>
+          )}
+          {index + 1 !== total ? (
+            <button
+              disabled={waveformCompareUrl === "" ? true : false}
+              onClick={() => dispatch(nextChallenge())}
+              className="btn btn-primary"
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(lastChallenge())}
+            >
+              Finish
+            </button>
+          )}
+        </>
       ) : (
-        <button className="btn btn-primary">Finish</button>
+        <>
+          <h2 style={{ paddingRight: 350 }} className="gameHeading">
+            {result}
+          </h2>
+          <button
+            onClick={() => dispatch(resetGame())}
+            className="btn btn-primary"
+          >
+            End
+          </button>
+        </>
       )}
     </>
   );

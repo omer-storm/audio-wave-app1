@@ -2,15 +2,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import libraryService from "../library/libraryService";
 
 const initialState = {
-  progress: [],
+  progressPeaks: [],
+  progressLength: [],
   index: 0,
   library: [],
   waveform: {},
   waveformPeak: [],
   waveformComparePeak: [],
   waveformCompareUrl: "",
-  percentage: { peaks: "", length: "" },
+  percentage: { peaks: null, length: null },
   total: 1,
+  result: "",
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -47,8 +49,9 @@ export const gameSlice = createSlice({
       state.waveformPeak = {};
       state.waveformComparePeak = [];
       state.waveformCompareUrl = "";
-      state.percentage = { peaks: "", length: "" };
+      state.percentage = { peaks: null, length: null };
       state.total = 1;
+      state.result = "";
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
@@ -73,14 +76,12 @@ export const gameSlice = createSlice({
       });
       let average = sum / percentage.length;
 
-      state.percentage.peaks = isNaN(average)
-        ? null
-        : average.toFixed(2).toString() + "%";
+      state.percentage.peaks = isNaN(average) ? null : average;
 
       //Get Length Percentage
       const length =
         (state.waveformComparePeak.length / state.waveformPeak.length) * 100;
-      state.percentage.length = length.toFixed(2).toString() + "%";
+      state.percentage.length = length;
     },
     setWaveformCompareUrl: (state, action) => {
       state.waveformCompareUrl = action.payload;
@@ -91,9 +92,27 @@ export const gameSlice = createSlice({
       state.waveformPeak = [];
       state.waveformCompareUrl = "";
       state.waveformComparePeak = [];
-      state.percentage = { peaks: "", length: "" };
+      state.progressPeaks = [...state.progressPeaks, state.percentage.peaks];
+      state.progressLength = [...state.progressLength, state.percentage.length];
+      state.percentage = { peaks: null, length: null };
     },
-    lastChallenge: (state) => {},
+    lastChallenge: (state) => {
+      state.progressPeaks = [...state.progressPeaks, state.percentage.peaks];
+      state.progressLength = [...state.progressLength, state.percentage.length];
+      let Phonetics = 0,
+        Completeness = 0;
+      state.progressPeaks.forEach((x) => {
+        Phonetics += x;
+      });
+      state.progressLength.forEach((x) => {
+        Completeness += x;
+      });
+      Phonetics = Phonetics / state.progressPeaks.length;
+      Completeness = Completeness / state.progressLength.length;
+      state.result = `Average Completeness is: ${Completeness.toFixed(
+        2
+      )}% and average phonetics is ${Phonetics.toFixed(2)}%`;
+    },
   },
   _extraReducers: (builder) => {
     builder
@@ -128,5 +147,6 @@ export const {
   setWaveformComparePeak,
   setWaveformCompareUrl,
   nextChallenge,
+  lastChallenge,
 } = gameSlice.actions;
 export default gameSlice.reducer;

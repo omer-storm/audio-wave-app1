@@ -89,7 +89,7 @@ export default function Record() {
       <div style={{ display: "flex", position: "relative", left: "17.5vw" }}>
         <div>
           {Object.keys(waveform).length !== 0 && (
-            <div style={user === null && { marginLeft: "13vw" }}>
+            <div style={user === null ? { marginLeft: "13vw" } : {}}>
               <WaveForm
                 url={"data:audio/ogg;base64," + waveform.file}
                 color={"red"}
