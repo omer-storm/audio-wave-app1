@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6467600aeb26442012a28bee"
+  },
+  "name": "Words",
+  "difficulty": "Easy"
+},{
+  "_id": {
+    "$oid": "6467603beb26442012a28bef"
+  },
+  "name": "Sentences",
+  "difficulty": "Medium"
+},{
+  "_id": {
+    "$oid": "64a47b59c373ed2a5e99b055"
+  },
+  "difficulty": "Hard",
+  "name": "Vocabulary"
+}]
