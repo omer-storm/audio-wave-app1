@@ -78,38 +78,57 @@ export default function CreateRecording() {
   return (
     <Dashboard>
       <div className="dashboard-activity">
-          <audio src={audioURL} controls />
-          <button
-            className="btn btn-success"
-            onClick={startRecording}
-            disabled={isRecording}
-          >
-            start recording
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={stopRecording}
-            disabled={!isRecording}
-          >
-            stop recording
-          </button>
-          <input
-            id="recordingName"
-            name="recordingName"
-            type="text"
-            value={recordingName}
-            className="form-control "
-            placeholder="Enter Recording Name"
-            onChange={(e) => setRecordingName(e.target.value)}
-          />
-          <button
-            className="btn btn-success"
-            disabled={!blob || !recordingName}
-            onClick={uploadRecording}
-          >
-            upload recording
-          </button>
-        </div>
+        <audio src={audioURL} controls />
+        <button
+          className="btn btn-primary"
+          onClick={startRecording}
+          disabled={isRecording}
+          style={{
+            borderRadius: "0.375rem",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            margin: "1vw",
+            backgroundColor: "#2596be",
+          }}
+        >
+          start recording
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={stopRecording}
+          disabled={!isRecording}
+          style={{
+            borderRadius: "0.375rem",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            margin: "1vw",
+            backgroundColor: "#2596be",
+          }}
+        >
+          stop recording
+        </button>
+        <input
+          id="recordingName"
+          name="recordingName"
+          type="text"
+          value={recordingName}
+          className="form-control "
+          placeholder="Enter Recording Name"
+          onChange={(e) => setRecordingName(e.target.value)}
+          style={{ fontSize: "1vw", width: "30vw" }}
+        />
+        <button
+          className="btn btn-primary"
+          disabled={!blob || !recordingName}
+          onClick={uploadRecording}
+          style={{
+            borderRadius: "0.375rem",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            margin: "2vw",
+            backgroundColor: "#2596be",
+          }}
+        >
+          upload recording
+        </button>
+      </div>
     </Dashboard>
   );
 }

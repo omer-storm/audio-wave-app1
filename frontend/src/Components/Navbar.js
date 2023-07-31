@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="Navbar">
         <h1 className="NavHeadingText">Bolo</h1>
       </div>
@@ -64,7 +64,7 @@ const Navbar = () => {
           </Link>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

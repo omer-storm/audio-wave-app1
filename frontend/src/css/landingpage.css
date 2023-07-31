@@ -5,7 +5,7 @@
 .landing-screen-bg {
   position: relative;
   /* top: -40px; */
-  height: 90.5vh;
+  height: 100vh;
   width: 100vw;
   background-color: #f1eef5;
 }
@@ -15,7 +15,7 @@
   top: 14%;
   left: 15.5%;
   background-image: url("../../public/bgs/landingpage1.png");
-  height: 37vw;
+  height: 41.3vw;
   width: 65vw;
   background-size: cover;
   background-repeat: no-repeat;
@@ -32,7 +32,7 @@
 
 .landing-screen-text-position2 {
   position: absolute;
-  top: 320px;
+  top: 350px;
   right: 35px;
   width: 320px;
   background-color: #9570b8;
@@ -50,28 +50,30 @@
 
 .landing-screen-text-position4 {
   position: absolute;
-  top: 110px;
-  left: 280px;
+  top: 7.5vw;
+  left: 22vw;
   width: 240px;
   padding: 16px;
   background-color: #9570b8;
 }
 
 .landing-screen-heading {
-  font-size: 40px;
+  font-size: 1.75em;
   color: #f3eff7;
+  text-align: center;
 }
 
 .landing-screen-description {
   padding: 4px;
   color: #f3eff7;
   padding: 4px;
+  font-size: 1.1em;
 }
 
 .landing-screen-link {
   color: #f3eff7;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1.25em;
   margin: 12px;
   margin-top: 50px;
   padding: 4px;

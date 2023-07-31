@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { RecordCircle, StopFill } from "react-bootstrap-icons";
 import WaveForm from "./WaveForm";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 export default function WaveFormPrompt({
   color,
   color1,
-  // overlap,
+  setSpeech,
   setWave,
   url,
   setURL,
 }) {
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
+
+  //Set speech-to-text
+  const startListening = () =>
+    SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+  const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    alert("Don't recognize speech api");
+  }
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -39,19 +52,25 @@ export default function WaveFormPrompt({
     return () => recorder.removeEventListener("dataavailable", handleData);
   }, [recorder, isRecording, setURL]);
 
-
-
   async function requestRecorder() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     return new MediaRecorder(stream);
   }
 
   const startRecording = () => {
+    startListening();
+
     setIsRecording(true);
   };
 
   const stopRecording = () => {
-    setIsRecording(false);
+    setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+      setSpeech(transcript);
+      resetTranscript();
+    }, 800)
+
   };
 
   return (
@@ -80,7 +99,7 @@ export default function WaveFormPrompt({
               className="btn btn-sm btn-primary"
               onClick={startRecording}
               disabled={isRecording}
-              style={{backgroundColor: "#189AB4"}}
+              style={{ backgroundColor: "#189AB4" }}
             >
               <RecordCircle size={25} />
             </button>
@@ -93,6 +112,7 @@ export default function WaveFormPrompt({
               <StopFill size={25} />
             </button>
           </div>
+          <div className="main-content">{transcript}</div>
         </>
       ) : (
         <>
@@ -100,7 +120,6 @@ export default function WaveFormPrompt({
             url={url}
             color={color}
             color1={color1}
-            // overlap={overlap}
             setWave={setWave}
           />
         </>

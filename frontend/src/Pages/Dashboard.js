@@ -15,7 +15,7 @@ export default function Dashboard({ children }) {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{position: "absolute", top: "4vw", left: "8vw"}} >
         <div className="dashboard-menu">
           <Link to="/dashboard/view">
             <div className="dashboard-menu-option">

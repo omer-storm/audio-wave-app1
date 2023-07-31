@@ -9,7 +9,13 @@ function LandingPage() {
     <div className="landing-screen">
       <div className="landing-screen-bg"></div>
       <div className="landing-screen-img"></div>
-      <div className="landing-screen-text-position1">
+      <div
+        className="landing-screen-text-position1"
+        style={{
+          borderRadius: "1rem",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
         <h1 className="landing-screen-heading">Who are we?</h1>
         <p className="landing-screen-description">
           Bolo provides an interactive learning experience to the user who will
@@ -17,17 +23,35 @@ function LandingPage() {
           forms.
         </p>
       </div>
-      <div className="landing-screen-text-position2">
+      <div
+        className="landing-screen-text-position2"
+        style={{
+          borderRadius: "1rem",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
         <h1 className="landing-screen-heading">What is our price?</h1>
         <p className="landing-screen-description">We are absolutely free.</p>
       </div>
-      <div className="landing-screen-text-position3">
+      <div
+        className="landing-screen-text-position3"
+        style={{
+          borderRadius: "1rem",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
         <h1 className="landing-screen-heading">What is our purpose?</h1>
         <p className="landing-screen-description">
-          We want to provide platform to people who are speech impaired
+          We want to provide platform to people who are speech impaired.
         </p>
       </div>
-      <div className="landing-screen-text-position4">
+      <div
+        className="landing-screen-text-position4"
+        style={{
+          borderRadius: "1rem",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
         <h1 className="landing-screen-heading">Explore our site:</h1>
         <Link to="/login" className="landing-screen-link">
           {user === null ? "Login" : user.name}

@@ -75,6 +75,7 @@ function Login() {
                 placeholder="Enter Name"
                 onChange={onChange}
                 required
+                style={{ fontSize: "1vw", width: "30vw" }}
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -88,6 +89,7 @@ function Login() {
                 placeholder="Enter Email"
                 onChange={onChange}
                 required
+                style={{ fontSize: "1vw", width: "30vw" }}
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -101,6 +103,7 @@ function Login() {
                 placeholder="Enter Password"
                 onChange={onChange}
                 required
+                style={{ fontSize: "1vw", width: "30vw" }}
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -114,6 +117,7 @@ function Login() {
                 placeholder="Confirm Password"
                 onChange={onChange}
                 required
+                style={{ fontSize: "1vw", width: "30vw" }}
               />
             </div>
             <button className="btn btn-light text-success">Register</button>

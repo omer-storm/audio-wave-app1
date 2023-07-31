@@ -1,12 +1,39 @@
-.gamePosition {
+.game-bg {
   position: absolute;
-  left: 38vw;
-  top: 10vw;
+   left: 39vw;
+   top: 16vw;
+  background-image: url("../../public/bgs/girlspeaking.avif");
+  height: 20vw;
+  width: 29.9vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.remark {
+  position: absolute;
+  left: 43vw;
+  top: 21.5vw;
+  width: 10vw;
+  font-weight: 600;
+  color: #189AB4;
+  padding: 4px;
+
+
+}
+
+.gamePosition {
+  
+  position: absolute;
+  left: 30vw;
+  top: 12vw;
 }
 
 .gameHeading {
-    padding: 8px;
-    color: #866B9F;    ;
+    /* padding: 2px; */
+    color: #866B9F;    
+  
+
 }
 
 .gameOption {

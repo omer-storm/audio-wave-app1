@@ -21,6 +21,11 @@ export default function GameOption() {
           key={c._id}
           onClick={() => dispatch(getPublicLibrary(c._id))}
           className="gameOption"
+          style={{
+            borderRadius: "0.375rem",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            margin: "1vw",
+          }}
         >
           {c.difficulty}
         </button>

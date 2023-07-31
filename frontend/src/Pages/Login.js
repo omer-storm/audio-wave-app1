@@ -71,6 +71,7 @@ function Login() {
                 placeholder="Enter Email"
                 onChange={onChange}
                 required
+                style={{ fontSize: "1vw", width: "30vw" }}
               />
             </div>
             <div className="InputTextAreaPosition">
@@ -86,6 +87,7 @@ function Login() {
                 placeholder="Enter Password"
                 onChange={onChange}
                 required
+                style={{ fontSize: "1vw", width: "30vw" }}
               />
             </div>
             <div>
@@ -103,6 +105,5 @@ function Login() {
     </div>
   );
 }
-
 
 export default Login;

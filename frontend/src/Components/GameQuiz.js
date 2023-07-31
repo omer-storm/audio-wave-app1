@@ -32,8 +32,11 @@ export default function GameQuiz() {
 
   return (
     <>
+      <div className="game-bg"></div>
+      <h4 className="remark">Good job!</h4>
+
       {result === "" ? (
-        <>
+        <div>
           <h2 className="gameHeading">Say {waveform.display}</h2>
 
           <WaveForm
@@ -60,23 +63,31 @@ export default function GameQuiz() {
               </p>
             </>
           )}
-          {index + 1 !== total ? (
-            <button
-              disabled={waveformCompareUrl === "" ? true : false}
-              onClick={() => dispatch(nextChallenge())}
-              className="btn btn-primary"
-            >
-              Next
-            </button>
-          ) : (
-            <button
-              className="btn btn-primary"
-              onClick={() => dispatch(lastChallenge())}
-            >
-              Finish
-            </button>
-          )}
-        </>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            {index + 1 !== total ? (
+              <button
+                disabled={waveformCompareUrl === "" ? true : false}
+                onClick={() => dispatch(nextChallenge())}
+                className="btn btn-primary"
+                style={{ backgroundColor: "rgb(24, 154, 180)" }}
+              >
+                Next
+              </button>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => dispatch(lastChallenge())}
+              >
+                Finish
+              </button>
+            )}
+          </div>
+        </div>
       ) : (
         <>
           <h2 style={{ paddingRight: 350 }} className="gameHeading">
@@ -85,6 +96,7 @@ export default function GameQuiz() {
           <button
             onClick={() => dispatch(resetGame())}
             className="btn btn-primary"
+            style={{ backgroundColor: "rgb(24, 154, 180)" }}
           >
             End
           </button>

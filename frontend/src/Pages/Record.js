@@ -57,13 +57,23 @@ export default function Record() {
     <div className="container">
       <div
         className="PracticeOptionLayout"
-        style={{ position: "relative", left: "12vw" }}
+        style={{ position: "relative", left: "12vw", top: "2vw" }}
       >
         {categories.map((c) => (
           <h4
             className="PracticeOption"
             key={c._id}
             onClick={() => changeCategory(c._id)}
+            style={{
+              margin: "10px",
+              borderRadius: "0.375rem",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+              backgroundColor: "#9570b8",
+              width: "11vw",
+              textAlign: "center",
+              marginTop: "3vw",
+              marginBottom: "3vw",
+            }}
           >
             {c.name}
           </h4>
@@ -75,6 +85,11 @@ export default function Record() {
             key={recording._id}
             className="recording-list-element"
             onClick={() => onCompareClick(recording, recording.file)}
+            style={{
+              borderRadius: "0.375rem",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+              backgroundColor: "#9570b8",
+            }}
           >
             <span className="recording-list-icon"></span>
             <span className="recording-list-text">{recording.display}</span>
@@ -92,8 +107,8 @@ export default function Record() {
             <div style={user === null ? { marginLeft: "13vw" } : {}}>
               <WaveForm
                 url={"data:audio/ogg;base64," + waveform.file}
-                color={"red"}
-                color1={"black"}
+                color={"purple"}
+                color1={"teal"}
                 setWave={setWave1Peak}
               />
               <WaveFormCompareList />
@@ -102,11 +117,7 @@ export default function Record() {
         </div>
         <div style={{ display: "flex" }}>
           {waveform.activity !== undefined && (
-            <div
-              style={
-                activity.length === 0 ? { marginLeft: 40 } : { marginLeft: -10 }
-              }
-            >
+            <div style={{ marginLeft: 40 }}>
               <h5
                 style={{ marginLeft: 15, color: "#189AB4", fontWeight: "bold" }}
               >
@@ -123,8 +134,9 @@ export default function Record() {
                         color: "white",
                       }}
                     >
-                      No.
+                      Iteration
                     </th>
+
                     <th
                       style={{
                         border: "1px solid white",
@@ -133,17 +145,7 @@ export default function Record() {
                         color: "white",
                       }}
                     >
-                      Phonetics
-                    </th>
-                    <th
-                      style={{
-                        border: "1px solid white",
-                        padding: 10,
-                        backgroundColor: "#189AB4",
-                        color: "white",
-                      }}
-                    >
-                      Completeness
+                      Percentage
                     </th>
                   </tr>
                 </thead>
@@ -160,6 +162,7 @@ export default function Record() {
                       >
                         {i + 1}
                       </td>
+
                       <td
                         style={{
                           border: "1px solid white",
@@ -168,17 +171,16 @@ export default function Record() {
                           color: "white",
                         }}
                       >
-                        {act.peaks}
-                      </td>
-                      <td
-                        style={{
-                          border: "1px solid white",
-                          padding: 10,
-                          backgroundColor: "#189AB4",
-                          color: "white",
-                        }}
-                      >
-                        {act.length}
+                        <h6
+                          style={{
+                            whiteSpace: "nowrap",
+                            width: "100px",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {act.length}
+                        </h6>
                       </td>
                     </tr>
                   ))}
@@ -187,8 +189,8 @@ export default function Record() {
             </div>
           )}
           {activity.length !== 0 && (
-            <div style={{ marginLeft: 4 }}>
-              <h5 style={{ marginLeft: 24, color: "#189AB4" }}>
+            <div style={{ marginLeft: 16 }}>
+              <h5 style={{ marginLeft: 2, color: "#189AB4" }}>
                 Current Iteration
               </h5>
               <table>
@@ -204,6 +206,7 @@ export default function Record() {
                     >
                       No.
                     </th>
+
                     <th
                       style={{
                         border: "1px solid white",
@@ -212,17 +215,7 @@ export default function Record() {
                         color: "white",
                       }}
                     >
-                      Phonetics
-                    </th>
-                    <th
-                      style={{
-                        border: "1px solid white",
-                        padding: 10,
-                        backgroundColor: "#189AB4",
-                        color: "white",
-                      }}
-                    >
-                      Completeness
+                      Percentage
                     </th>
                   </tr>
                 </thead>
@@ -239,6 +232,7 @@ export default function Record() {
                       >
                         {i + 1}
                       </td>
+
                       <td
                         style={{
                           border: "1px solid white",
@@ -247,17 +241,16 @@ export default function Record() {
                           color: "white",
                         }}
                       >
-                        {act.peaks}
-                      </td>
-                      <td
-                        style={{
-                          border: "1px solid white",
-                          padding: 10,
-                          backgroundColor: "#189AB4",
-                          color: "white",
-                        }}
-                      >
-                        {act.length}
+                        <h6
+                          style={{
+                            whiteSpace: "nowrap",
+                            width: "100px",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {act.length}
+                        </h6>
                       </td>
                     </tr>
                   ))}

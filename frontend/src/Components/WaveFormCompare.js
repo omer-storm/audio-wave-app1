@@ -11,6 +11,8 @@ function WaveFormCompare() {
   const [wave2, setWave2] = useState([]);
   const [url, setURL] = useState("");
   const [overlap, setOverlap] = useState(false);
+  const [speech, setSpeech] = useState("");
+  const [length, setlength] = useState("");
 
   const { user } = useSelector((state) => state.auth);
   const { waveform, waveformPeak } = useSelector((state) => state.waveform);
@@ -22,6 +24,10 @@ function WaveFormCompare() {
     setURL("");
     setWave2([]);
   }, [waveform, setURL, setWave2]);
+
+  useEffect(() => {
+    setlength(getLength());
+  }, [speech, wave2]);
 
   const percentage = (function getPercentage() {
     const percentage = [];
@@ -39,11 +45,25 @@ function WaveFormCompare() {
     return isNaN(average) ? null : average.toFixed(2).toString() + "%";
   })();
 
-  const length = (function getLength() {
-    const length = (wave2.length / waveformPeak.length) * 100;
+  function getLength() {
+    console.log(speech);
+    if (speech === waveform.display || speech === "") {
+      let length;
+      if (speech === "") {
+        wave2.length > waveformPeak.length
+          ? (length = (waveformPeak.length / wave2.length) * 50)
+          : (length = (wave2.length / waveformPeak.length) * 50);
+      } else {
+        wave2.length > waveformPeak.length
+          ? (length = (waveformPeak.length / wave2.length) * 100)
+          : (length = (wave2.length / waveformPeak.length) * 100);
+      }
 
-    return length.toFixed(2).toString() + "%";
-  })();
+      return length.toFixed(2).toString() + "%";
+    } else {
+      return "Incorrect word recognized";
+    }
+  }
 
   useEffect(() => {
     if (user !== null && url !== "" && percentage !== null)
@@ -70,9 +90,10 @@ function WaveFormCompare() {
     <>
       {overlap === false && (
         <WaveFormPrompt
-          color="green"
-          color1={"blue"}
+          color="purple"
+          color1={"teal"}
           setWave={setWave2}
+          setSpeech={setSpeech}
           setURL={setURL}
           url={url}
         />
@@ -80,19 +101,20 @@ function WaveFormCompare() {
       {percentage !== null && (
         <>
           {overlap === true && url !== "" && <WaveFormOverlap url={url} />}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              position: "relative",
-            }}
-          >
-            <h4 style={{ margin: 10 }}>Phonetics: {percentage}</h4>
-            <h4 style={{ margin: 10 }}> Completeness: {length}</h4>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <h6 style={{ color: "#189AB4" }}> {length}</h6>
+
+              <h6 style={{ color: "#189AB4" }}>
+                {speech !== ""
+                  ? "Recognized: " + speech
+                  : "Cannot recognize word"}
+              </h6>
+            </div>
             <button
               className="btn btn-sm"
               onClick={() => setOverlap(!overlap)}
-              style={{backgroundColor: "#189AB4", color: "white"}}
+              style={{ backgroundColor: "#189AB4", color: "white" }}
             >
               Overlap
             </button>

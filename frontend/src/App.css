@@ -3,24 +3,24 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  
+
   /* overflow: hidden; */
   /* background-color: #f1f1f1; */
   /* background-position: center center; */
 }
 
-
 /*Login Form  */
 
 .LoginFormPosition {
   position: absolute;
-  left: 30vw;
-  top: 18vh;
+  left: 18vw;
+  top: 10vh;
+  right: 50vw;
 }
 
 .LoginForm {
-  height: 55vh;
-  width: 50vw;
+  height: 100vh;
+  width: 100vw;
   overflow-x: nowrap;
   background: #9570b8;
 }
@@ -28,11 +28,14 @@ body {
 .LoginFormHeading {
   margin: 30px;
   color: #f1f1f1;
+  margin-top: 5vw;
+  margin-left: 5vw;
 }
 
 .LoginFormComponentsPosition {
   position: relative;
   left: 7vw;
+  margin: 3vw;
 }
 
 .InputTextAreaPosition {
@@ -78,14 +81,15 @@ body {
 }
 
 .PracticeOptionLayout {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   margin: 5px;
+  margin-top: 10px;
 }
 
 .PracticeOption {
   padding: 10px;
-  background-color: #189AB4;
+  background-color: #189ab4;
   border-left: 2px solid white;
   color: white;
 }
@@ -112,7 +116,7 @@ body {
   padding-top: 10px;
   border-bottom: 2px solid white;
   color: white;
-  background-color: #189AB4;
+  background-color: #189ab4;
 }
 
 .dashboard-menu-option:hover {
@@ -162,7 +166,7 @@ body {
 }
 
 .recording-list-element {
-  background: #189AB4;
+  background: #189ab4;
   margin: 10px;
   width: 10vw;
   height: 5vw;

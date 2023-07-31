@@ -14,7 +14,15 @@ function WaveFormOverlap({ url }) {
           color1={"black"}
         />
       </div>
-      <div style={{ position: "relative", left: 0, top:-128, marginBottom: -128 }}>
+      <div
+        style={{
+          position: "relative",
+          left: 0,
+          top: -128,
+          marginBottom: -128,
+          // zIndex: 2,
+        }}
+      >
         <WaveForm url={url} color={"green"} color1={"blue"} />
       </div>
     </div>

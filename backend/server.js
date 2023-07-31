@@ -16,5 +16,4 @@ app.use("/api/activity", require("./api/activities"));
 app.use("/api/categories", require("./api/categories"));
 
 
-app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`)); 
- 
+app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));

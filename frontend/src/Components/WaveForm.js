@@ -26,7 +26,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
             peaks.push(x);
           }
         });
-        setWave(peaks);
+        setWave([...peaks]);
       });
       setwavesurfer(wavesurfer);
     } else {
@@ -41,8 +41,10 @@ export default function WaveForm({ url, color, color1, setWave }) {
           if (x > 0.1) {
             peaks.push(x);
           }
+          setWave([...peaks]);
+
         });
-        setWave([...peaks]);
+
       });
       setwavesurfer(wavesurfer);
     }
@@ -70,7 +72,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
             top: -110,
             left: -105,
             backgroundColor: "#189AB4",
-            color: "white"
+            color: "white",
           }}
         >
           <Play style={{ backgroundColor: "#189AB4" }} size={30} />/
