@@ -51,6 +51,7 @@ export const gameSlice = createSlice({
       state.waveformComparePeak = [];
       state.waveformCompareUrl = "";
       state.speech = "";
+      state.error = "";
       state.percentage = null;
       state.total = 1;
       state.result = "";
@@ -63,7 +64,8 @@ export const gameSlice = createSlice({
       state.waveformComparePeak = [];
       state.waveformCompareUrl = "";
       state.percentage = null;
-
+      state.speech = "";
+      state.error = "";
     },
     setWaveformPeak: (state, action) => {
       state.waveformPeak = [...action.payload];
@@ -71,12 +73,14 @@ export const gameSlice = createSlice({
     setWaveformComparePeak: (state, action) => {
       state.waveformComparePeak = [...action.payload];
 
-      //Get Length Percentage
-      const length =
-        (state.waveformComparePeak.length / state.waveformPeak.length) * 100;
-
-
-      state.percentage = length;
+      if (state.speech === state.waveform.display || state.speech === "") {
+        //Get Length Percentage
+        const length =
+          (state.waveformComparePeak.length / state.waveformPeak.length) * 100;
+        state.percentage = length;
+      } else {
+        state.error = "incorrect word recognized try again";
+      }
     },
     setWaveformCompareUrl: (state, action) => {
       state.waveformCompareUrl = action.payload;
@@ -84,6 +88,7 @@ export const gameSlice = createSlice({
     setSpeech(state, action) {
       state.speech = action.payload;
     },
+
     nextChallenge: (state) => {
       state.index++;
       state.waveform = state.library[state.index];
@@ -138,6 +143,6 @@ export const {
   nextChallenge,
   lastChallenge,
   resetWaveform,
-  setSpeech
+  setSpeech,
 } = gameSlice.actions;
 export default gameSlice.reducer;

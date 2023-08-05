@@ -15,7 +15,7 @@ import WaveForm from "./WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
 
 export default function GameQuiz() {
-  const { waveform, waveformCompareUrl, index, total, percentage, result } =
+  const { waveform, waveformCompareUrl, index, total, percentage, error, result } =
     useSelector((state) => state.game);
 
   const dispatch = useDispatch();
@@ -61,6 +61,8 @@ export default function GameQuiz() {
               setSpeech={setThisSpeech}
             />
           </div>
+
+          {error !== "" && <p>{error}</p>}
 
           {percentage !== null && (
             <>
