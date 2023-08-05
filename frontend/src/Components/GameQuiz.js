@@ -8,6 +8,8 @@ import {
   nextChallenge,
   lastChallenge,
   resetGame,
+  setSpeech,
+  resetWaveform,
 } from "../features/game/gameSlice";
 import WaveForm from "./WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
@@ -15,6 +17,8 @@ import WaveFormPrompt from "./WaveFromPrompt";
 export default function GameQuiz() {
   const { waveform, waveformCompareUrl, index, total, percentage, result } =
     useSelector((state) => state.game);
+
+  const dispatch = useDispatch();
 
   const setWavePeak = (peak) => {
     dispatch(setWaveformPeak([...peak]));
@@ -28,7 +32,9 @@ export default function GameQuiz() {
     dispatch(setWaveformCompareUrl(url));
   };
 
-  const dispatch = useDispatch();
+  const setThisSpeech = (speech) => {
+    dispatch(setSpeech(speech));
+  };
 
   return (
     <>
@@ -52,15 +58,13 @@ export default function GameQuiz() {
               color1={"black"}
               setWave={setWaveComparePeak}
               setURL={setWaveCompareUrl}
+              setSpeech={setThisSpeech}
             />
           </div>
 
-          {percentage.peaks !== null && (
+          {percentage !== null && (
             <>
-              <p>Phonetics:{percentage.peaks.toFixed(2).toString() + "%"}</p>
-              <p>
-                Completeness:{percentage.length.toFixed(2).toString() + "%"}
-              </p>
+              <p>{percentage.toFixed(2).toString() + "%"}</p>
             </>
           )}
           <div
@@ -69,6 +73,14 @@ export default function GameQuiz() {
               justifyContent: "flex-end",
             }}
           >
+            <button
+              className="btn btn-primary"
+              style={{ backgroundColor: "rgb(24, 154, 180)" }}
+              disabled={waveformCompareUrl === "" ? true : false}
+              onClick={() => dispatch(resetWaveform())}
+            >
+              Reset
+            </button>
             {index + 1 !== total ? (
               <button
                 disabled={waveformCompareUrl === "" ? true : false}

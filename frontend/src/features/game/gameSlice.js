@@ -10,7 +10,8 @@ const initialState = {
   waveformPeak: [],
   waveformComparePeak: [],
   waveformCompareUrl: "",
-  percentage: { peaks: null, length: null },
+  speech: "",
+  percentage: null,
   total: 1,
   result: "",
   isError: false,
@@ -49,7 +50,8 @@ export const gameSlice = createSlice({
       state.waveformPeak = {};
       state.waveformComparePeak = [];
       state.waveformCompareUrl = "";
-      state.percentage = { peaks: null, length: null };
+      state.speech = "";
+      state.percentage = null;
       state.total = 1;
       state.result = "";
       state.isError = false;
@@ -57,34 +59,30 @@ export const gameSlice = createSlice({
       state.isLoading = false;
       state.message = "";
     },
+    resetWaveform: (state, action) => {
+      state.waveformComparePeak = [];
+      state.waveformCompareUrl = "";
+      state.percentage = null;
+
+    },
     setWaveformPeak: (state, action) => {
       state.waveformPeak = [...action.payload];
     },
     setWaveformComparePeak: (state, action) => {
       state.waveformComparePeak = [...action.payload];
 
-      //Get Peak Percentage
-      const percentage = [];
-      let sum = 0;
-      let calc = null;
-      state.waveformPeak.forEach((x, i) => {
-        calc = (state.waveformComparePeak[i] / x) * 100;
-        if (!isNaN(calc)) percentage.push(calc);
-      });
-      percentage.forEach((x) => {
-        sum = sum + x;
-      });
-      let average = sum / percentage.length;
-
-      state.percentage.peaks = isNaN(average) ? null : average;
-
       //Get Length Percentage
       const length =
         (state.waveformComparePeak.length / state.waveformPeak.length) * 100;
-      state.percentage.length = length;
+
+
+      state.percentage = length;
     },
     setWaveformCompareUrl: (state, action) => {
       state.waveformCompareUrl = action.payload;
+    },
+    setSpeech(state, action) {
+      state.speech = action.payload;
     },
     nextChallenge: (state) => {
       state.index++;
@@ -92,26 +90,17 @@ export const gameSlice = createSlice({
       state.waveformPeak = [];
       state.waveformCompareUrl = "";
       state.waveformComparePeak = [];
-      state.progressPeaks = [...state.progressPeaks, state.percentage.peaks];
       state.progressLength = [...state.progressLength, state.percentage.length];
-      state.percentage = { peaks: null, length: null };
+      state.percentage = null;
     },
     lastChallenge: (state) => {
-      state.progressPeaks = [...state.progressPeaks, state.percentage.peaks];
       state.progressLength = [...state.progressLength, state.percentage.length];
-      let Phonetics = 0,
-        Completeness = 0;
-      state.progressPeaks.forEach((x) => {
-        Phonetics += x;
-      });
+      let Percentage;
       state.progressLength.forEach((x) => {
-        Completeness += x;
+        Percentage += x;
       });
-      Phonetics = Phonetics / state.progressPeaks.length;
-      Completeness = Completeness / state.progressLength.length;
-      state.result = `Average Completeness is: ${Completeness.toFixed(
-        2
-      )}% and average phonetics is ${Phonetics.toFixed(2)}%`;
+      Percentage = Percentage / state.progressLength.length;
+      state.result = `Average Percentage is: ${Percentage.toFixed(2)}`;
     },
   },
   _extraReducers: (builder) => {
@@ -148,5 +137,7 @@ export const {
   setWaveformCompareUrl,
   nextChallenge,
   lastChallenge,
+  resetWaveform,
+  setSpeech
 } = gameSlice.actions;
 export default gameSlice.reducer;

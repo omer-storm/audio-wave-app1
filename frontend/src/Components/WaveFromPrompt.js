@@ -13,18 +13,30 @@ export default function WaveFormPrompt({
   url,
   setURL,
 }) {
+
+  const [speechtext, setSpeechText] = useState("");
+
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
 
   //Set speech-to-text
   const startListening = () =>
-    SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+    SpeechRecognition.startListening({ continuous: false, language: "en-IN" });
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
 
   if (!browserSupportsSpeechRecognition) {
     alert("Don't recognize speech api");
   }
+
+
+  useEffect(() => {
+    if (isRecording) {
+      setSpeechText(transcript);
+    } else {
+      setSpeechText("");
+    }
+  }, [transcript])
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -64,12 +76,11 @@ export default function WaveFormPrompt({
   };
 
   const stopRecording = () => {
-    setTimeout(() => {
-      SpeechRecognition.stopListening();
-      setIsRecording(false);
-      setSpeech(transcript);
-      resetTranscript();
-    }, 800)
+
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    setSpeech(transcript);
+    resetTranscript();
 
   };
 
@@ -112,7 +123,7 @@ export default function WaveFormPrompt({
               <StopFill size={25} />
             </button>
           </div>
-          <div className="main-content">{transcript}</div>
+          <div className="main-content">{speechtext}</div>
         </>
       ) : (
         <>

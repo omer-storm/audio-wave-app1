@@ -46,7 +46,6 @@ function WaveFormCompare() {
   })();
 
   function getLength() {
-    console.log(speech);
     if (speech === waveform.display || speech === "") {
       let length;
       if (speech === "") {
@@ -113,8 +112,10 @@ function WaveFormCompare() {
             </div>
             <button
               className="btn btn-sm"
-              onClick={() => setOverlap(!overlap)}
-              style={{ backgroundColor: "#189AB4", color: "white" }}
+              onClick={() => {
+                setOverlap(!overlap);
+              }}
+              style={{ backgroundColor: "#189AB4", color: "white", zIndex: 11 }}
             >
               Overlap
             </button>

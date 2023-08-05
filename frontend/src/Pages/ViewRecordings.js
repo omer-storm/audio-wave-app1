@@ -30,6 +30,7 @@ export default function ViewRecordings() {
     dispatch(setWaveformPeak([...peak]));
   };
 
+
   return (
     <Dashboard>
       <div style={{ position: "relative", left: 20 }}>
@@ -46,7 +47,7 @@ export default function ViewRecordings() {
           ))}
         </div>
       </div>
-        
+
       {Object.keys(waveform).length !== 0 && (
         <div style={{ position: "relative", left: "30vw" }}>
           <WaveForm
