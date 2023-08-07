@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import libraryService from "../library/libraryService";
 
 const initialState = {
-  progressPeaks: [],
-  progressLength: [],
+  progress: [],
   index: 0,
   library: [],
   waveform: {},
@@ -80,12 +79,20 @@ export const gameSlice = createSlice({
           console.log(state.waveformComparePeak.length);
 
           state.waveformComparePeak.length > state.waveformPeak.length
-            ? (length = (state.waveformPeak.length / state.waveformComparePeak.length) * 50)
-            : (length = (state.waveformComparePeak.length / state.waveformPeak.length) * 50);
+            ? (length =
+              (state.waveformPeak.length / state.waveformComparePeak.length) *
+              50)
+            : (length =
+              (state.waveformComparePeak.length / state.waveformPeak.length) *
+              50);
         } else {
           state.waveformComparePeak.length > state.waveformPeak.length
-            ? (length = (state.waveformPeak.length / state.waveformComparePeak.length) * 100)
-            : (length = (state.waveformComparePeak.length / state.waveformPeak.length) * 100);
+            ? (length =
+              (state.waveformPeak.length / state.waveformComparePeak.length) *
+              100)
+            : (length =
+              (state.waveformComparePeak.length / state.waveformPeak.length) *
+              100);
         }
         state.percentage = length;
       } else {
@@ -105,16 +112,18 @@ export const gameSlice = createSlice({
       state.waveformPeak = [];
       state.waveformCompareUrl = "";
       state.waveformComparePeak = [];
-      state.progressLength = [...state.progressLength, state.percentage.length];
+      state.progress = [...state.progress, state.percentage];
       state.percentage = null;
     },
     lastChallenge: (state) => {
-      state.progressLength = [...state.progressLength, state.percentage.length];
-      let Percentage;
-      state.progressLength.forEach((x) => {
+      state.progress = [...state.progress, state.percentage];
+      let Percentage = 0;
+      state.progress.forEach((x) => {
+        console.log(x);
         Percentage += x;
+        console.log(Percentage);
       });
-      Percentage = Percentage / state.progressLength.length;
+      Percentage = Percentage / state.progress.length;
       state.result = `Average Percentage is: ${Percentage.toFixed(2)}`;
     },
   },
