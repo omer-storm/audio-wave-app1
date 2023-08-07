@@ -48,7 +48,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
       });
       setwavesurfer(wavesurfer);
     }
-  }, [url, wavesurfer, color, color1]);
+  }, [url, color, color1]);
 
   const onPlayPause = () => {
     wavesurfer.playPause();

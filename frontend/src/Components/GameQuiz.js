@@ -15,8 +15,15 @@ import WaveForm from "./WaveForm";
 import WaveFormPrompt from "./WaveFromPrompt";
 
 export default function GameQuiz() {
-  const { waveform, waveformCompareUrl, index, total, percentage, error, result } =
-    useSelector((state) => state.game);
+  const {
+    waveform,
+    waveformCompareUrl,
+    index,
+    total,
+    percentage,
+    error,
+    result,
+  } = useSelector((state) => state.game);
 
   const dispatch = useDispatch();
 
@@ -25,7 +32,7 @@ export default function GameQuiz() {
   };
 
   const setWaveComparePeak = (peak) => {
-    dispatch(setWaveformComparePeak([...peak]));
+    dispatch(setWaveformComparePeak(peak));
   };
 
   const setWaveCompareUrl = (url) => {

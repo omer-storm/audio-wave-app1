@@ -11,6 +11,7 @@ const initialState = {
   waveformComparePeak: [],
   waveformCompareUrl: "",
   speech: "",
+  error: "",
   percentage: null,
   total: 1,
   result: "",
@@ -74,9 +75,18 @@ export const gameSlice = createSlice({
       state.waveformComparePeak = [...action.payload];
 
       if (state.speech === state.waveform.display || state.speech === "") {
-        //Get Length Percentage
-        const length =
-          (state.waveformComparePeak.length / state.waveformPeak.length) * 100;
+        let length;
+        if (state.speech === "") {
+          console.log(state.waveformComparePeak.length);
+
+          state.waveformComparePeak.length > state.waveformPeak.length
+            ? (length = (state.waveformPeak.length / state.waveformComparePeak.length) * 50)
+            : (length = (state.waveformComparePeak.length / state.waveformPeak.length) * 50);
+        } else {
+          state.waveformComparePeak.length > state.waveformPeak.length
+            ? (length = (state.waveformPeak.length / state.waveformComparePeak.length) * 100)
+            : (length = (state.waveformComparePeak.length / state.waveformPeak.length) * 100);
+        }
         state.percentage = length;
       } else {
         state.error = "incorrect word recognized try again";
