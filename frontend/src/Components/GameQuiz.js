@@ -46,7 +46,9 @@ export default function GameQuiz() {
   return (
     <>
       <div className="game-bg"></div>
-      <h4 className="remark">Good job!</h4>
+      {percentage !== null && (
+        <h5 className="remark">Your percentage is {percentage.toFixed(2).toString() + "%"}</h5>
+      )}
 
       {result === "" ? (
         <div>
@@ -71,11 +73,7 @@ export default function GameQuiz() {
 
           {error !== "" && <p>{error}</p>}
 
-          {percentage !== null && (
-            <>
-              <p>{percentage.toFixed(2).toString() + "%"}</p>
-            </>
-          )}
+
           <div
             style={{
               display: "flex",
@@ -92,7 +90,11 @@ export default function GameQuiz() {
             </button>
             {index + 1 !== total ? (
               <button
-                disabled={waveformCompareUrl === "" ? true : false}
+                disabled={
+                  waveformCompareUrl === "" || percentage === null
+                    ? true
+                    : false
+                }
                 onClick={() => dispatch(nextChallenge())}
                 className="btn btn-primary"
                 style={{ backgroundColor: "rgb(24, 154, 180)" }}
