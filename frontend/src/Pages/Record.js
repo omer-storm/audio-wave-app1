@@ -174,9 +174,10 @@ export default function Record() {
                         <h6
                           style={{
                             whiteSpace: "nowrap",
-                            width: "100px",
+                            width: "120px",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
+                            maxLines: 2
                           }}
                         >
                           {act.length}

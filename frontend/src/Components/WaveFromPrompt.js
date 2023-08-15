@@ -21,7 +21,7 @@ export default function WaveFormPrompt({
 
   //Set speech-to-text
   const startListening = () =>
-    SpeechRecognition.startListening({ continuous: false, language: "en-IN" });
+    SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
 

@@ -46,9 +46,9 @@ export default function GameQuiz() {
   return (
     <>
       <div className="game-bg"></div>
-      {percentage !== null && (
+      {percentage !== null ? (
         <h5 className="remark">Your percentage is {percentage.toFixed(2).toString() + "%"}</h5>
-      )}
+      ) : <h5 className="remark" style={{ left: "43.25vw" }}>Good Luck! </h5>}
 
       {result === "" ? (
         <div>

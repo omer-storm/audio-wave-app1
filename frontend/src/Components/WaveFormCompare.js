@@ -60,12 +60,25 @@ function WaveFormCompare() {
 
       return length.toFixed(2).toString() + "%";
     } else {
-      return "Incorrect word recognized";
+      return "";
+    }
+  }
+
+  function viewAnyway() {
+    if (speech.split(" ").length === 1) {
+      let length;
+
+      wave2.length > waveformPeak.length
+        ? (length = (waveformPeak.length / wave2.length) * 50)
+        : (length = (wave2.length / waveformPeak.length) * 50);
+      setlength(length.toFixed(2).toString() + "%");
+    } else {
+      setlength("error");
     }
   }
 
   useEffect(() => {
-    if (user !== null && url !== "" && percentage !== null)
+    if (user !== null && url !== "" && percentage !== null && length !== "" && length !== "error")
       if (activity.length === 0) {
         dispatch(
           createActivity({
@@ -102,20 +115,46 @@ function WaveFormCompare() {
           {overlap === true && url !== "" && <WaveFormOverlap url={url} />}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
-              <h6 style={{ color: "#189AB4" }}> {length}</h6>
-
               <h6 style={{ color: "#189AB4" }}>
                 {speech !== ""
                   ? "Recognized: " + speech
                   : "Cannot recognize word"}
               </h6>
+              {length !== "" && length !== "error" ? (
+                <h6 style={{ color: "#189AB4" }}>Percentage is {length}</h6>
+              ) : (
+                length !== "error" ? <div>
+                  <h6 style={{ color: "#189AB4" }}>
+                    Incorrect word recognized
+                  </h6>
+                  <button
+                    onClick={viewAnyway}
+                    className="btn btn-sm"
+                    style={{
+                      backgroundColor: "#189AB4",
+                      color: "white",
+                      zIndex: 11,
+                    }}
+                  >
+                    View Anyway
+                  </button>
+                </div> : <h6 style={{ color: "#189AB4" }}>
+                  Error Occured
+                </h6>
+
+              )}
             </div>
             <button
               className="btn btn-sm"
               onClick={() => {
                 setOverlap(!overlap);
               }}
-              style={{ backgroundColor: "#189AB4", color: "white", zIndex: 11 }}
+              style={{
+                backgroundColor: "#189AB4",
+                color: "white",
+                zIndex: 11,
+                height: 40,
+              }}
             >
               Overlap
             </button>
