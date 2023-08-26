@@ -61,6 +61,10 @@ function Login() {
   return (
     <div>
       <div className="RegisterForm LoginFormPosition">
+        <div className="login-screen-img"></div>
+        <div className="login-screen-img1"></div>
+        <h6 className="loginMessage">Register to continue..</h6>
+
         <h2 className="LoginFormHeading">Register:</h2>
         <div className="LoginFormComponentsPosition">
           <form onSubmit={onSubmit}>
@@ -127,7 +131,7 @@ function Login() {
               style={{
                 position: "relative",
                 fontSize: 18,
-                left: "45%",
+                left: "20%",
                 fontWeight: "bold",
               }}
             >

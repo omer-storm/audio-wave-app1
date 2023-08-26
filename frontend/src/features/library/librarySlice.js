@@ -94,9 +94,17 @@ export const librarySlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
+
       state.library = [];
+      state.activity = [];
+
     },
     resetActivity: (state) => {
+
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.message = "";
       state.activity = [];
     },
   },

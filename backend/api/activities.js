@@ -26,7 +26,7 @@ router.post("/", protect, async (req, res) => {
       libraryUrl: req.body.record,
     });
   }
-  
+
   const activity = await Activity.create({
     user: req.body.user,
     libraryUrl: req.body.record,
@@ -48,6 +48,6 @@ router.put("/", protect, async (req, res) => {
     { new: true }
   );
   res.status(200).send(activity.percentage);
-}); 
+});
 
 module.exports = router;

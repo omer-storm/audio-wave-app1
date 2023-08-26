@@ -55,6 +55,9 @@ function Login() {
   return (
     <div>
       <div className="LoginForm LoginFormPosition">
+        <div className="login-screen-img"></div>
+        <div className="login-screen-img1"></div>
+        <h6 className="loginMessage">Login to continue..</h6>
         <h2 className="LoginFormHeading">Login:</h2>
         <div className="LoginFormComponentsPosition">
           <form onSubmit={onSubmit}>

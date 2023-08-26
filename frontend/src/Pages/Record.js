@@ -12,19 +12,24 @@ import {
   setWaveformPeak,
   resetWaveform,
 } from "../features/waveform/waveformSlice";
-import { getCategory } from "../features/category/categorySlice";
+import { getCategory, setSelectedCategory } from "../features/category/categorySlice";
 import { Check } from "react-bootstrap-icons";
 
 export default function Record() {
   const { user } = useSelector((state) => state.auth);
   const { library, activity } = useSelector((state) => state.library);
-  const { waveform } = useSelector((state) => state.waveform);
-  const { categories } = useSelector((state) => state.category);
+  const { waveform, waveformActivity } = useSelector((state) => state.waveform);
+  const { categories, selectedCategory } = useSelector((state) => state.category);
 
   const dispatch = useDispatch();
 
   const onCompareClick = (recording) => {
-    if (waveform.activity !== undefined) dispatch(resetActivity());
+    if (waveform.activity !== undefined) {
+      dispatch(resetActivity());
+      dispatch(resetWaveform());
+      if (user === null) dispatch(getPublicLibrary(selectedCategory._id));
+      else dispatch(getPrivateLibrary(selectedCategory._id));
+    }
 
     dispatch(setWaveform(recording));
   };
@@ -37,10 +42,13 @@ export default function Record() {
 
   useEffect(() => {
     if (categories.length !== 0) {
+      dispatch(setSelectedCategory(categories[0]));
       if (user === null) dispatch(getPublicLibrary(categories[0]._id));
       else dispatch(getPrivateLibrary(categories[0]._id));
     }
   }, [dispatch, user, categories]);
+
+
 
   const setWave1Peak = (peak) => {
     dispatch(setWaveformPeak([...peak]));
@@ -49,6 +57,9 @@ export default function Record() {
   const changeCategory = (c) => {
     dispatch(resetWaveform());
     dispatch(resetActivity());
+
+    dispatch(setSelectedCategory(c));
+
     if (user === null) dispatch(getPublicLibrary(c));
     else dispatch(getPrivateLibrary(c));
   };

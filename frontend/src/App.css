@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: #f1eef5;
 
   /* overflow: hidden; */
   /* background-color: #f1f1f1; */
@@ -10,16 +11,51 @@ body {
 }
 
 /*Login Form  */
+.login-screen-img {
+  position: absolute;
+  left: 55vw;
+  background-image: url("../public/bgs/Businesswoman.svg");
+  height: 43.5vw;
+  width: 29.9vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 4;
+}
+
+.login-screen-img1 {
+  position: absolute;
+  left: 39vw;
+  top: -2vw;
+  background-image: url("../public/bgs/speech_bubble.png");
+  height: 24vw;
+  width: 23vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+
+.loginMessage {
+  position: absolute;
+  left: 41vw;
+  padding: 2vw;
+  top: 6vw;
+  width: 25vw;
+  font-size: 2vw;
+  font-weight: 600;
+  /* color: white; */
+  padding: 4px;
+  z-index: 5;
+}
 
 .LoginFormPosition {
   position: absolute;
   left: 18vw;
-  top: 10vh;
+  top: 9vh;
   right: 50vw;
 }
 
 .LoginForm {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   overflow-x: nowrap;
   background: #9570b8;
@@ -70,8 +106,8 @@ body {
 }
 
 .RegisterForm {
-  height: 75vh;
-  width: 50vw;
+  height: 90vh;
+  width: 100vw;
   overflow-x: nowrap;
   background-color: #9570b8;
 }

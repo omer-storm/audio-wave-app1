@@ -61,6 +61,7 @@ export default function WaveForm({ url, color, color1, setWave }) {
           width: "600px",
           height: "128px",
           border: "2px solid #189AB4",
+          borderRadius: 8
         }}
       >
         <div ref={waveformRef}></div>

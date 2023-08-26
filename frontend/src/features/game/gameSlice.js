@@ -76,7 +76,6 @@ export const gameSlice = createSlice({
       if (state.speech === state.waveform.display || state.speech === "") {
         let length;
         if (state.speech === "") {
-          console.log(state.waveformComparePeak.length);
 
           state.waveformComparePeak.length > state.waveformPeak.length
             ? (length =

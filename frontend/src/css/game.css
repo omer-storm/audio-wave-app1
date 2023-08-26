@@ -1,22 +1,35 @@
 .game-bg {
   position: absolute;
-  left: 39vw;
-  top: 16vw;
-  background-image: url("../../public/bgs/girlspeaking.avif");
-  height: 20vw;
+  left: 42vw;
+  top: -6vw;
+  background-image: url("../../public/bgs/Businesswoman.svg");
+  height: 45.1vw;
   width: 29.9vw;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1;
 }
 
+.game-bg1 {
+  position: absolute;
+  left: 24vw;
+  top: -9.5vw;
+  background-image: url("../../public/bgs/speech_bubble.png");
+  height: 26vw;
+  width: 25vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
 .remark {
   position: absolute;
-  left: 41.5vw;
-  top: 21vw;
-  width: 14vw;
-  font-weight: 700;
-  color: #189ab4;
+  left: 27vw;
+  padding: 2vw;
+  top: -1vw;
+  width: 25vw;
+  font-size: 2.25vw;
+  font-weight: 600;
+  color: #866b9f;
   padding: 4px;
 }
 

@@ -11,6 +11,7 @@ function WaveFormCompare() {
   const [wave2, setWave2] = useState([]);
   const [url, setURL] = useState("");
   const [overlap, setOverlap] = useState(false);
+  const [resetWave, setresetWave] = useState(false);
   const [speech, setSpeech] = useState("");
   const [length, setlength] = useState("");
 
@@ -23,6 +24,12 @@ function WaveFormCompare() {
   useEffect(() => {
     setURL("");
     setWave2([]);
+    setresetWave(true);
+    // setresetWave(false);
+
+    setTimeout(function () {
+      setresetWave(false);
+    }, 10);
   }, [waveform, setURL, setWave2]);
 
   useEffect(() => {
@@ -78,7 +85,13 @@ function WaveFormCompare() {
   }
 
   useEffect(() => {
-    if (user !== null && url !== "" && percentage !== null && length !== "" && length !== "error")
+    if (
+      user !== null &&
+      url !== "" &&
+      percentage !== null &&
+      length !== "" &&
+      length !== "error"
+    )
       if (activity.length === 0) {
         dispatch(
           createActivity({
@@ -96,11 +109,11 @@ function WaveFormCompare() {
           })
         );
       }
-  }, [url, dispatch, length, percentage, user]);
+  }, [url, dispatch, length, user]);
 
   return (
     <>
-      {overlap === false && (
+      {overlap === false && resetWave == false && (
         <WaveFormPrompt
           color="purple"
           color1={"teal"}
@@ -122,8 +135,8 @@ function WaveFormCompare() {
               </h6>
               {length !== "" && length !== "error" ? (
                 <h6 style={{ color: "#189AB4" }}>Percentage is {length}</h6>
-              ) : (
-                length !== "error" ? <div>
+              ) : length !== "error" ? (
+                <div>
                   <h6 style={{ color: "#189AB4" }}>
                     Incorrect word recognized
                   </h6>
@@ -138,10 +151,9 @@ function WaveFormCompare() {
                   >
                     View Anyway
                   </button>
-                </div> : <h6 style={{ color: "#189AB4" }}>
-                  Error Occured
-                </h6>
-
+                </div>
+              ) : (
+                <h6 style={{ color: "#189AB4" }}>Error Occured</h6>
               )}
             </div>
             <button

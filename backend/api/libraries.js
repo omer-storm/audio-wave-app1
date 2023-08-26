@@ -16,11 +16,11 @@ router.post("/", upload.single("recording"), async (req, res) => {
   });
   res.status(201).send(library);
 });
- 
+
 router.get("/:category", async (req, res) => {
   const library = await Library.find({
     category: mongoose.Types.ObjectId(req.params.category),
-  }); 
+  });
   res.status(200).send(library);
 });
 
