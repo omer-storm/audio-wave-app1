@@ -27,8 +27,8 @@ export default function Record() {
     if (waveform.activity !== undefined) {
       dispatch(resetActivity());
       dispatch(resetWaveform());
-      if (user === null) dispatch(getPublicLibrary(selectedCategory._id));
-      else dispatch(getPrivateLibrary(selectedCategory._id));
+      if (user === null) dispatch(getPublicLibrary(selectedCategory._id.toString()));
+      else dispatch(getPrivateLibrary(selectedCategory._id.toString()));
     }
 
     dispatch(setWaveform(recording));
