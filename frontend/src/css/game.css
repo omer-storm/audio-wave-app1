@@ -12,22 +12,22 @@
 
 .game-bg1 {
   position: absolute;
-  left: 24vw;
-  top: -9.5vw;
-  background-image: url("../../public/bgs/speech_bubble.png");
-  height: 26vw;
-  width: 25vw;
+  left: 28vw;
+  top: -7.5vw;
+  background-image: url("../../public/bgs/speech_bubble1.png");
+  height: 22vw;
+  width: 22vw;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -2;
 }
 .remark {
   position: absolute;
-  left: 27vw;
+  left: 32vw;
   padding: 2vw;
-  top: -1vw;
-  width: 25vw;
-  font-size: 2.25vw;
+  top: -2vw;
+  width: 15vw;
+  font-size: 2vw;
   font-weight: 600;
   color: #866b9f;
   padding: 4px;

@@ -4,6 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { uploadrecording } from "../features/auth/authSlice";
 import Dashboard from "./Dashboard";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { Oval } from "react-loader-spinner";
+
 
 export default function CreateRecording() {
   const navigate = useNavigate();
@@ -13,7 +18,15 @@ export default function CreateRecording() {
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
   const [blob, setBlob] = useState(null);
-  const [recordingName, setRecordingName] = useState("");
+
+  const [loader, setloader] = useState(false);
+  const [loaderMessage, setloaderMessage] = useState("");
+  const { transcript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    alert("Don't recognize speech api");
+  }
 
   useEffect(() => {
     if (!user) {
@@ -58,21 +71,35 @@ export default function CreateRecording() {
   }
 
   const startRecording = () => {
+    setloaderMessage("Please maintain silence while we start recording");
     setIsRecording(true);
+    setloader(true);
+    setTimeout(function () {
+      SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+      setloader(false);
+    }, 2000);
   };
 
   const stopRecording = () => {
-    setIsRecording(false);
+    setloaderMessage("Please maintain silence while we finish recording");
+    setloader(true);
+    SpeechRecognition.stopListening();
+    setTimeout(function () {
+      setloader(false);
+      setIsRecording(false);
+    }, 2000);
   };
 
   const uploadRecording = async () => {
     const formData = new FormData();
     formData.append("recording", blob);
     formData.append("userid", user._id);
-    formData.append("recordingName", recordingName);
+    formData.append("recordingName", transcript);
     setBlob("");
-    setRecordingName("");
+    // setRecordingName("");
     dispatch(uploadrecording(formData));
+    window.location.reload();
+
   };
 
   return (
@@ -105,7 +132,24 @@ export default function CreateRecording() {
         >
           stop recording
         </button>
-        <input
+        <div className="main-content">{transcript}</div>
+
+        {loader && (
+          <>
+            <h6>{loaderMessage}</h6>
+            <Oval
+              height="25"
+              width="25"
+              radius="15"
+              color="teal"
+              strokeWidth={8}
+              ariaLabel="loading"
+              wrapperStyle
+              wrapperClass
+            />
+          </>
+        )}
+        {/* <input
           id="recordingName"
           name="recordingName"
           type="text"
@@ -114,10 +158,11 @@ export default function CreateRecording() {
           placeholder="Enter Recording Name"
           onChange={(e) => setRecordingName(e.target.value)}
           style={{ fontSize: "1vw", width: "30vw" }}
-        />
+        /> */}
+
         <button
           className="btn btn-primary"
-          disabled={!blob || !recordingName}
+          disabled={!blob || !transcript}
           onClick={uploadRecording}
           style={{
             borderRadius: "0.375rem",

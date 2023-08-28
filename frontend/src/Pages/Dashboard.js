@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Dashboard({ children }) {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+
 
   useEffect(() => {
     if (!user) {
@@ -15,13 +16,20 @@ export default function Dashboard({ children }) {
 
   return (
     <>
-      <div className="container" style={{position: "absolute", top: "4vw", left: "8vw"}} >
+      <div
+        className="container"
+        style={{ position: "absolute", top: "4vw", left: "8vw" }}
+      >
         <div className="dashboard-menu">
+
+
           <Link to="/dashboard/view">
             <div className="dashboard-menu-option">
               <p className="dashboard-menu-option-text">View Recordings </p>
             </div>
           </Link>
+
+
           <Link to="/dashboard/create">
             <div className="dashboard-menu-option">
               <p className="dashboard-menu-option-text">Create Recordings</p>
@@ -31,6 +39,6 @@ export default function Dashboard({ children }) {
 
         {children}
       </div>
-    </> 
+    </>
   );
 }

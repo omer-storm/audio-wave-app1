@@ -123,7 +123,7 @@ export const gameSlice = createSlice({
         console.log(Percentage);
       });
       Percentage = Percentage / state.progress.length;
-      state.result = `Average Percentage is: ${Percentage.toFixed(2)}`;
+      state.result = `Average Percentage is: ${Percentage.toFixed(2)}%`;
     },
   },
   _extraReducers: (builder) => {

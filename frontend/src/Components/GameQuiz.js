@@ -26,7 +26,6 @@ export default function GameQuiz() {
   } = useSelector((state) => state.game);
   const [resetWave, setresetWave] = useState(false);
 
-
   const dispatch = useDispatch();
 
   const setWavePeak = (peak) => {
@@ -50,15 +49,18 @@ export default function GameQuiz() {
       <div className="game-bg"></div>
       <div className="game-bg1"></div>
 
-      {percentage !== null ? (
-        <h5 className="remark">
-          Your percentage is {percentage.toFixed(2).toString() + "%"}
-        </h5>
+      {result === "" ? (
+        percentage !== null ? (
+          <h5 className="remark">
+            Your percentage is {percentage.toFixed(2).toString() + "%"}
+          </h5>
+        ) : (
+          <h5 className="remark">
+            {index == 0 ? "Hi! How are you?" : `Question no. ${index + 1}`}
+          </h5>
+        )
       ) : (
-        <h5 className="remark">
-          {" "}
-          {index == 0 ? "Hi! How are you?" : `Question no. ${index + 1}`}{" "}
-        </h5>
+        <h5 className="remark">Thank you for your time!</h5>
       )}
       <div style={{ position: "relative", top: "7vw" }}>
         {result === "" ? (
@@ -71,8 +73,8 @@ export default function GameQuiz() {
               color1={"black"}
               setWave={setWavePeak}
             />
-            {
-              resetWave === false && <div style={{ marginTop: 8 }}>
+            {resetWave === false && (
+              <div style={{ marginTop: 8 }}>
                 <WaveFormPrompt
                   url={waveformCompareUrl}
                   color={"red"}
@@ -82,8 +84,7 @@ export default function GameQuiz() {
                   setSpeech={setThisSpeech}
                 />
               </div>
-            }
-
+            )}
 
             {error !== "" && <p>{error}</p>}
 
@@ -104,7 +105,7 @@ export default function GameQuiz() {
                   setTimeout(function () {
                     setresetWave(false);
                   }, 10);
-                  dispatch(resetWaveform())
+                  dispatch(resetWaveform());
                 }}
               >
                 Reset
@@ -133,6 +134,11 @@ export default function GameQuiz() {
               ) : (
                 <button
                   className="btn btn-primary"
+                  disabled={
+                    waveformCompareUrl === "" || percentage === null
+                      ? true
+                      : false
+                  }
                   onClick={() => {
                     setresetWave(true);
                     // setresetWave(false);

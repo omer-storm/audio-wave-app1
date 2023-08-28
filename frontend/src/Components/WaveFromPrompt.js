@@ -20,6 +20,7 @@ export default function WaveFormPrompt({
   const [loader, setloader] = useState(false);
   const [loaderMessage, setloaderMessage] = useState("");
   const [recorder, setRecorder] = useState(null);
+  const [disableStop, setDisableStop] = useState(true);
 
   const { transcript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
@@ -75,10 +76,12 @@ export default function WaveFormPrompt({
     setTimeout(function () {
       SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
       setloader(false);
+      setDisableStop(false);
     }, 2000);
   };
 
   const stopRecording = () => {
+    setDisableStop(true);
     setloaderMessage("Please maintain silence while we finish recording");
     setloader(true);
     SpeechRecognition.stopListening();
@@ -124,7 +127,7 @@ export default function WaveFormPrompt({
             <button
               className="btn btn-sm btn-primary"
               onClick={stopRecording}
-              disabled={!isRecording}
+              disabled={disableStop}
               style={{ marginLeft: -7, backgroundColor: "#189AB4" }}
             >
               <StopFill size={25} />

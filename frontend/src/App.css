@@ -24,9 +24,9 @@ body {
 
 .login-screen-img1 {
   position: absolute;
-  left: 39vw;
-  top: -2vw;
-  background-image: url("../public/bgs/speech_bubble.png");
+  left: 39.5vw;
+  top: -0.5vw;
+  background-image: url("../public/bgs/speech_bubble1.png");
   height: 24vw;
   width: 23vw;
   background-size: cover;
@@ -36,9 +36,9 @@ body {
 
 .loginMessage {
   position: absolute;
-  left: 41vw;
+  left: 42vw;
   padding: 2vw;
-  top: 6vw;
+  top: 7vw;
   width: 25vw;
   font-size: 2vw;
   font-weight: 600;
@@ -204,7 +204,7 @@ body {
 .recording-list-element {
   background: #189ab4;
   margin: 10px;
-  width: 10vw;
+  width: 13vw;
   height: 5vw;
   display: inline-flex;
   justify-content: center;

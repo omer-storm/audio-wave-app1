@@ -19,7 +19,7 @@
   width: 65vw;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 11;
+  /* z-index: 11; */
 }
 
 .landing-screen-text-position1 {
@@ -78,6 +78,7 @@
   margin: 12px;
   margin-top: 50px;
   padding: 4px;
+  z-index: 20;
 }
 
 .landing-screen-link:hover {
