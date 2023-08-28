@@ -20,7 +20,9 @@ const Navbar = () => {
   return (
     <div>
       <div className="Navbar">
-        <h1 className="NavHeadingText">Bolo</h1>
+        <Link to={"/"} style={{ textDecoration: "none" }}>
+          <h1 className="NavHeadingText">Bolo</h1>
+        </Link>
       </div>
       {/* <label className="hamburger-menu">
         <input type="checkbox" />
