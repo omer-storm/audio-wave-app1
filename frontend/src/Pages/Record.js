@@ -27,8 +27,8 @@ export default function Record() {
     if (waveform.activity !== undefined) {
       dispatch(resetActivity());
       dispatch(resetWaveform());
-      if (user === null) dispatch(getPublicLibrary(selectedCategory._id.toString()));
-      else dispatch(getPrivateLibrary(selectedCategory._id.toString()));
+      if (user === null) dispatch(getPublicLibrary(selectedCategory));
+      else dispatch(getPrivateLibrary(selectedCategory));
     }
 
     dispatch(setWaveform(recording));
@@ -42,7 +42,7 @@ export default function Record() {
 
   useEffect(() => {
     if (categories.length !== 0) {
-      dispatch(setSelectedCategory(categories[0]));
+      dispatch(setSelectedCategory(categories[0]._id));
       if (user === null) dispatch(getPublicLibrary(categories[0]._id));
       else dispatch(getPrivateLibrary(categories[0]._id));
     }
@@ -112,7 +112,7 @@ export default function Record() {
         ))}
       </div>
 
-      <div style={{ display: "flex", position: "relative", left: "17.5vw" }}>
+      <div style={{ display: "flex", position: "relative", left: "18.5vw" }}>
         <div>
           {Object.keys(waveform).length !== 0 && (
             <div style={user === null ? { marginLeft: "13vw" } : {}}>

@@ -10,6 +10,10 @@ body {
   /* background-position: center center; */
 }
 
+audio::-webkit-media-controls-panel {
+  background-color: #c39be8;
+  color: #c39be8;
+}
 /*Login Form  */
 .login-screen-img {
   position: absolute;

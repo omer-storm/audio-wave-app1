@@ -33,7 +33,7 @@ export default function ViewRecordings() {
 
   return (
     <Dashboard>
-      <div style={{ position: "relative", left: 20 }}>
+      <div style={{ marginLeft: "4vw", marginTop: "2vw" }}>
         <div className="recording-list-box">
           {user.recordings.map((recording) => (
             <div

@@ -18,7 +18,7 @@ export default function Dashboard({ children }) {
     <>
       <div
         className="container"
-        style={{ position: "absolute", top: "4vw", left: "8vw" }}
+        style={{ position: "absolute", top: "5vw", left: "8vw" }}
       >
         <div className="dashboard-menu">
 
@@ -38,7 +38,10 @@ export default function Dashboard({ children }) {
         </div>
 
         {children}
+
+
       </div>
+
     </>
   );
 }

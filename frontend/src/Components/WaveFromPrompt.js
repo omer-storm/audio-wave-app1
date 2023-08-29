@@ -149,7 +149,6 @@ export default function WaveFormPrompt({
             </>
           )}
 
-          <div className="main-content">{transcript}</div>
         </>
       ) : (
         <>

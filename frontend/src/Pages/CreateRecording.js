@@ -9,7 +9,6 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { Oval } from "react-loader-spinner";
 
-
 export default function CreateRecording() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,6 +17,8 @@ export default function CreateRecording() {
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
   const [blob, setBlob] = useState(null);
+
+
 
   const [loader, setloader] = useState(false);
   const [loaderMessage, setloaderMessage] = useState("");
@@ -97,15 +98,17 @@ export default function CreateRecording() {
     formData.append("recordingName", transcript);
     setBlob("");
     // setRecordingName("");
-    dispatch(uploadrecording(formData));
-    window.location.reload();
 
+    dispatch(uploadrecording(formData));
+    setTimeout(function () {
+      window.location.reload();
+    });
   };
 
   return (
     <Dashboard>
-      <div className="dashboard-activity">
-        <audio src={audioURL} controls />
+      <div className="dashboard-activity" style={{ marginLeft: "4vw", marginTop: "2vw" }}>
+        <audio src={audioURL} controls style={{ color: "#2596be" }} />
         <button
           className="btn btn-primary"
           onClick={startRecording}
@@ -126,13 +129,27 @@ export default function CreateRecording() {
           style={{
             borderRadius: "0.375rem",
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-            margin: "1vw",
+            // margin: "1vw",
             backgroundColor: "#2596be",
           }}
         >
           stop recording
         </button>
-        <div className="main-content">{transcript}</div>
+        <button
+          className="btn btn-primary"
+          disabled={!blob || !transcript}
+          onClick={uploadRecording}
+          style={{
+            borderRadius: "0.375rem",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            backgroundColor: "#2596be",
+          }}
+        >
+          upload recording
+        </button>
+        <div className="main-content" style={{ marginBottom: "0.5vw" }}>
+          {transcript}
+        </div>
 
         {loader && (
           <>
@@ -149,30 +166,7 @@ export default function CreateRecording() {
             />
           </>
         )}
-        {/* <input
-          id="recordingName"
-          name="recordingName"
-          type="text"
-          value={recordingName}
-          className="form-control "
-          placeholder="Enter Recording Name"
-          onChange={(e) => setRecordingName(e.target.value)}
-          style={{ fontSize: "1vw", width: "30vw" }}
-        /> */}
 
-        <button
-          className="btn btn-primary"
-          disabled={!blob || !transcript}
-          onClick={uploadRecording}
-          style={{
-            borderRadius: "0.375rem",
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-            margin: "2vw",
-            backgroundColor: "#2596be",
-          }}
-        >
-          upload recording
-        </button>
       </div>
     </Dashboard>
   );
